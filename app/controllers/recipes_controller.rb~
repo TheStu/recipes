@@ -26,7 +26,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     Category.find_each do |cat|
-      @recipe.categories.build({:name => 'blah'})
+      @recipe.categories.build({:name => cat.name})
     end
     @recipe.ingredients.build
     respond_to do |format|

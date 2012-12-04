@@ -11,19 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204054000) do
+ActiveRecord::Schema.define(:version => 20121204021016) do
+
+  create_table "award_refs", :force => true do |t|
+    t.integer  "award_id"
+    t.integer  "novel_id"
+    t.integer  "award_year"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "awards", :force => true do |t|
+    t.string   "name"
+    t.string   "picture_url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "categories", :force => true do |t|
+    t.integer  "recipe_id"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "category_joins", :force => true do |t|
-    t.integer  "recipe_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "genres", :force => true do |t|
+    t.string   "name"
+    t.integer  "novel_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ingredients", :force => true do |t|
@@ -31,6 +47,51 @@ ActiveRecord::Schema.define(:version => 20121204054000) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "list_refs", :force => true do |t|
+    t.integer  "list_id"
+    t.integer  "novel_id"
+    t.integer  "list_ranking"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "list_url"
+  end
+
+  create_table "novels", :force => true do |t|
+    t.string   "isbn"
+    t.string   "author"
+    t.string   "title"
+    t.string   "picture_url"
+    t.decimal  "goodreads_stars",    :default => 0.0
+    t.decimal  "amazon_stars",       :default => 0.0
+    t.decimal  "librarything_stars", :default => 0.0
+    t.decimal  "average_stars",      :default => 0.0
+    t.string   "total_stars"
+    t.integer  "meta_rating"
+    t.string   "amazon_price"
+    t.string   "amazon_url"
+    t.integer  "abebooks_price"
+    t.string   "abebooks_url"
+    t.integer  "barnes_price"
+    t.string   "barnes_url"
+    t.string   "pub_date"
+    t.string   "pages"
+    t.text     "synopsis"
+    t.string   "goodreads_url"
+    t.string   "librarything_url"
+    t.string   "gutenberg_url"
+    t.string   "worldcat_url"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "ranking"
+    t.text     "amazon_desc"
   end
 
   create_table "recipes", :force => true do |t|

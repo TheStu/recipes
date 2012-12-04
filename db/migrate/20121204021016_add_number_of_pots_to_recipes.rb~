@@ -1,0 +1,6 @@
+class AddNumberOfPotsToRecipes < ActiveRecord::Migration
+  def change
+    add_column :recipes, :pots, :string
+  end
+  add_index :recipes, :pots
+end

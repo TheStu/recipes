@@ -1,4 +1,4 @@
-<% provide(:title, "Edit '#{@recipe.title}' Recipe") %>
+<% provide(:title, "Edit '#{@recipe.title}'") %>
 <% provide(:desc, "") %>
 
 <h1>Edit <%= @recipe.title %> Recipe</h1>

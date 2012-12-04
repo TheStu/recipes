@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name, :recipe_id
+  attr_accessible :name
   
-  belongs_to :recipe
+  has_many :category_joins
+  has_many :recipes, :through => :category_joins
 end

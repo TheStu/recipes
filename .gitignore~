@@ -13,9 +13,3 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
-#Ignore database config
-/config/database.yml
-var.env
-/config/database.yml~
-var.env~

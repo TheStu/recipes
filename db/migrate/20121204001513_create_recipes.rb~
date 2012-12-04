@@ -11,9 +11,14 @@ class CreateRecipes < ActiveRecord::Migration
       t.string :picture
       t.integer :weight
       t.integer :calories
+      t.string :pots
 
       t.timestamps
     end
-    add_index :recipes, [:cooking_time, :weight, :calories, :user_id]
+    add_index :recipes, :cooking_time
+    add_index :recipes, :weight
+    add_index :recipes, :calories
+    add_index :recipes, :user_id
+    add_index :recipes, :pots
   end
 end

@@ -1,4 +1,4 @@
-<% provide(:title, "#{@recipe.title} Recipe") %>
+<% provide(:title, @recipe.title) %>
 <% provide(:desc, "") %>
 
 <p id="notice"><%= notice %></p>

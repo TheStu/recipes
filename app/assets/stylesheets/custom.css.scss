@@ -2,6 +2,27 @@
 
 $or: #CD400F;
 
+.fonted {
+  font-family: 'Merriweather', sans-serif;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.clear-left {
+  clear: left;
+}
+
+
 //************** APPLICATION WIDE **************//
 
 .alert {
@@ -12,6 +33,41 @@ $or: #CD400F;
   margin-bottom: 21px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Englebert', sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+label {
+  @extend .fonted;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+  border-color: rgba($or, 0.5);
+  @include box-shadow(#{0 0 10px rgba($or,0.6), 0 -1px 0 rgba($or,.25) inset});
+  @include transition(all .2s linear);
+}
+
+input, textarea, .uneditable-input {
+  width: 150px;
+}
+
+select {
+  width: 164px;
+}
+
+.field {
+  padding-bottom: 10px;
+}
+
+.form-explain {
+  color: #aaa;
+  padding-left: 5px;
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -19,6 +75,9 @@ $or: #CD400F;
   .nav li a {
     padding: 22px 15px;
     font-size: 20px;
+    i {
+      vertical-align: top;
+    }
   }
   .brand {
     font-size: 35px;
@@ -34,6 +93,23 @@ $or: #CD400F;
 //************** HOME **************//
 
 //************** RECIPES#SHOW **************//
+
+//************** RECIPES#NEW **************//
+
+#recipe_title, #recipe_introduction, #recipe_preperation {
+  width: 600px;
+  max-width: 600px;
+}
+
+#recipe_introduction, #recipe_preperation {
+  height: 200px;
+  max-height: 300px;
+}
+
+input[type="checkbox"] {
+  //padding-right: 5px;
+  margin: 2px 5px 0 0;
+}
 
 //************** RECIPES#INDEX **************//
 

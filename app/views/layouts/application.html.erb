@@ -33,8 +33,15 @@
 
 <%= render "shared/header" %>
 <div class="container">
-  <%= render 'shared/flash_messages' %>	
-  <%= yield %>
+  <%= render 'shared/flash_messages' %>
+  <div class="row">
+    <div class="span8">
+      <%= yield %>
+    </div>
+    <div class="span4">
+      <%= render 'shared/sidebar' %>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
   (function() {

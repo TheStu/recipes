@@ -32,8 +32,8 @@
 </script>
 
 <%= render "shared/header" %>
-<%= render 'shared/flash_messages' %>	
 <div class="container">
+  <%= render 'shared/flash_messages' %>	
   <%= yield %>
 </div>
 <script type="text/javascript">

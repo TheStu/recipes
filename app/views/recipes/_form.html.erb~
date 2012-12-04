@@ -59,8 +59,8 @@
     </div>
     <div class="span2">
       <%= f.fields_for :categories do |category| %>
-        <%= category.check_box :name, class: "float-left clear-left add-check-box" %>
-        <%= category.label :name %>
+        <%= category.check_box_tag(:name), class: "float-left clear-left add-check-box" %>
+        <%= category.label_tag(:name) %>
       <% end %>
     </div>
   </div>
