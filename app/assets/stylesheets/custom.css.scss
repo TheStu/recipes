@@ -1,0 +1,44 @@
+//************** VARIABLES / MIXIN CLASSES **************//
+
+$or: #CD400F;
+
+//************** APPLICATION WIDE **************//
+
+.alert {
+  margin-bottom: 2px;
+}
+
+.alert-last {
+  margin-bottom: 21px;
+}
+
+//************** HEADER **************//
+
+.navbar {
+  font-family: 'Englebert', sans-serif;
+  .nav li a {
+    padding: 22px 15px;
+    font-size: 20px;
+  }
+  .brand {
+    font-size: 35px;
+    padding: 0 20px;
+    .brand-tld {
+      font-family: 'Merriweather', sans-serif;
+      font-size: 25px;
+      color: $or;
+    }
+  }
+}
+
+//************** HOME **************//
+
+//************** RECIPES#SHOW **************//
+
+//************** RECIPES#INDEX **************//
+
+//************** USER#SHOW **************//
+
+//************** STATICS **************//
+
+//************** FOOTER **************//
