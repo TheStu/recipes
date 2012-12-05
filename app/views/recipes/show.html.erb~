@@ -1,58 +1,26 @@
-<% provide(:title, @recipe.title) %>
+<% provide(:title, "#{@recipe.title} Recipe") %>
 <% provide(:desc, "") %>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>User:</b>
-  <%= @recipe.user %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @recipe.title %>
-</p>
-
-<p>
-  <b>Introduction:</b>
-  <%= @recipe.introduction %>
-</p>
-
-<p>
-  <b>Preperation:</b>
-  <%= @recipe.preperation %>
-</p>
-
-<p>
-  <b>Cooking time:</b>
-  <%= @recipe.cooking_time %>
-</p>
-
-<p>
-  <b>Equipment:</b>
-  <%= @recipe.equipment %>
-</p>
-
-<p>
-  <b>Servings:</b>
-  <%= @recipe.servings %>
-</p>
-
-<p>
-  <b>Picture:</b>
-  <%= @recipe.picture %>
-</p>
-
-<p>
-  <b>Weight:</b>
-  <%= @recipe.weight %>
-</p>
-
-<p>
-  <b>Calories:</b>
-  <%= @recipe.calories %>
-</p>
+<div class="row">
+  <div class="span6">
+    <h1><%= @recipe.title %></h1>
+  </div>
+  <div class="span2">
+    <p>SOCIAL</p>
+  </div>
+</div>
+<div class="row">
+  <div class="span3">
+    <span class="drop-shadow lifted">
+      <% if @recipe.picture.present? %>
+        <%= image_tag @recipe.picture_url(:thumb), class: 'lifted drop-shadow' %>
+      <% else %>
+        <%= image_tag 'default.jpg' %>
+      <% end %>
+    </span>
+  </div>
+  <div class="span5">
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<%= link_to 'Edit', edit_recipe_path(@recipe) %>

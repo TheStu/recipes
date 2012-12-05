@@ -22,9 +22,23 @@ $or: #CD400F;
   clear: left;
 }
 
-
 //************** APPLICATION WIDE **************//
 
+
+html, body {
+  height: 100%; // for footer
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+      
 .alert {
   margin-bottom: 2px;
 }
@@ -68,6 +82,75 @@ select {
   padding-left: 5px;
 }
 
+.btn {
+  @extend .fonted;
+}
+
+.actions input[type="submit"] {
+  @extend .btn;
+  @extend .btn-warning;
+  @extend .fonted;
+  font-weight: bold;
+}
+
+.error-msg {
+  color: red;
+  @extend .fonted;
+}
+
+.drop-shadow {
+    position:relative;
+    float:left;
+    //width:40%;
+    //padding:1em;
+    //margin:2em 10px 4em;
+    margin: 0 10px 0 0;
+    background:#fff;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.drop-shadow:before,
+.drop-shadow:after {
+    content:"";
+    position:absolute;
+    z-index:-2;
+}
+
+.lifted {
+    -moz-border-radius:4px;
+         border-radius:4px;
+         padding: 3px; //added by me
+}
+
+.lifted:before,
+.lifted:after {
+    bottom:15px;
+    left:10px;
+    width:50%;
+    height:20%;
+    max-height:100px;
+    -webkit-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+       -moz-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+            box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+    -webkit-transform:rotate(-3deg);
+       -moz-transform:rotate(-3deg);
+        -ms-transform:rotate(-3deg);
+         -o-transform:rotate(-3deg);
+            transform:rotate(-3deg);
+}
+
+.lifted:after {
+    right:10px;
+    left:auto;
+    -webkit-transform:rotate(3deg);
+       -moz-transform:rotate(3deg);
+        -ms-transform:rotate(3deg);
+         -o-transform:rotate(3deg);
+            transform:rotate(3deg);
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -106,9 +189,38 @@ select {
   max-height: 300px;
 }
 
-.add-check-box {
+input[type="checkbox"] {
   //padding-right: 5px;
   margin: 2px 5px 0 0;
+  float: left;
+}
+
+.ingredients input {
+  width: 250px;
+}
+
+.remove-ing {
+  padding-left: 5px;
+  line-height: 30px;
+  @extend .fonted;
+}
+
+.add-ing-button {
+  @extend .btn;
+  @extend .btn-small;
+  @extend .btn-warning;
+  @extend .fonted;
+  a {
+    color: #fff;
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
+
+.add-cats {
+  padding-left: 20px;
 }
 
 //************** RECIPES#INDEX **************//
@@ -118,3 +230,37 @@ select {
 //************** STATICS **************//
 
 //************** FOOTER **************//
+
+#push, #footer {
+  height: 59px; // 60 - 1 for the 1px border
+}
+
+#footer {
+  @include background-image(linear-gradient(#F2F2F2, white));
+  background-color: #FAFAFA;
+  border-top: 1px solid #D4D4D4;
+}
+
+.footer-nav {
+  @include horizontal-list;
+  float: right;
+  .footer-li {
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #D4D4D4;
+  }
+  li {
+    padding: 5px 0;
+    margin: 13px 0;
+    a {
+      color: #777;
+      text-decoration: none;
+      text-shadow: 0 1px 0 white;
+      font-family: 'Englebert', sans-serif;
+      font-size: 20px;
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+}

@@ -1,13 +1,13 @@
-<%= form_for(@recipe) do |f| %>
+<%= form_for(@recipe, :html => {:multipart => true}) do |f| %>
   <div class="row">
     <div class="span8">
       <% if @recipe.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+          <h4><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h4>
 
           <ul>
           <% @recipe.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+            <li class="error-msg"><%= msg %></li>
           <% end %>
           </ul>
         </div>
@@ -27,14 +27,22 @@
     </div>
   </div>
   <div class="row">
-    <div class="span6">
+    <div class="span5">
+      <div class="ingredients field float-left clear-left">
+        <h3>Ingredients</h3>
+        <%= f.fields_for :ingredients do |ing| %>
+          <%= render 'ingredient_fields', :f => ing %>
+        <% end %>
+        <p class="clear-left add-ing-button"><%= link_to_add_fields "Add Ingredient", f, :ingredients %></p>
+      </div>
       <div class="field float-left clear-left">
-        <%= f.label :cooking_time, "Total time (prep time + cooking time)" %>
+      <h3>About This Recipe</h3>
+        <%= f.label :cooking_time, "Total time <i class=\"form-explain\">(prep time + cooking time)</i>".html_safe %>
         <%= f.text_field :cooking_time %><i class="form-explain">minutes</i>
       </div>
       <div class="field float-left clear-left">
         <%= f.label :pots, "Number of pots and/or pans required" %>
-        <%= select_tag(:pots, options_for_select([['No Pot', "No Pot"], ['1 Pot', "1 Pot"], ['2 Pots', "2 Pots"], ['2+ Pots', "2+ Pots"]])) %>
+        <%= f.select(:pots, options_for_select([['No Pot', "No Pot"], ['1 Pot', "1 Pot"], ['2 Pots', "2 Pots"], ['2+ Pots', "2+ Pots"]])) %>
       </div>
       <div class="field float-left clear-left">
         <%= f.label :equipment, "Required Equipment" %>
@@ -45,23 +53,38 @@
         <%= f.text_field :servings %><i class="form-explain">Person/s</i>
       </div>
       <div class="field float-left clear-left">
-        <%= f.label :picture %>
-        <%= f.text_field :picture %><i class="form-explain">Optional</i>
-      </div>
-      <div class="field float-left clear-left">
         <%= f.label :weight, "Approximate weight of all ingredients" %>
-        <%= f.text_field :weight %><i class="form-explain">Optional</i>
+        <%= f.text_field :weight %><i class="form-explain">grams (Optional)</i>
       </div>
       <div class="field float-left clear-left">
         <%= f.label :calories, "Total approximate calories per person" %>
         <%= f.text_field :calories %><i class="form-explain">Optional</i>
       </div>
     </div>
-    <div class="span2">
-      <%= f.fields_for :categories do |category| %>
-        <%= category.check_box :name, class: "float-left clear-left add-check-box" %>
-        <%= category.label :name %>
-      <% end %>
+    <div class="span3">
+      <h3>Categories</h3>
+      <div class="add-cats">
+        <%= hidden_field_tag "recipe[category_ids][]", nil %>
+        <% Category.find(:all, :order => 'name').each do |category| %>
+          <%= check_box_tag "recipe[category_ids][]", category.id, @recipe.category_ids.include?(category.id), id: dom_id(category) %>
+          <%= label_tag dom_id(category), category.name %>
+        <% end %>
+      </div>
+      <br />
+      <h3>Picture</h3>
+      <div class="field add-picture">
+        <% if params[:action] == 'edit' && @recipe.picture.present? %>
+          <%= f.check_box :remove_picture %>
+          <%= f.label :remove_picture %>
+          <div class="drop-shadow lifted">
+            <%= image_tag @recipe.picture_url(:thumb) %>
+          </div>
+        <% else %>
+          <%= f.label :picture, "Picture <i class=\"form-explain\">(Optional)</i>".html_safe %>
+          <%= f.file_field :picture %>
+        <% end %>
+        
+      </div>
     </div>
   </div>
   <div class="actions clear-left">

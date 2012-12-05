@@ -1,0 +1,5 @@
+<p class="ingredient-block">  
+  <%= f.text_field :name, class: "float-left clear-left" %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to_function "remove", "remove_fields(this)" %>
+</p>

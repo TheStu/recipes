@@ -35,6 +35,11 @@ end
   gem "nokogiri", "~> 1.5.5"
   gem "devise", "~> 2.1.2"
   gem "cancan", "~> 1.6.8"
+  gem "carrierwave", "~> 0.7.1"
+  gem "rmagick", "~> 2.13.1"
+  gem "fog", "~> 1.8.0"
+  gem "sanitize", "~> 2.0.3"
+  gem "foreman", "~> 0.60.2"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

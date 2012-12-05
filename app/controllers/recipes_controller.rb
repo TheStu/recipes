@@ -25,10 +25,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
-    Category.find_each do |cat|
-      @recipe.categories.build({:name => 'blah'})
-    end
-    @recipe.ingredients.build
+    3.times { @recipe.ingredients.build }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recipe }

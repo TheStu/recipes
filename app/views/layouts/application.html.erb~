@@ -30,11 +30,20 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
   })();
 </script>
-
-<%= render "shared/header" %>
-<div class="container">
-  <%= render 'shared/flash_messages' %>	
-  <%= yield %>
+<div id="wrap">
+  <%= render "shared/header" %>
+  <div class="container">
+    <%= render 'shared/flash_messages' %>
+    <div class="row">
+      <div class="span8">
+        <%= yield %>
+      </div>
+      <div class="span4">
+        <%= render 'shared/sidebar' %>
+      </div>
+    </div>
+  </div>
+  <div id="push"></div>
 </div>
 <script type="text/javascript">
   (function() {
