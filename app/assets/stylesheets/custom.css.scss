@@ -22,6 +22,30 @@ $or: #CD400F;
   clear: left;
 }
 
+.gray-me {
+  color: #888;
+}
+
+.bolded {
+  font-weight: bold;
+}
+
+.h-margin {
+  margin-bottom: 0;
+}
+
+.pretty-date {
+  margin-bottom: 0;
+  color: #888;
+  font-size: 12px;
+  @extend .fonted;
+}
+
+.pretty-username {
+  font-size: 16px;
+  @extend .fonted;
+}
+
 //************** APPLICATION WIDE **************//
 
 
@@ -178,6 +202,69 @@ select {
 
 //************** RECIPES#SHOW **************//
 
+.recipe-meta {
+  margin-left: -20px;
+  float: left;
+  td {
+    @extend .fonted;
+  }
+  tr {
+    padding-bottom: 3px;
+  }
+  .show-label {
+    font-weight: bold;
+    width: 160px;
+  }
+}
+
+.recipe-show-h1 {
+  margin-bottom: 0px;
+}
+
+#review_content {
+  width: 516px;
+  height: 200px; 
+}
+
+.review-meta {
+  @extend .fonted;
+  border-bottom: 1px dotted #aaa;
+  .show-review-stars {
+    @extend .float-right;
+    padding-top: 15px;
+  }
+}
+
+.username-top {
+  padding-top: 3px;
+}
+
+.average-stars {
+  img {
+    vertical-align: top;
+  }
+}
+
+.cat-list {
+  padding: 20px;
+  list-style: none;
+}
+
+.position-relative {
+  position: relative;
+  height: 206px;
+}
+
+.position-fixed {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.show-social-buttons {
+  margin-left: -20px;
+}
+
 //************** RECIPES#NEW **************//
 
 #recipe_title, #recipe_introduction, #recipe_preperation {
@@ -211,6 +298,7 @@ input[type="checkbox"] {
   @extend .btn-small;
   @extend .btn-warning;
   @extend .fonted;
+  @extend .bolded;
   a {
     color: #fff;
     &:hover {

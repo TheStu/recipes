@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204054000) do
+ActiveRecord::Schema.define(:version => 20121205200543) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(:version => 20121204054000) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
   create_table "recipes", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -44,9 +57,10 @@ ActiveRecord::Schema.define(:version => 20121204054000) do
     t.string   "picture"
     t.integer  "weight"
     t.integer  "calories"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "pots"
+    t.decimal  "average_stars"
   end
 
   add_index "recipes", ["calories"], :name => "index_recipes_on_calories"
@@ -54,6 +68,15 @@ ActiveRecord::Schema.define(:version => 20121204054000) do
   add_index "recipes", ["pots"], :name => "index_recipes_on_pots"
   add_index "recipes", ["user_id"], :name => "index_recipes_on_user_id"
   add_index "recipes", ["weight"], :name => "index_recipes_on_weight"
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "recipe_id"
+    t.text     "content"
+    t.integer  "stars"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

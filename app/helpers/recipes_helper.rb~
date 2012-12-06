@@ -1,0 +1,6 @@
+module RecipesHelper
+  def convert_to_pounds(grams)
+    weight = grams / 453.592.to_f
+    weight.round(2)
+  end
+end

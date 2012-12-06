@@ -42,7 +42,7 @@
       </div>
       <div class="field float-left clear-left">
         <%= f.label :pots, "Number of pots and/or pans required" %>
-        <%= f.select(:pots, options_for_select([['No Pot', "No Pot"], ['1 Pot', "1 Pot"], ['2 Pots', "2 Pots"], ['2+ Pots', "2+ Pots"]])) %>
+        <%= f.select(:pots, options_for_select([['0', "0"], ['1', "1"], ['2', "2"], ['2+', "2+"]])) %>
       </div>
       <div class="field float-left clear-left">
         <%= f.label :equipment, "Required Equipment" %>

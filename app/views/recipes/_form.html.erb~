@@ -58,7 +58,7 @@
       </div>
       <div class="field float-left clear-left">
         <%= f.label :calories, "Total approximate calories per person" %>
-        <%= f.text_field :calories %><p class="form-explain"><i>Optional</i></p>
+        <%= f.text_field :calories %><i class="form-explain">Optional</i>
       </div>
     </div>
     <div class="span3">

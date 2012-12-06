@@ -2,12 +2,14 @@
 <% provide(:desc, "") %>
 <div class="row">
   <div class="span6">
-    <h1><%= @recipe.title %></h1>
+    <h1 class="recipe-show-h1"><%= @recipe.title %></h1>
   </div>
   <div class="span2">
-    <p>SOCIAL</p>
+    <%= link_to @recipe.user.username, user_path(@recipe.user_id), class: "pretty-username float-right username-top" %>
+    <%= content_tag :p, pretty_date(@recipe.created_at), class: "pretty-date float-right clear-right" %>
   </div>
 </div>
+
 <div class="row">
   <div class="span3">
     <span class="drop-shadow lifted">
@@ -19,8 +21,177 @@
     </span>
   </div>
   <div class="span5">
+    <div class="position-relative">
+      <% if can? :update, @recipe %>
+        <%= link_to 'Edit Recipe', edit_recipe_path(@recipe), class: "float-right btn btn-small btn-warning bolded" %>
+      <% end %>
+      <table class="recipe-meta">
+        <tr>
+          <td class="show-label">Prep And Cook Time:</td>
+          <td><%= @recipe.cooking_time %> minutes</td>
+        </tr>
+        <tr>
+          <td class="show-label">Servings:</td>
+          <td><%= @recipe.servings %> <%= @recipe.servings == 1 ? "Person" : "Persons" %></td>
+        </tr>
+      </table>
+      <table class="recipe-meta"
+        <tr>
+          <td class="show-label">Pots/Pans Required:</td>
+          <td><%= @recipe.pots %></td>
+        </tr>
+        <% if @recipe.calories.present? %>
+          <tr>
+            <td class="show-label">Calories Per Person:</td>
+            <td><%= @recipe.calories %></td>
+          </tr>
+        <% end %>
+        <% if @recipe.weight.present? %>
+          <tr>
+            <td class="show-label">Ingredient's Weight:</td>
+            <td><%= @recipe.weight %> grams <span class="gray-me">(<%= convert_to_pounds(@recipe.weight) %> pounds)</span></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="show-label">Equipment Needed:</td>
+          <td><%= @recipe.equipment %></td>
+        </tr>
+        <tr>
+          <td class="show-label">Average Rating:</td>
+          <td class="average-stars"><%= content_tag(:span, "", class: "rated", data_rating: @recipe.average_stars ) %> <span class="gray-me">(<%= @recipe.reviews.count %> <%= @recipe.reviews.count == 1 ? "Review" : "Reviews" %>)</span></td>
+        </tr>
+      </table>
+      <div class="position-fixed">
+        <div class="row">
+          <div class="span5">
+            <div class="show-social-buttons">
+              SOCIAL BUTTONS
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<div class="row">
+  <div class="span8">
+    <h3 class="h-margin">Recipe Introduction</h3>
+    <%= simple_format @recipe.introduction %>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %>
+<div class="row">
+  <div class="span6">
+    <h3 class="h-margin">Ingredients</h3>
+    <ul>
+      <% @recipe.ingredients.each do |ing| %>
+        <li><%= ing.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span2">
+    <h3 class="h-margin">Categories</h3>
+    <ul class="cat-list drop-shadow lifted">
+      <% @recipe.categories.each do |cat| %>
+        <li><%= cat.name %></li>
+      <% end %>
+    </ul>    
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <h3 class="h-margin">Recipe Preperation</h3>
+    <%= simple_format @recipe.preperation %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <% if @existing_review == false %>
+      <a href="#reviewModal" role="button" class="btn btn-warning bolded" data-toggle="modal">Add Review</a>
+      <div id="reviewModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Add Review</h3>
+        </div>
+        <div class="modal-body">
+          <%= form_for(@review) do |f| %>
+            <label for="review_rate_attributes_stars" class="bold-me font-me">Rating</label><br />
+            <div class="review-rating" id="rating"></div>
+            <div class="field">
+              <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+              <%= f.text_area :content %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="actions">
+              <%= f.submit %>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <h3 class="h-margin">My Review</h3>
+      <div class="review-meta">
+        <div class="row">
+          <div class="span6">
+            <%= link_to @review.user.username, user_path(@review.user.id), class: "pretty-username" %>
+            <%= content_tag :p, pretty_date(@review.created_at), class: "pretty-date" %>
+          </div>
+          <div class="span2">
+            <%= content_tag(:span, "", class: "rated show-review-stars", data_rating: @review.stars ) %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8">
+          <div class="review-content">
+            <%= @review.content %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @all_reviews.present? %>
+  <div class="row">
+    <div class="span8">
+      <h3 class="h-margin">Reviews</h3>
+    </div>
+  </div>
+  <% @all_reviews.each do |review| %>
+    <div class="row">
+      <div class="span8">
+        <div class="review-meta">
+          <div class="row">
+            <div class="span6">
+              <%= link_to review.user.username, user_path(review.user_id), class: "pretty-username" %>
+              <%= content_tag :p, pretty_date(review.created_at), class: "pretty-date" %>
+            </div>
+            <div class="span2">
+              <%= content_tag(:span, "", class: "rated show-review-stars", data_rating: review.stars ) %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span8">
+            <div class="review-content">
+              <%= review.content %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  $('#rating').raty({
+    scoreName : 'review[stars]',
+    scoreId : 'review_stars'
+});
+</script>

@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  authorize_resource
+  
   # GET /recipes
   # GET /recipes.json
   def index
@@ -14,6 +16,17 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
+    @review = Review.new
+    @existing_review = false
+    @all_reviews = Review.where("recipe_id = ?", @recipe.id)
+    if user_signed_in?
+      if Review.find_by_user_id_and_recipe_id(current_user.id, @recipe.id).present?
+        @existing_review = true
+        @review = Review.find_by_user_id_and_recipe_id(current_user.id, @recipe.id)
+        @all_reviews = Review.where("recipe_id = ? AND user_id != ?", @recipe.id, current_user.id)
+      end
+    end
+    
 
     respond_to do |format|
       format.html # show.html.erb

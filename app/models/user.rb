@@ -12,5 +12,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   has_many :recipe, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   
 end
