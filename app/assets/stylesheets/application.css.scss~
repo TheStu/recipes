@@ -1,4 +1,6 @@
 $linkColor: #CD400F;
+$linkColorHover: #852605;
+@import "lightbox";
 @import "compass";
 @import "bootstrap";
 @import "custom"

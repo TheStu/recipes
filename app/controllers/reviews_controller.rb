@@ -1,36 +1,36 @@
 class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
-  def index
-    @reviews = Review.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @reviews }
-    end
-  end
+  # def index
+  #   @reviews = Review.all
+  # 
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.json { render json: @reviews }
+  #   end
+  # end
 
   # GET /reviews/1
   # GET /reviews/1.json
-  def show
-    @review = Review.find(params[:id])
+  # def show
+  #   @review = Review.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @review }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @review }
+  #   end
+  # end
 
   # GET /reviews/new
   # GET /reviews/new.json
-  def new
-    @review = Review.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @review }
-    end
-  end
+  # def new
+  #   @review = Review.new
+  # 
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @review }
+  #   end
+  # end
 
   # GET /reviews/1/edit
   def edit
@@ -45,10 +45,16 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         update_average(@review.recipe_id)
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html do
+          redirect_to @review.recipe
+          flash[:success] = 'Review was successfully created.'
+        end
         format.json { render json: @review, status: :created, location: @review }
       else
-        format.html { render action: "new" }
+        format.html do
+          redirect_to @review.recipe
+          flash[:error] = 'Oops, something went wrong with creating your review.'
+        end
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -61,10 +67,17 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.update_attributes(params[:review])
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        update_average(@review.recipe_id)
+        format.html do
+          redirect_to @review.recipe
+          flash[:success] = 'Review was successfully updated.'
+        end
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html do
+          render action: "edit"
+          flash[:success] = 'Oops, something went wrong.'
+        end
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -74,10 +87,14 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     @review = Review.find(params[:id])
+    @org_recipe = @review.recipe
     @review.destroy
-
+    update_average(@org_recipe.id)
     respond_to do |format|
-      format.html { redirect_to reviews_url }
+      format.html do
+        redirect_to @org_recipe
+        flash[:success] = 'Review was successfully deleted.'
+      end
       format.json { head :no_content }
     end
   end

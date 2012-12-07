@@ -7,10 +7,12 @@
   <meta name="description" content="<%= meta_desc(yield(:desc)).html_safe %>" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script type="text/javascript" src="js/jquery.lightbox-0.4.js"></script>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Englebert' rel='stylesheet' type='text/css'>
   <%= analytics_init if Rails.env.production? %>
+  <link rel="canonical" href="<%= yield(:canonical) %>" />
 </head>
 <body>
 
@@ -60,10 +62,13 @@
   $(".rated").raty({
   readOnly : true,
   space: false,
+  half: true,
   score: function() {
     return $(this).attr('data_rating');
   }
 });
+
 </script>
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 </html>

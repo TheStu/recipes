@@ -46,6 +46,10 @@ $or: #CD400F;
   @extend .fonted;
 }
 
+.username-star {
+  margin-top: 2px;
+}
+
 //************** APPLICATION WIDE **************//
 
 
@@ -176,6 +180,11 @@ select {
             transform:rotate(3deg);
 }
 
+.pin-button {
+  @extend .float-left;
+  padding-right: 10px;
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -223,7 +232,9 @@ select {
 
 #review_content {
   width: 516px;
-  height: 200px; 
+  height: 200px;
+  max-width: 516px;
+  max-height: 200px;
 }
 
 .review-meta {
@@ -237,6 +248,10 @@ select {
 
 .username-top {
   padding-top: 3px;
+}
+
+.username-star-top {
+  margin-top: 5px;
 }
 
 .average-stars {
@@ -264,6 +279,23 @@ select {
 .show-social-buttons {
   margin-left: -20px;
 }
+
+.edit-review-btn {
+  margin: 15px 0 0 5px;
+}
+
+.edit-recipe-btn {
+  margin-bottom: 5px;
+}
+
+.add-review-btn {
+  margin-top: 10px;
+}
+
+.review-content {
+  padding: 5px 0 40px 0;
+}
+
 
 //************** RECIPES#NEW **************//
 
@@ -313,6 +345,12 @@ input[type="checkbox"] {
 }
 
 //************** RECIPES#INDEX **************//
+
+//************** REVIEWS#EDIT+NEW **************//
+
+.review-rating {
+  padding-bottom: 5px;
+}
 
 //************** USER#SHOW **************//
 

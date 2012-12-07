@@ -11,6 +11,7 @@
   <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Englebert' rel='stylesheet' type='text/css'>
   <%= analytics_init if Rails.env.production? %>
+  <link rel="canonical" href="<%= yield(:canonical) %>" />
 </head>
 <body>
 
@@ -65,6 +66,8 @@
     return $(this).attr('data_rating');
   }
 });
+
 </script>
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 </html>

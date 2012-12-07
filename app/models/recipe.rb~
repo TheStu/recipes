@@ -9,6 +9,7 @@ class Recipe < ActiveRecord::Base
   has_many :category_joins
   has_many :categories, :through => :category_joins, :dependent => :destroy
   has_many :ingredients, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   accepts_nested_attributes_for :category_joins
   accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   

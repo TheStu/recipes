@@ -3,7 +3,7 @@
 <%= form_tag recipes_path, :method => 'get' do %>
   <% Category.all.each do |category| %>
     <p>
-      <%= check_box_tag "categories[]", category.name, @selected_categories.include?(category.name) %>
+      <%= check_box_tag "category[]", category.name, @selected_categories.include?(category.name) %>
       <%= category.name %>
     </p>
   <% end %>
