@@ -4,11 +4,13 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.order('created_at desc')
     @selected_categories = (params[:categories].present? ? params[:categories] : [])
+    @sort_order = (params[:sort_by].present? ? sort_index(params[:sort_by]) : 'created_at desc')
+    @recipes = Recipe.order(@sort_order)
+    
     #@recipes = @recipes.joins(:categories).where('categories.name IN (?)', @selected_categories) if @selected_categories.present?
     
-    @recipes = @recipes.joins(:categories).where("categories.name" => @selected_categories).group('recipes.id').having('COUNT(recipes.id) = ?', @selected_categories.count)
+    @recipes = @recipes.joins(:categories).where("categories.name" => @selected_categories).group('recipes.id').having('COUNT(recipes.id) = ?', @selected_categories.count) if @selected_categories.present?
     
     # http://stackoverflow.com/questions/9549567/finding-post-associated-with-both-of-two-categories-in-rails-3-without-custom-sq
     # http://stackoverflow.com/questions/5376869/rails-join-with-multiple-conditions
@@ -117,6 +119,21 @@ class RecipesController < ApplicationController
         flash[:success] = 'Recipe successfully deleted.'
       end
       format.json { head :no_content }
+    end
+  end
+  
+  private
+  
+  def sort_index(number)
+    case number
+      when "1" then return 'calories asc'
+      when "2" then return 'calories desc'
+      when "3" then return 'cooking_time asc'
+      when "4" then return 'cooking_time desc'
+      when "5" then return 'weight asc'
+      when "6" then return 'weight desc'
+      when "7" then return 'pots asc'
+      when "8" then return 'pots desc'
     end
   end
 end

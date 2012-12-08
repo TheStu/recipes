@@ -189,11 +189,12 @@ select {
 
 .navbar {
   font-family: 'Englebert', sans-serif;
-  .nav li a {
+  .nav > li > a {
     padding: 22px 15px;
     font-size: 20px;
-    i {
+    i, [class^="icon-"], [class*=" icon-"] {
       vertical-align: top;
+      margin-top: 0;
     }
   }
   .brand {
@@ -205,6 +206,10 @@ select {
       color: $or;
     }
   }
+}
+
+.header-user-ul > li:last-child a {
+  padding-right: 0;
 }
 
 //************** HOME **************//
@@ -263,6 +268,7 @@ select {
 .cat-list {
   padding: 20px;
   list-style: none;
+  width: 100px;
 }
 
 .position-relative {
@@ -316,7 +322,7 @@ input[type="checkbox"] {
 }
 
 .ingredients input {
-  width: 250px;
+  width: 230px;
 }
 
 .remove-ing {
@@ -346,6 +352,38 @@ input[type="checkbox"] {
 
 //************** RECIPES#INDEX **************//
 
+.index-filter-list {
+  @extend .lifted, .drop-shadow;
+  list-style: none;
+  padding: 10px;
+  margin: -10px 0 20px 0;
+  width: 120px;
+}
+
+.recipe-listing {
+  border-top: 1px dotted #aaa;
+  //padding: 0 0 15px 25px;
+}
+
+.index-title {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.index-btn {
+  margin: 10px 0 0 10px;
+}
+
+.index-sort-by {
+  margin: 15px 5px 0 0;
+}
+
+.index-sort-by-form {
+  margin: 10px 0 0 0;
+  width: 250px;
+}
+
 //************** REVIEWS#EDIT+NEW **************//
 
 .review-rating {
@@ -355,6 +393,12 @@ input[type="checkbox"] {
 //************** USER#SHOW **************//
 
 //************** STATICS **************//
+
+//************** SIDEBAR **************//
+
+.sidebar-btn {
+  margin: 10px 0;
+}
 
 //************** FOOTER **************//
 
@@ -387,6 +431,9 @@ input[type="checkbox"] {
       font-size: 20px;
       &:hover {
         color: #333;
+      }
+      i {
+        vertical-align: top;
       }
     }
   }

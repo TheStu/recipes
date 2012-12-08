@@ -1,0 +1,7 @@
+<% provide(:title, "#{@category} Camping Recipes") %>
+<% provide(:desc, "Backpacking and camping recipes in the #{@category} category") %>
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
+  <% end %>
+</ul>

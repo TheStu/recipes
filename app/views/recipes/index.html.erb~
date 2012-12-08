@@ -1,21 +1,60 @@
-<h1>Listing recipes</h1>
-
-<%= form_tag recipes_path, :method => 'get' do %>
-  <% Category.all.each do |category| %>
-    <p>
-      <%= check_box_tag "category[]", category.name, @selected_categories.include?(category.name) %>
-      <%= category.name %>
-    </p>
-  <% end %>
-  <%= submit_tag "Filter", :name => nil %>
-<% end %>
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
-  <% end %>
-</ul>
-
-
-<br />
-
-<%= link_to 'New Recipe', new_recipe_path %>
+<% provide(:title, "Recipe Search") %>
+<% provide(:desc, "Sort, filter and search for recipes on the Camping Recipes website") %>
+<div class="row">
+  <div class="span3">
+    <h1>Recipe Search</h1>
+  </div>
+  <div class="span5">
+    <!-- beginning of filter form, which continues below -->
+    <%= form_tag recipes_path, :method => 'get' do %>
+      <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning bolded index-btn float-right' %>
+      <%= select_tag(:sort_by, options_for_select([['Calories: Low to High', '1'],
+                                                       ['Calories: High to Low', '2'],
+                                                       ['Cook Time: Low to High', '3'],
+                                                       ['Cook Time: High to Low', '4'],
+                                                       ['Ingredient\'s Weight: Low to High', '5'],
+                                                       ['Ingredient\'s Weight: High to Low', '6'],
+                                                       ['Pots/Pans Required: Low to High', '7'],
+                                                       ['Pots/Pans Required: High to Low', '8']],
+                                                       :selected => params[:sort_by]),
+                                                       :prompt => "Sort By",
+                                                       class: 'index-sort-by-form float-right') %>
+      <p class="float-right index-sort-by">Sort By:</p>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <ul class="index-filter-list">
+      <!-- form begins farther up! -->
+        <% Category.all.each do |category| %>
+          <li>
+            <%= check_box_tag "categories[]", category.name, @selected_categories.include?(category.name), id: dom_id(category), class: 'float-left' %>
+            <%= label_tag dom_id(category), category.name %>
+          </li>
+        <% end %>
+        <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning bolded' %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span6">
+    <% @recipes.each do |recipe| %>
+      <div class="row">
+        <div class="span6 recipe-listing">
+          <div class="row">
+            <div class="span6">
+              <%= link_to content_tag(:h3, recipe.title, class: 'h-margin'), recipe_path(recipe), class: 'index-title' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span3">
+              META INFO
+            </div>
+            <div class="span3">
+              <%= recipe.introduction %>
+            </div>
+          </div>
+        </div>
+      </div>     
+    <% end %>
+  </div>
+</div>
