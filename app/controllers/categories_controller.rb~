@@ -14,6 +14,6 @@ class CategoriesController < ApplicationController
   
   def index
     @category = params[:category].to_s.titleize
-    @recipes = Recipe.joins(:categories).where('categories.name = ?', params[:category].titleize)
+    @recipes = Recipe.joins(:categories).where('categories.name = ?', @category)
   end
 end

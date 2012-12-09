@@ -3,11 +3,10 @@
 
 <html>
 <head>
-  <title><%= full_title(yield(:title)).html_safe %></title>
+  <title><%= sanitize full_title(yield(:title)) %></title>
   <meta name="description" content="<%= meta_desc(yield(:desc)).html_safe %>" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <script type="text/javascript" src="js/jquery.lightbox-0.4.js"></script>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Englebert' rel='stylesheet' type='text/css'>

@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  authorize_resource
+  
   def new
     @category = Category.new
   end

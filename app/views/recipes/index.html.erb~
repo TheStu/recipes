@@ -1,13 +1,18 @@
 <% provide(:title, "Recipe Search") %>
 <% provide(:desc, "Sort, filter and search for recipes on the Camping Recipes website") %>
 <div class="row">
-  <div class="span3">
-    <h1>Recipe Search</h1>
+  <div class="span8">
+    <h1 class="h-margin">Recipe Search <span class="gray-me">(<%= @recipes.count %> Recipes Found)</span></h1>
   </div>
-  <div class="span5">
+</div>
+<div class="row">
+  <div class="span4">
+    <%= form_tag recipes_path, :method => 'get', id: 'filter-recipes' do %>
+      <%= text_field_tag :query, params[:query], class: 'float-left index-search-form' %>
+      <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded index-search-btn' %>
+  </div>
+  <div class="span4">
     <!-- beginning of filter form, which continues below -->
-    <%= form_tag recipes_path, :method => 'get' do %>
-      <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning bolded index-btn float-right' %>
       <%= select_tag(:sort_by, options_for_select([['Calories: Low to High', '1'],
                                                        ['Calories: High to Low', '2'],
                                                        ['Cook Time: Low to High', '3'],
@@ -15,28 +20,30 @@
                                                        ['Ingredient\'s Weight: Low to High', '5'],
                                                        ['Ingredient\'s Weight: High to Low', '6'],
                                                        ['Pots/Pans Required: Low to High', '7'],
-                                                       ['Pots/Pans Required: High to Low', '8']],
+                                                       ['Pots/Pans Required: High to Low', '8'],
+                                                       ['Rating', '9']
+                                                       ],
                                                        :selected => params[:sort_by]),
                                                        :prompt => "Sort By",
+                                                       :onchange => ("$('#filter-recipes').submit()"),
                                                        class: 'index-sort-by-form float-right') %>
-      <p class="float-right index-sort-by">Sort By:</p>
   </div>
 </div>
 <div class="row">
   <div class="span2">
     <ul class="index-filter-list">
       <!-- form begins farther up! -->
-        <% Category.all.each do |category| %>
+        <% Category.all.order('name desc').each do |category| %>
           <li>
             <%= check_box_tag "categories[]", category.name, @selected_categories.include?(category.name), id: dom_id(category), class: 'float-left' %>
             <%= label_tag dom_id(category), category.name %>
           </li>
         <% end %>
-        <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning bolded' %>
+        <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning btn-block bolded' %>
       <% end %>
     </ul>
   </div>
-  <div class="span6">
+  <div class="span6" id="all-recipes">
     <% @recipes.each do |recipe| %>
       <div class="row">
         <div class="span6 recipe-listing">
@@ -47,10 +54,35 @@
           </div>
           <div class="row">
             <div class="span3">
-              META INFO
+              <table class="index-recipe-meta">
+                <tr>
+                  <td class="index-label">Prep And Cook Time:</td>
+                  <td><%= recipe.cooking_time %> minutes</td>
+                </tr>
+                <tr>
+                  <td class="index-label">Pots/Pans Required:</td>
+                  <td><%= recipe.pots %></td>
+                </tr>
+                <% if recipe.calories.present? %>
+                  <tr>
+                    <td class="index-label">Calories Per Person:</td>
+                    <td><%= recipe.calories %></td>
+                  </tr>
+                <% end %>
+                <% if recipe.weight.present? %>
+                  <tr>
+                    <td class="index-label">Ingredient's Weight:</td>
+                    <td><%= recipe.weight %> grams</td>
+                  </tr>
+                <% end %>
+                <tr>
+                  <td class="index-label">Average Rating:</td>
+                  <td class="average-stars"><%= content_tag(:span, "", class: "rated", data_rating: recipe.average_stars ) %></td>
+                </tr>
+              </table>
             </div>
             <div class="span3">
-              <%= recipe.introduction %>
+              <%= truncate(recipe.introduction, :length => 225, :omission => '...') %>
             </div>
           </div>
         </div>
@@ -58,3 +90,10 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#rating').raty({
+    scoreName : 'review[stars]',
+    scoreId : 'review_stars'
+});
+</script>

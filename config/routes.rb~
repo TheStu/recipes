@@ -10,7 +10,7 @@ Recipes::Application.routes.draw do
   match '/contact', to: 'statics#contact'
   match '/privacy', to: 'statics#privacy'
   
-  match '/categories/:category', to: 'category#index', as: 'category_index'
+  match '/category/:category', to: 'categories#index', as: 'category_index'
 
   resources :recipes
   resources :categories

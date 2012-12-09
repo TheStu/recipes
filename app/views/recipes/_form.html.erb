@@ -65,7 +65,7 @@
       <h3>Categories</h3>
       <div class="add-cats">
         <%= hidden_field_tag "recipe[category_ids][]", nil %>
-        <% Category.find(:all, :order => 'name').each do |category| %>
+        <% Category.find(:all, :order => 'name desc').each do |category| %>
           <%= check_box_tag "recipe[category_ids][]", category.id, @recipe.category_ids.include?(category.id), id: dom_id(category) %>
           <%= label_tag dom_id(category), category.name %>
         <% end %>

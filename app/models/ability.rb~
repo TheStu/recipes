@@ -9,8 +9,8 @@ class Ability
       #can :dashboard              # grant access to the dashboard
     elsif user.id.present?
       can :read, :all
-      can :create, [Recipe]
-      can [:update, :destroy], [Recipe], :user_id => user.id
+      can :create, [Recipe, Review]
+      can [:update, :destroy], [Recipe, Review], :user_id => user.id
       can [:update, :destroy], User, :id => user.id
     else
       can :read, :all

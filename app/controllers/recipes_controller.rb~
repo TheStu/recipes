@@ -5,20 +5,18 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     @selected_categories = (params[:categories].present? ? params[:categories] : [])
-    @sort_order = (params[:sort_by].present? ? sort_index(params[:sort_by]) : 'created_at desc')
-    @recipes = Recipe.order(@sort_order)
+    @query = (params[:query].present? ? params[:query] : '')
+    @sort_order = (params[:sort_by].present? ? sort_index(params[:sort_by]) : '')
     
-    #@recipes = @recipes.joins(:categories).where('categories.name IN (?)', @selected_categories) if @selected_categories.present?
-    
-    @recipes = @recipes.joins(:categories).where("categories.name" => @selected_categories).group('recipes.id').having('COUNT(recipes.id) = ?', @selected_categories.count) if @selected_categories.present?
+    @recipes = Recipe.text_search(@query)
+    if @sort_order == ('calories asc' || 'calories desc')
+      @recipes = @recipes.where('calories > ?', 0)
+    elsif @sort_order == ('weight asc' || 'weight desc')
+      @recipes = @recipes.where('weight > ?', 0)
+    @recipes = @recipes.order(@sort_order) if @sort_order.present?
+    @recipes = @recipes.text_search(@query).joins(:categories).where("categories.name" => @selected_categories).group('recipes.id').having('COUNT(recipes.id) = ?', @selected_categories.count) if @selected_categories.present?
     
     # http://stackoverflow.com/questions/9549567/finding-post-associated-with-both-of-two-categories-in-rails-3-without-custom-sq
-    # http://stackoverflow.com/questions/5376869/rails-join-with-multiple-conditions
-    # http://stackoverflow.com/questions/2772635/rails-find-all-with-association
-    
-    #Post.joins(:categories).where("categories.name" => ['catA','catB']).group('posts.id').having('COUNT(posts.id) = 2')
-    
-    #.where("rating IN (?)", params[:ratings]) if params[:ratings].present? and params[:ratings].any?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -125,7 +123,7 @@ class RecipesController < ApplicationController
   private
   
   def sort_index(number)
-    case number.to_i
+    case number
       when "1" then return 'calories asc'
       when "2" then return 'calories desc'
       when "3" then return 'cooking_time asc'
@@ -134,6 +132,7 @@ class RecipesController < ApplicationController
       when "6" then return 'weight desc'
       when "7" then return 'pots asc'
       when "8" then return 'pots desc'
+      when "9" then return 'average_stars desc'
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205200543) do
+ActiveRecord::Schema.define(:version => 20121208201630) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(:version => 20121205200543) do
     t.string   "equipment"
     t.integer  "servings"
     t.string   "picture"
-    t.integer  "weight"
-    t.integer  "calories"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "weight",        :default => 0
+    t.integer  "calories",      :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "pots"
-    t.decimal  "average_stars"
+    t.decimal  "average_stars", :default => 0.0
   end
 
   add_index "recipes", ["calories"], :name => "index_recipes_on_calories"

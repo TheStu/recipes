@@ -9,8 +9,9 @@ Recipes::Application.routes.draw do
   match '/about', to: 'statics#about'
   match '/contact', to: 'statics#contact'
   match '/privacy', to: 'statics#privacy'
+  match '/camping-cooking-gear', to: 'statics#gear', as: 'cooking_gear'
   
-  match '/categories/:category', to: 'categories#index', as: 'category_index'
+  match '/category/:category', to: 'categories#index', as: 'category_index'
 
   resources :recipes
   resources :categories

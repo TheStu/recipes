@@ -10,7 +10,7 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <%= Category.find_each do |cat| %>
+            <% Category.order('name desc').all.each do |cat| %>
               <li><%= link_to cat.name, category_index_path(cat.name.parameterize), class: 'fonted' %></li>
             <% end %>
           </ul>

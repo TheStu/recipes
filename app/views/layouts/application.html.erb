@@ -3,8 +3,8 @@
 
 <html>
 <head>
-  <title><%= full_title(yield(:title)).html_safe %></title>
-  <meta name="description" content="<%= meta_desc(yield(:desc)).html_safe %>" />
+  <title><%= sanitize full_title(yield(:title)) %></title>
+  <meta name="description" content="<%= sanitize meta_desc(yield(:desc)) %>" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

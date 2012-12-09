@@ -185,6 +185,12 @@ select {
   padding-right: 10px;
 }
 
+.pretty-pic {
+  padding: 2px;
+  border: 1px solid #ddd;
+  @include border-radius(2px);
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -252,11 +258,11 @@ select {
 }
 
 .username-top {
-  padding-top: 3px;
+  padding-top: 5px;
 }
 
 .username-star-top {
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .average-stars {
@@ -302,6 +308,20 @@ select {
   padding: 5px 0 40px 0;
 }
 
+.no-reviews {
+  @extend .fonted;
+  margin: 10px 0 20px 0;
+}
+
+.pretty-pic-top {
+  @extend .pretty-pic;
+  margin: 3px 0 0 3px;
+}
+
+.pretty-pic-reviews {
+  @extend .pretty-pic;
+  margin: 0 3px 4px 0;
+}
 
 //************** RECIPES#NEW **************//
 
@@ -362,7 +382,7 @@ input[type="checkbox"] {
 
 .recipe-listing {
   border-top: 1px dotted #aaa;
-  //padding: 0 0 15px 25px;
+  margin-bottom: 10px;
 }
 
 .index-title {
@@ -371,17 +391,31 @@ input[type="checkbox"] {
   }
 }
 
-.index-btn {
-  margin: 10px 0 0 10px;
-}
-
-.index-sort-by {
-  margin: 15px 5px 0 0;
-}
-
 .index-sort-by-form {
-  margin: 10px 0 0 0;
+  margin: 10px 0 5px 0;
   width: 250px;
+}
+
+.index-search-form {
+  margin: 10px 0 5px 0;
+}
+
+.index-search-btn {
+  margin: 10px 0 5px 5px;
+}
+
+.index-recipe-meta {
+  font-size: 12px;
+  td {
+    @extend .fonted;
+  }
+  tr {
+    padding-bottom: 3px;
+  }
+  .index-label {
+    font-weight: bold;
+    width: 130px;
+  }
 }
 
 //************** REVIEWS#EDIT+NEW **************//
@@ -390,7 +424,48 @@ input[type="checkbox"] {
   padding-bottom: 5px;
 }
 
-//************** USER#SHOW **************//
+//************** USER#SHOW / USER#EDIT **************//
+
+.user-edit-btn {
+  margin: 10px 0 0 0;
+}
+
+.user-show-meta {
+  margin-left: -20px;
+  @extend .fonted;
+  .user-show-label {
+    @extend .bolded;
+    width: 100px;
+  }
+  .about-me-label {
+    vertical-align: top;
+  }
+}
+
+#user_bio {
+  max-width: 500px;
+  max-height: 200px;
+  width: 500px;
+  height: 200px;
+}
+
+.user-show-stars img {
+  vertical-align: top;
+}
+
+.user-recipe-title {
+  h4 {
+    padding-top: 3px;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.user-show-border {
+  border-top: 1px dotted #aaa;
+}
+
 
 //************** STATICS **************//
 
@@ -398,6 +473,12 @@ input[type="checkbox"] {
 
 .sidebar-btn {
   margin: 10px 0;
+}
+
+.cooking-gear-link {
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 //************** FOOTER **************//

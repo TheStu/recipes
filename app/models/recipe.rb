@@ -1,7 +1,4 @@
 class Recipe < ActiveRecord::Base
-
-  mount_uploader :picture, RecipeUploader
-
   attr_accessible :calories, :cooking_time, :equipment, :introduction, :picture, :preperation, :servings, 
   :title, :user, :weight, :pots, :category_ids, :ingredients_attributes, :remove_picture, :average_stars
   
@@ -19,4 +16,24 @@ class Recipe < ActiveRecord::Base
   validates :servings, :numericality => {:only_integer => true, :message => "servings is not a number"}
   validates :cooking_time, :numericality => {:only_integer => true, :message => "ingredient weight is not a number"}
   validates :cooking_time, :numericality => {:only_integer => true, :message => "calories is not a number"}
+  
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+  
+  mount_uploader :picture, RecipeUploader
+  include PgSearch
+  pg_search_scope :search, against: [:title, :introduction, :preperation, :equipment],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {ingredients: :name}
+  
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
 end
+
+

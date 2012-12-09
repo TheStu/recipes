@@ -42,6 +42,7 @@ end
   gem "foreman", "~> 0.60.2"
   gem "rails_admin", "~> 0.3.0"
   gem 'jquery-raty-rails', '~> 0.0.1', github: 'TheStu/jquery-raty-rails'
+  gem "pg_search", "~> 0.5.7"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

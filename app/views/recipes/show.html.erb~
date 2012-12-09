@@ -6,11 +6,15 @@
     <h1 class="recipe-show-h1"><%= @recipe.title %></h1>
   </div>
   <div class="span3">
-    <%= link_to @recipe.user.username, user_path(@recipe.user_id), class: "pretty-username float-right username-top" %>
-    <% if can? :update, @recipe %>
-      <i class="icon-star float-right username-star-top"></i>
-    <% end %>
-    <%= content_tag :p, pretty_date(@recipe.created_at), class: "pretty-date float-right clear-right" %>
+    <span class="float-right pretty-pic-top"><%= link_to image_tag("#{avatar_url(@recipe.user)}?s=35"), user_path(@recipe.user) %></span>
+    <span class="float-right">
+      <% if can? :update, @recipe %>
+        <%= link_to "<i class=\"icon-star username-star-top\"></i>#{@recipe.user.username}".html_safe, user_path(@recipe.user_id), class: "pretty-username username-top float-right" %>
+      <% else %>
+        <%= link_to @recipe.user.username, user_path(@recipe.user_id), class: "pretty-username username-top float-right" %>
+      <% end %>
+      <%= content_tag :p, pretty_date(@recipe.created_at), class: "pretty-date float-right clear-right" %>
+    </span>
   </div>
 </div>
 
@@ -52,7 +56,7 @@
         <% if can? :destroy, @recipe %>
           <%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "float-right clear-right btn btn-mini btn-danger bolded" %>
         <% end %>
-        <table class="recipe-meta"
+        <table class="recipe-meta">
         <% if @recipe.weight.present? %>
           <tr>
             <td class="show-label">Ingredient's Weight:</td>
@@ -61,7 +65,7 @@
         <% end %>
         <tr>
           <td class="show-label">Equipment Needed:</td>
-          <td><%= @recipe.equipment %></td>
+          <td><%= link_to @recipe.equipment, cooking_gear_path %></td>
         </tr>
         <tr>
           <td class="show-label">Average Rating:</td>
@@ -76,7 +80,7 @@
                 <a href="http://pinterest.com/pin/create/button/?url=<%= recipe_url(@recipe) %>&media=<%= @recipe.picture_url(:thumb) %>&description=<%= @recipe.title %> Recipe" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
               </div>
               <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true"></div>
-              <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
+              <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120" data-href="<%= recipe_url(@recipe) %>"></div>
             </div>
           </div>
         </div>
@@ -130,17 +134,27 @@
           <h3 id="myModalLabel">Add Review</h3>
         </div>
         <div class="modal-body">
-          <%= form_for(@review) do |f| %>
-            <div class="review-rating" id="rating"></div>
-            <div class="field">
-              <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-              <%= f.text_area :content %>
+          <% if can? :create, Review %>
+            <%= form_for(@review) do |f| %>
+              <div class="review-rating" id="rating"></div>
+              <div class="field">
+                <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+                <%= f.text_area :content %>
+              </div>
             </div>
+            <div class="modal-footer">
+              <div class="actions">
+                <%= f.submit %>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="fonted">Oops, you cant write a review until we know who you are. <%= link_to "Sign in", new_user_session_path %> if you already have an account, or else <%= link_to "sign up", new_user_registration_path %> for one.</p>
           </div>
           <div class="modal-footer">
             <div class="actions">
-              <%= f.submit %>
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
           </div>
         <% end %>
@@ -155,11 +169,15 @@
         <div class="review-meta">
           <div class="row">
             <div class="span4">
-              <%= link_to review.user.username, user_path(review.user_id), class: "pretty-username" %>
-              <% if can? :update, review %>
-                <i class="icon-star float-left username-star"></i>
-              <% end %>
-              <%= content_tag :p, pretty_date(review.created_at), class: "pretty-date" %>
+              <span class="float-left pretty-pic-reviews"><%= link_to image_tag("#{avatar_url(review.user)}?s=35"), user_path(review.user) %></span>
+              <span class="float-left">
+                <% if can? :update, review %>
+                  <%= link_to "<i class=\"icon-star float-left username-star\"></i>#{review.user.username}".html_safe, user_path(review.user_id), class: "pretty-username" %>
+                <% else %>
+                  <%= link_to review.user.username, user_path(review.user_id), class: "pretty-username" %>
+                <% end %>
+                <%= content_tag :p, pretty_date(review.created_at), class: "pretty-date" %>
+              </span>
             </div>
             <div class="span4">
               <% if can? :destroy, review %>
@@ -182,6 +200,12 @@
       </div>
     </div>
   <% end %>
+<% else %>
+  <div class="row">
+    <div class="span8">
+      <p class="no-reviews">Unfortunately no one has written a review for the <%= @recipe.title %> recipe just yet, but you could be the first...</p>
+    </div>
+  </div>
 <% end %>
 
 
