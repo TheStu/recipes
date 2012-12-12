@@ -191,6 +191,10 @@ select {
   @include border-radius(2px);
 }
 
+.center-paginate {
+  text-align: center;
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -219,6 +223,59 @@ select {
 }
 
 //************** HOME **************//
+
+.join-now {
+  width: 100%;
+  height: 430px;
+  background-image: url('home.jpg');
+  .join-now-btn {
+    margin: 40px 0 0 40px;
+  }
+  .home-query {
+    margin: 40px 0 0 0;
+    height: 34px;
+    width: 200px;
+    @include border-radius(10px);
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .home-search-btn {
+    margin: 40px 40px 0 5px;
+    @extend .btn-large;
+  }
+  #home-search-form {
+    margin: 0;
+  }
+}
+
+.about-cr {
+  @extend .fonted;
+  font-size: 32px;
+  border-bottom: 2px dotted #aaa;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.social-bump {
+  margin-bottom: 3px;
+}
+
+.home-recipe-title {
+  h3 {
+    border-top: 1px dotted #aaa;
+    padding-top: 10px;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.about-pic {
+  @extend .fonted, .float-right;
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 0;
+}
 
 //************** RECIPES#SHOW **************//
 
@@ -469,16 +526,119 @@ input[type="checkbox"] {
 
 //************** STATICS **************//
 
+.static-page-p {
+  @extend .fonted;
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.gear-page-p {
+  @extend .fonted;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.gear-page-li {
+  @extend .fonted;
+  font-size: 14px;
+  line-height: 20px;
+  padding-bottom: 10px;
+}
+
+//************** COOKING GEAR **************//
+
+.gear-page-img {
+  img {
+    max-height: 75px;
+    max-width: 75px;
+  }
+  @extend .drop-shadow, .lifted;
+}
+
+.gear-page-link {
+  .gear-page-h4 {
+    margin-bottom: 0px;
+    padding-top: 2px;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.price-td {
+  width: 100%;
+  vertical-align: top;
+}
+
+.gear-retail-price {
+  text-decoration: line-through;
+  @extend .fonted, .float-left;
+  font-weight: bold;
+  font-size: 17px;
+  margin: 0;
+}
+
+.gear-sale-price {
+  @extend .fonted, .float-left;
+  font-weight: bold;
+  font-size: 17px;
+  margin: 0 0 0 10px;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.gear-desc {
+  @extend .clear-right, .fonted;
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 5px;
+}
+
+.ad-bump {
+  margin-top: 60px;
+}
+
 //************** SIDEBAR **************//
 
 .sidebar-btn {
-  margin: 10px 0;
+  margin: 10px 0 10px 0;
 }
 
 .cooking-gear-link {
   &:hover {
     text-decoration: none;
   }
+}
+
+.sidebar-bump {
+  margin-bottom: 25px;
+}
+
+.sidebar-a {
+  .sidebar-h4 {
+    @extend .fonted;
+    font-size: 14px;
+    margin-bottom: 0px;
+    padding-top: 2px;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.sidebar-search-btn {
+  margin: 10px 0 0 5px;
+}
+
+#sidebar-query {
+  width: 208px;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+#sidebar-search-form {
+  margin: 0;
 }
 
 //************** FOOTER **************//

@@ -1,6 +1,12 @@
 <% provide(:title, "Edit '#{@recipe.title}' Recipe") %>
 <% provide(:desc, "") %>
 
-<h1>Edit <%= @recipe.title %> Recipe</h1>
+<div class="span8">
+  <h1>Edit <%= @recipe.title %> Recipe</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>
+
+<div class="span4">
+  <%= render 'shared/sidebar' %>
+</div>

@@ -1,0 +1,305 @@
+<% provide(:title, "Camping Cooking Gear") %>
+<% provide(:desc, "All the cooking gear you need for a successful meal in the outdoors") %>
+<h1>Camping Cooking Gear</h1>
+<div class="row">
+  <div class="span8">
+    
+    <h2 class="h-margin">Intro</h2>
+    
+    <p class="gear-page-p">There are a whole lot of wonderful recipes here at Camping Recipes, but even the best recipe wont get you very far if you don't have the proper camping cooking gear.</p>
+    <p class="gear-page-p">What follows isn't exhaustive, but it covers all the basics, and should be enough to get you through almost all the recipes you find here on Camping Recipes. And if you have to improvise a bit, that's just part of camping.</p>
+    
+    <h2 class="h-margin">Stove and Fuel</h2>
+    
+    <p class="gear-page-p">Stoves come in all shapes and sizes. In fact you don't even need a stove, strictly speaking, just something that will give off heat. A campfire will do the same job that a fancy stove will, and for considerably less money.</p>
+    <p class="gear-page-p">Here are a few of the more common heat source options...</p>
+    <ul>
+       <li class="gear-page-li"><b>Liquid Fuel Stove</b> - Liquid fuel stoves generally run on white gas, though you can find many, often referred to as mult-fuel stoves, that will run on other liquid fuels, such as kerosene or even automotive gasoline. The fuel bottles are also refillable, which is a definite advantage. The drawback is that these tend to be the most expensive stoves, and also the heaviest.</li>
+       <li class="gear-page-li"><b>Canister Stove</b> - These stoves are compatible with pre-pressurized canisters, which are typically loaded with butane or isobutane. The canisters are easy to use, but once they're done they're done, no refills. Canisters also don't work very well during cold conditions, so you might consider them three season stoves.</li>
+       <li class="gear-page-li"><b>Solid Fuel Stove</b> - Solid fuel stove is a bit of a catch-all category. These stoves will often accept a few very different fuel sources, such as wood or esbit tablets, which makes them versatile. They're also typically cheap, lightweight and easy to use, with little or no moving parts. If you prefer simple, this is likely the stove for you. Wood is also the one fuel source that is waiting for you at your camp site, which means you don't have to carry it there.</li>
+       <li class="gear-page-li"><b>Alcohol Stove</b> - Alcohol is a cheap and easy to find fuel, at least in North America, and alcohol stoves are generally cheap and easy to use too. You wont find too many of these from the bigger stove manufacturers, but if you're a backpacker looking to save as much weight as possible, alcohol stoves are ideal. The one thing to keep in mind is that alcohol stoves don't burn as hot as other fuels, so it will take a little longer for your water to boil.</li>
+    </ul>
+    <div class="row">
+      <% @stoves.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Pots, Pans and Combos</h2>
+    
+    <p class="gear-page-p">Deciding on what combination of pots and pans you want in what sizes is relatively easy. It helps to have a few of them handy, and to be able to pick and choose what to take, based on what you're cooking and how many people you're cooking for. The hard part is deciding what material you want them to be made of.</p>
+    <p class="gear-page-p">There are three main pot and pan material choices, and all of them have their pros and cons...</p> 
+    <ul>
+      <li class="gear-page-li"><b>Steel</b> - The main advantage of steel is that it's strong. You never have to worry about treating a steel pot too delicately. Steel camping pots and pans are also relatively cheap, which is never a bad thing. The downside is that steel is also heavy, heavier than the other two materials below.</li>
+      <li class="gear-page-li"><b>Aluminum</b> - Aluminum is cheap, like steel, but is light where steel is heavy. But where steel is strong, aluminum is quite a bit weaker. It's not going to crumple the first time you drop it, but it might not be the best choice if you like to abuse your gear. You can also find aluminum pots and pans that come with a teflon coating, which is fantastic when it comes to cleaning up, and definitely something to consider.</li>
+      <li class="gear-page-li"><b>Titanium</b> - Titanium is both strong and lightweight, which is the best of both worlds from aluminum and steel. The only problem is it's rather expensive, which aluminum and steel are not. So if you want the best, and don't mind paying for it, titanium is the perfect choice.</li>
+    </ul>
+    <div class="row">
+      <% @pots.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Wind Screens and Heat Shields</h2>
+    
+    <p class="gear-page-p">A wind screen or heat shield is not necessary for cooking in the outdoors, but they certainly don't hurt, especially when it's particularly cold out, or when the wind is gusting.</p>
+    <p class="gear-page-p">The other time when you might want to consider using a wind screen or heat shield is when you need to squeeze out every little bit of heat. Alcohol stoves, for example, don't produce as much heat as canister stoves or liquid stoves, and a wind screen or heat shield will help provide a little more heat.</p>
+    <div class="row">
+      <% @accessories.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Spoons, Spatulas and Similar</h2>
+    
+    <p class="gear-page-p">Though not strictly necessary, especially if you're willing to get a little inventive (a fresh cedar twig makes an excellent stirring stick, and might even add a little flavor), spoons and especially spatulas can come in handy for certain recipes.</p>
+    <p class="gear-page-p">Stirring spoons are easily replaced by utensils such as sporks or even chopsticks. But a spatula is versatile, especially for recipes involving pans -- think eggs or any sort of messy stirfry.</p>
+    <p class="gear-page-p">This is one item that really defines the difference between car camping and backpacking. If you're trying to eliminate superfulous !!!sp? items to lighten the weight of your backpack, then a spatula is going to be one of the first items to go, but for car campers is an ideal luxury item to bring along if it makes a recipe easier.</p>
+    <div class="row">
+      <% @spoons.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Plates, Bowls and Combos</h2>
+    
+    <p class="gear-page-p">Plates and bowls are good, but a combination of the two, a plate with high sides, is best. But like cookware, with plateware the hard decision is not what shape or size to get, but rather what material to choose.</p>
+    <p class="gear-page-p">There are a few different material choices for your plateware, each with some pros and cons to consider...</p>
+    <ul>
+       <li class="gear-page-li"><b>Aluminum</b> - Aluminum plates and bowls are great for weight, but not so much for strength. So if you abuse your gear you might want to try something else. Fortunately aluminum is a cheap material, so if you break your plateware, it will be cheap to replace.</li>
+       <li class="gear-page-li"><b>Steel</b> - Steel plates and bowls are the opposite of aluminum, in that they are strong and difficult to damage, but also heavy. Like aluminum, steel camping plateware is relatively cheap, which is never a bad thing.</li>
+       <li class="gear-page-li"><b>Titanium</b> - Titanium combines the best qualities of both steel and aluminum. It's both lightweight and strong, making it the perfect material for long term use. But titanium is also expensive, so make sure you get the right bowl or plate.</li>
+       <li class="gear-page-li"><b>Hard Plastic</b> - Plastic plateware has a lot going for it. It's usually lightweight, just about impossile to break, and cheap too. Some people prefer to avoid plastics because of leeching chemicals but it's hard to argue with all the benefits of plastic bowls and plates.</li>
+       <li class="gear-page-li"><b>Soft Plastic</b> - There aren't many of these around, but they're mostly similar to hard plastics in terms of pros and cons. The one unique thing about soft plastics is that they squish up, making them ideal for cramming in to a backpack.</li>
+    </ul>
+    <div class="row">
+      <% @plates.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Utensils</h2>
+    
+    <p class="gear-page-p">There are plenty of utensil choices for campers and backpackers. Spoons, forks, sporks and even chopsticks will all help you get varying kinds of food from plate to mouth, but the spork is surely the best choice, for versatility if nothing else.</p>
+    <p class="gear-page-p">As with plateware, you have a few different choices for the material your utensils are made of, but rather than rehash the pros and cons, which you can read about above in the plateware section, we'll just say that you can find both plastic and various kinds of metal, titanium being a great choice because the price difference is negligable for such a small item.</p>
+    <div class="row">
+      <% @sporks.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Something Sharp</h2>
+    
+    <p class="gear-page-p">Most backpackers and campers will be carrying something sharp, but just in case you don't here's a reminder. Just like when you cook at home a good, sharp knife is important for getting things done. Short of doing all your chopping and slicing before you leave home, which isn't such a terrible idea, you'll likely require a knife of some sort.</p>
+    <p class="gear-page-p">You might be tempted to bring something big and dangerous looking, but something small, light and folding is ideal, especially for backpackers looking to shave ounces. Just remember to give your knife a sharpen, or at least an inspection, before you leave the house.</p>
+    <div class="row">
+      <% @knives.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <h2 class="h-margin ad-bump">Cups and Mugs</h2>
+    
+    <p class="gear-page-p">Camping and backpacking cups and mugs, just like plates, bowls and utensils come in a few different materials that each have pros and cons. If you want a run down on the benefits of each of these materials check out the plateware section, above.</p>
+    <p class="gear-page-p">For cups and mugs there are a few unique things to talk about, however. One is a handle. Handles can make handling hot beverages simpler, but can also making packing quite a bit harder. A good compromise is a cup or mug with a folding handle.</p>
+    <p class="gear-page-p">And if you do like a hot beverage to get you going in the morning you might consider a double walled mug. The double wall does increase the weight, but it helps to both insulate the hot liquid and keep it hot longer, as well as keep the heat away from your hands.</p>
+    <p class="gear-page-p">One more option to consider is a lid, which have a few obvious benefits, but does also add weight, which is not something most backpackers will look kindly on.</p>
+    <p class="gear-page-p">Finally, there are a few special cups out there that are of the larger variety, that actually double as cooking pots, or at least cooking pots for a meal for one. If you're really looking to shave ounces and don't mind cooking smaller meals, a pot / mug is something to consider.</p>
+    <div class="row">
+      <% @mugs.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <h2 class="h-margin ad-bump">Cleaning Up</h2>
+    
+    <p class="gear-page-p">And finally when the cooking is done and your belly is full, there's the cleaning to do. Outdoor conditions always make cleaning up a little more difficult, but this comes down to technique, like boiling water in your dirty pots, rather than any special equipment.</p>
+    <div class="row">
+      <% @soaps.each do |link| %>
+        <div class="span4">
+          <div class="row">
+            <div class="span4">
+              <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'gear-page-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-page-link' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <table>
+                <tr>
+                  <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                  <td class="price-td">
+                    <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                    <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                    <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br />
+    <br />
+  </div>
+</div>

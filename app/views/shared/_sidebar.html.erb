@@ -1,12 +1,54 @@
+<% if params[:controller] == 'recipes' && params[:action] == 'index' %>
+<% else %>
+  <div class="row">
+    <div class="span4">
+      <%= form_tag recipes_path, :method => 'get', id: 'sidebar-search-form' do %>
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right sidebar-search-btn' %>
+        <%= text_field_tag :query, params[:query], class: 'float-right', id: 'sidebar-query' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="span4">
     <%= link_to "Add a Recipe", new_recipe_path, class: 'btn btn-warning btn-block bolded sidebar-btn' %>
-    <%= link_to "Camping Cooking Gear", cooking_gear_path, class: 'bolded fonted btn btn-block' %>
+    <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
   </div>
 </div>
 
 <div class="row">
   <div class="span4">
-  
+    <h3 class="h-margin">If You're Feeling Lazy...</h3>
   </div>
 </div>
+
+<div class="row">
+  <% Link.where("link_type = ?", 'sidebar').each do |link| %>
+    <div class="span4 sidebar-bump">
+      <div class="row">
+        <div class="span4">
+          <%= link_to content_tag(:h4, truncate(link.product_name, :length => 35, :omission => '...'), class: 'sidebar-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'sidebar-a' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span4">
+          <table>
+            <tr>
+              <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+              <td class="price-td">
+                <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
+                <% if link.retail_price != link.sale_price %>
+                  <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                <% end %>
+                <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br />
+<br />

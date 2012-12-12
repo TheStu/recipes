@@ -1,3 +1,84 @@
 <% provide(:title, "home") %>
 <% provide(:desc, "") %>
-<%= link_to "New Recipe", new_recipe_path %>
+
+<div class="span12">
+  <div class="row">
+    <div class="span12">
+      <div class="join-now">
+        <% if user_signed_in? %>
+          <%= link_to "Add a Recipe", new_recipe_path, class: 'btn btn-warning btn-large join-now-btn bolded float-left' %>
+        <% else %>
+          <%= link_to "Join Now", new_user_registration_path, class: 'btn btn-warning btn-large join-now-btn bolded float-left' %>
+        <% end %>
+        <%= form_tag recipes_path, :method => 'get', id: 'home-search-form' do %>
+          <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right home-search-btn' %>
+          <%= text_field_tag :query, params[:query], class: 'float-right home-query' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p class="about-cr">The perfect recipes for a campfire or backpacking stove</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span9">
+    <h3 class="h-margin">Latest Recipes</h3>
+      <% @recipes.each do |recipe| %>
+        <div class="row">
+          <div class="span9">
+            <%= link_to content_tag(:h3, recipe.title, class: 'h-margin'), recipe_path(recipe), class: 'home-recipe-title' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span3">
+            <table class="index-recipe-meta">
+              <tr>
+                <td class="index-label">Prep And Cook Time:</td>
+                <td><%= recipe.cooking_time %> minutes</td>
+              </tr>
+              <tr>
+                <td class="index-label">Pots/Pans Required:</td>
+                <td><%= recipe.pots %></td>
+              </tr>
+              <% if recipe.calories.present? %>
+                <tr>
+                  <td class="index-label">Calories Per Person:</td>
+                  <td><%= recipe.calories %></td>
+                </tr>
+              <% end %>
+              <% if recipe.weight.present? %>
+                <tr>
+                  <td class="index-label">Ingredient's Weight:</td>
+                  <td><%= recipe.weight %> grams</td>
+                </tr>
+              <% end %>
+              <tr>
+                <td class="index-label">Average Rating:</td>
+                <td class="average-stars"><%= content_tag(:span, "", class: "rated", data_rating: recipe.average_stars ) %></td>
+              </tr>
+            </table>
+          </div>
+          <div class="span6">
+            <%= truncate(recipe.introduction, :length => 300, :omission => '...') %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="span3">
+      <p class="about-pic">Picture by <%= link_to "Jason Jones", 'http://www.flickr.com/photos/jjay69/7560280198', target: '_blank', rel: 'nofollow' %></p>
+      <h3 class="h-margin clear-right">Spread the Word</h3>
+      <div class="fb-like" data-href="http://www.campingrecipes.co" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
+      <div class="social-bump"></div>
+      <div class="g-plusone" data-size="medium" data-href="http://www.campingrecipes.co"></div>
+      <div class="social-bump"></div>
+      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      <div class="social-bump"></div>
+      <su:badge layout="1"></su:badge>
+      <h3 class="h-margin">Cooking Gear</h3>
+      <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
+    </div>
+  </div>
+</div>

@@ -43,6 +43,9 @@ end
   gem "rails_admin", "~> 0.3.0"
   gem 'jquery-raty-rails', '~> 0.0.1', github: 'TheStu/jquery-raty-rails'
   gem "pg_search", "~> 0.5.7"
+  gem "nokogiri", "~> 1.5.5"
+  gem "will_paginate", "~> 3.0.3"
+  gem "will_paginate-bootstrap", "~> 0.2.1"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -16,6 +16,6 @@ class CategoriesController < ApplicationController
   
   def index
     @category = params[:category].to_s.titleize
-    @recipes = Recipe.joins(:categories).where('categories.name = ?', @category)
+    @recipes = Recipe.joins(:categories).where('categories.name = ?', @category).order('created_at desc').paginate(:page => params[:page], :per_page => 10)
   end
 end

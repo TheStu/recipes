@@ -1,2 +1,9 @@
-<h1>Statics#contact</h1>
-<p>Find me in app/views/statics/contact.html.erb</p>
+<% provide(:title, "Contact") %>
+<% provide(:desc, "Contact Camping Recipes") %>
+<h1>Contact Camping Recipes</h1>
+<div class="row">
+  <div class="span8">
+    <p class="static-page-p">Send any and all email to:</p>
+    <p class="static-page-p bolded">admin [at] campingrecipes [dot] co</p>
+  </div>
+</div>

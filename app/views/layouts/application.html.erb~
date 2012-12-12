@@ -4,7 +4,7 @@
 <html>
 <head>
   <title><%= sanitize full_title(yield(:title)) %></title>
-  <meta name="description" content="<%= meta_desc(yield(:desc)).html_safe %>" />
+  <meta name="description" content="<%= sanitize meta_desc(yield(:desc)) %>" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -31,17 +31,20 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
   })();
 </script>
+
+<script type="text/javascript">
+  (function() {
+    var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+    li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+  })();
+</script>
 <div id="wrap">
   <%= render "shared/header" %>
   <div class="container">
     <%= render 'shared/flash_messages' %>
     <div class="row">
-      <div class="span8">
-        <%= yield %>
-      </div>
-      <div class="span4">
-        <%= render 'shared/sidebar' %>
-      </div>
+      <%= yield %>
     </div>
   </div>
   <div id="push"></div>

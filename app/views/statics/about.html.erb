@@ -1,2 +1,17 @@
-<% provide(:title, "home") %>
-<% provide(:desc, "") %>
+<% provide(:title, "About") %>
+<% provide(:desc, "All about Camping Recipes") %>
+
+<div class="span8">
+  <h1>About Camping Recipes</h1>
+  <div class="row">
+    <div class="span8">
+      <p class="static-page-p">Camping Recipes was born out of a belief that spending time in the outdoors, whether camping, hiking or backpacking, doesn't have to mean eating crummy food that you'd never be happy with at home with a full kitchen at your disposal.</p>
+      <p class="static-page-p">With a resource like this to consult, eating well in the outdoors will be a lot easier. And eating well will make the outdoors that much more enjoyable, especially for those of us that enjoy food just as much as they enjoy a walk in the wilderness.</p>
+      <p class="static-page-p">Everyone's got a favorite recipe for the outdoors, so get busy and <%= link_to "contribute", new_recipe_path %> yours.</p>
+    </div>
+  </div>
+</div>
+
+<div class="span4">
+  <%= render 'shared/sidebar' %>
+</div>

@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+  
   def full_title(page_title) #Returns the full title on a per-page basis.
     base_title = "Camping Recipes"
     if page_title.empty?

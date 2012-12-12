@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  merchant_name: MyString
+  product_name: MyString
+  retail_price: MyString
+  sale_price: MyString
+  thumbnail_image: MyString
+  buy_url: MyString
+  abbreviated_description: MyString
+  link_type: MyString
+
+two:
+  merchant_name: MyString
+  product_name: MyString
+  retail_price: MyString
+  sale_price: MyString
+  thumbnail_image: MyString
+  buy_url: MyString
+  abbreviated_description: MyString
+  link_type: MyString

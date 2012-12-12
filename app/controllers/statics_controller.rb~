@@ -1,6 +1,6 @@
 class StaticsController < ApplicationController
   def home
-    @recipes = Recipe.order('created_at desc').first(5)
+    @recipes = Recipe.order('created_at desc').first(10)
   end
 
   def contact

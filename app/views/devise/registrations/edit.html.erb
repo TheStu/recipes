@@ -1,37 +1,44 @@
 <% provide(:title, "Edit Profile") %>
 <% provide(:desc, "") %>
-<h1>Edit <%= resource_name.to_s.humanize %></h1>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="span8">
+  <h1>Edit <%= resource_name.to_s.humanize %></h1>
 
-  <div><%= f.label :email %>
-  <%= f.email_field :email %></div>
-  
-  <div><%= f.label :username %>
-  <%= f.text_field :username %></div>
-  
-  <div><%= f.label :trailname %>
-  <%= f.text_field :trailname %></div>
-  
-  <div><%= f.label :location %>
-  <%= f.text_field :location %></div>
-  
-  <div><%= f.label :bio %>
-  <%= f.text_area :bio %></div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div><%= f.label :password, "Password <i class=\"form-explain\">(leave blank if you don't want to change it)</i>".html_safe %>
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+    <div><%= f.label :email %>
+    <%= f.email_field :email %></div>
+    
+    <div><%= f.label :username %>
+    <%= f.text_field :username %></div>
+    
+    <div><%= f.label :trailname %>
+    <%= f.text_field :trailname %></div>
+    
+    <div><%= f.label :location %>
+    <%= f.text_field :location %></div>
+    
+    <div><%= f.label :bio %>
+    <%= f.text_area :bio %></div>
 
-  <div><%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %></div>
+    <div><%= f.label :password, "Password <i class=\"form-explain\">(leave blank if you don't want to change it)</i>".html_safe %>
+    <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.label :current_password, "Current Password <i class=\"form-explain\">(we need your current password to confirm your changes)</i>".html_safe %>
-  <%= f.password_field :current_password %></div>
+    <div><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Update Profile", class: 'btn btn-warning bolded' %></div>
-<% end %>
-<br />
-<h3>Cancel my account</h3>
+    <div><%= f.label :current_password, "Current Password <i class=\"form-explain\">(we need your current password to confirm your changes)</i>".html_safe %>
+    <%= f.password_field :current_password %></div>
 
-<p>Unhappy? You can <%= link_to "delete your account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>, but be sure, because all of your recipes and reviews will be deleted too, and other users might still find them useful!</p>
+    <div><%= f.submit "Update Profile", class: 'btn btn-warning bolded' %></div>
+  <% end %>
+  <br />
+  <h3>Cancel my account</h3>
+
+  <p>Unhappy? You can <%= link_to "delete your account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>, but be sure, because all of your recipes and reviews will be deleted too, and other users might still find them useful!</p>
+</div>
+
+<div class="span4">
+  <%= render 'shared/sidebar' %>
+</div>
