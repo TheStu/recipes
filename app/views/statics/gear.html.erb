@@ -35,7 +35,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -70,7 +72,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -100,7 +104,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -131,7 +137,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -168,7 +176,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -198,7 +208,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -228,7 +240,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -261,7 +275,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>
@@ -290,7 +306,9 @@
                     <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
-                      <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% if link.retail_price != link.sale_price %>
+                        <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+                      <% end %>
                       <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
                     </td>
                   </tr>

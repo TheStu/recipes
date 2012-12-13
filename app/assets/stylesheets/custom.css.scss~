@@ -295,13 +295,6 @@ select {
   }
 }
 
-.home-pic-back {
-  background: rgba(50, 50, 50, 0.1);
-  padding: 10px;
-  height: 44px;
-  width: 154px;
-}
-
 //************** RECIPES#SHOW **************//
 
 .recipe-meta {
@@ -600,7 +593,7 @@ input[type="checkbox"] {
   @extend .fonted, .float-left;
   font-weight: bold;
   font-size: 17px;
-  margin: 0;
+  margin: 0 10px 0 0;
 }
 
 .gear-sale-price {

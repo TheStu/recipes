@@ -593,14 +593,14 @@ input[type="checkbox"] {
   @extend .fonted, .float-left;
   font-weight: bold;
   font-size: 17px;
-  margin: 0;
+  margin: 0 10px 0 0;
 }
 
 .gear-sale-price {
   @extend .fonted, .float-left;
   font-weight: bold;
   font-size: 17px;
-  margin: 0 0 0 10px;
+  margin: 0;
   &:hover {
     text-decoration: none;
   }
