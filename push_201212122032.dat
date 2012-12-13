@@ -1,0 +1,1 @@
+{"klass":"Taps::Push","database_url":"postgres://stu:carpet2@localhost/recipes_development?encoding=utf8","remote_url":"http://heroku:osui59a24am79x@taps19.heroku.com","session_uri":"/sessions/2528077218","stream_state":{},"completed_tables":["users"],"table_filter":"(^users$)","local_tables_info":{"users":11}}
