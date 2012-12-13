@@ -109,7 +109,7 @@
     <div class="span2">
       <h3 class="h-margin">Categories</h3>
       <ul class="cat-list drop-shadow lifted">
-        <% @recipe.categories.each do |cat| %>
+        <% @recipe.categories.order('name desc').each do |cat| %>
           <li><span itemprop="recipeCategory"><%= link_to cat.name, category_index_path(cat.name.parameterize), class: 'fonted' %></span></li>
         <% end %>
       </ul>    

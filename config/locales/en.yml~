@@ -4,4 +4,4 @@
 en:
   errors:
     # The default format to use in full error messages.
-    format: "%{attribute} %{message}"
+    format: "%{message}"

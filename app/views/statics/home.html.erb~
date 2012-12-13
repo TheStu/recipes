@@ -14,6 +14,7 @@
           <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right home-search-btn' %>
           <%= text_field_tag :query, params[:query], class: 'float-right home-query' %>
         <% end %>
+        <p class="about-pic">Picture by <%= link_to "Jason Jones", 'http://www.flickr.com/photos/jjay69/7560280198', target: '_blank', rel: 'nofollow' %></p>
       </div>
     </div>
   </div>
@@ -65,10 +66,11 @@
           </div>
         </div>
       <% end %>
+      <br />
+      <br />
     </div>
     <div class="span3">
-      <p class="about-pic">Picture by <%= link_to "Jason Jones", 'http://www.flickr.com/photos/jjay69/7560280198', target: '_blank', rel: 'nofollow' %></p>
-      <h3 class="h-margin clear-right">Spread the Word</h3>
+      <h3 class="h-margin">Spread the Word</h3>
       <div class="fb-like" data-href="http://www.campingrecipes.co" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
       <div class="social-bump"></div>
       <div class="g-plusone" data-size="medium" data-href="http://www.campingrecipes.co"></div>

@@ -20,7 +20,7 @@
     <div class="span3">
       <span class="drop-shadow lifted"><%= image_tag "#{avatar_url(@user)}?s=200" %></span>
       <% if can? :update, @user %>
-        <%= link_to "Add/Edit Avatar", 'http://gravatar.com/emails', class: 'btn btn-warning btn-small bolded user-edit-btn', target: '_blank', rel: "tooltip", title: "Avatars come from Gravatar. Just make sure your Camping Recipes and Gravatar email addresses are the same, and we'll do the rest" %>
+        <%= link_to "Add/Edit Avatar", 'http://gravatar.com/emails', class: 'btn btn-warning btn-small bolded user-edit-btn', target: '_blank', rel: "tooltip", title: "Avatars come from Gravatar. Just make sure the email address you use for Camping Recipes and Gravatar is the same, and we'll do the rest" %>
       <% end %>
     </div>
     <div class="span5">

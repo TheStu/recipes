@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   :username, :trailname
   # attr_accessible :title, :body
   
-  has_many :recipe, :dependent => :destroy
+  has_many :recipes, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
+  
+  validates :username, :presence => true, :uniqueness => true
   
 end

@@ -4,7 +4,11 @@
 <div class="span8">
   <div class="row">
     <div class="span8">
-      <h1 class="h-margin">Recipe Search <span class="gray-me">(<%= @recipes.count %> Recipes Found)</span></h1>
+      <h1 class="h-margin">Recipe Search
+        <% if params[:query].present? || params[:categories].present? %>
+          <span class="gray-me">(<%= @recipes.count %> Recipes Found)</span>
+        <% end %>
+      </h1>
     </div>
   </div>
   <div class="row">
@@ -41,6 +45,7 @@
               <%= label_tag dom_id(category), category.name %>
             </li>
           <% end %>
+          <br />
           <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning btn-block bolded' %>
         <% end %>
       </ul>

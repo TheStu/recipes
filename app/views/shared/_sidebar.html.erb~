@@ -1,12 +1,14 @@
-
-<div class="row">
-  <div class="span4">
-    <%= form_tag recipes_path, :method => 'get', id: 'sidebar-search-form' do %>
-      <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right sidebar-search-btn' %>
-      <%= text_field_tag :query, params[:query], class: 'float-right', id: 'sidebar-query' %>
-    <% end %>
+<% if params[:controller] == 'recipes' && params[:action] == 'index' %>
+<% else %>
+  <div class="row">
+    <div class="span4">
+      <%= form_tag recipes_path, :method => 'get', id: 'sidebar-search-form' do %>
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right sidebar-search-btn' %>
+        <%= text_field_tag :query, params[:query], class: 'float-right', id: 'sidebar-query' %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="row">
   <div class="span4">

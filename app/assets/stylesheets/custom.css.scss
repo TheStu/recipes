@@ -127,6 +127,16 @@ select {
   @extend .fonted;
 }
 
+#error_explanation {
+  h2 {
+    font-size: 22px;
+  }
+  ul li {
+    @extend .fonted;
+    color: red;
+  }
+}
+
 .drop-shadow {
     position:relative;
     float:left;
@@ -228,6 +238,7 @@ select {
   width: 100%;
   height: 430px;
   background-image: url('home.jpg');
+  position: relative;
   .join-now-btn {
     margin: 40px 0 0 40px;
   }
@@ -245,6 +256,20 @@ select {
   }
   #home-search-form {
     margin: 0;
+  }
+  .about-pic {
+    @extend .fonted;
+    font-size: 11px;
+    color: #777;
+    background: rgba(50, 50, 50, 0.5);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 20px 20px;
+    padding: 5px;
+    a:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -268,13 +293,6 @@ select {
   &:hover {
     text-decoration: none;
   }
-}
-
-.about-pic {
-  @extend .fonted, .float-right;
-  font-size: 11px;
-  color: #777;
-  margin-bottom: 0;
 }
 
 //************** RECIPES#SHOW **************//
@@ -643,8 +661,12 @@ input[type="checkbox"] {
 
 //************** FOOTER **************//
 
-#push, #footer {
+#footer {
   height: 59px; // 60 - 1 for the 1px border
+}
+
+#push {
+  height: 100px;
 }
 
 #footer {

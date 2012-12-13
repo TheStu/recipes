@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
       @recipes = @recipes.where('weight > ?', 0)
     end
     @recipes = @recipes.order(@sort_order) if @sort_order.present?
-    @recipes = @recipes.text_search(@query).joins(:categories).where("categories.name" => @selected_categories).group('recipes.id').having('COUNT(recipes.id) = ?', @selected_categories.count) if @selected_categories.present?
+    @recipes = @recipes.find_with_categories(@selected_categories) if @selected_categories.present?
     @recipes = @recipes.paginate(:page => params[:page], :per_page => 10)
     # http://stackoverflow.com/questions/9549567/finding-post-associated-with-both-of-two-categories-in-rails-3-without-custom-sq
 

@@ -3,4 +3,7 @@ class Review < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :recipe
+  
+  validates_numericality_of :stars, :minimum => 1, :message => "can't be blank"
+  validates :content, :presence => true
 end

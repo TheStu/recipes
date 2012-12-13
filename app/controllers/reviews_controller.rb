@@ -55,7 +55,10 @@ class ReviewsController < ApplicationController
       else
         format.html do
           redirect_to @review.recipe
-          flash[:error] = 'Oops, something went wrong with creating your review.'
+          flash[:error] = []
+          @review.errors.full_messages.each do |error|
+            flash[:error] << error
+          end
         end
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
