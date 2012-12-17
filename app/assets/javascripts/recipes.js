@@ -1,6 +1,6 @@
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
-  $(link).closest(".ingredient-block").hide();
+  $(link).closest(".field-block").hide();
 }
 
 function add_fields(link, association, content) {

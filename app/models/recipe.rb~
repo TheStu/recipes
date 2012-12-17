@@ -3,8 +3,11 @@ class Recipe < ActiveRecord::Base
   :title, :user, :weight, :pots, :category_ids, :ingredients_attributes, :remove_picture, :average_stars
   
   belongs_to :user
-  has_many :category_joins, :dependent => :destroy
   has_many :categories, :through => :category_joins
+  has_many :category_joins, :dependent => :destroy
+  has_many :meal_plans, :through => :meal_plan_joins
+  has_many :meal_plan_joins, :dependent => :destroy
+  
   has_many :ingredients, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   accepts_nested_attributes_for :category_joins
@@ -12,10 +15,10 @@ class Recipe < ActiveRecord::Base
   
   validates :pots, :inclusion => { :in => ['0', '1', '2', '2+'],
     :message => "needs to be a number between 0 and 2+" }
-  validates :cooking_time, :numericality => {:only_integer => true, :message => "cooking time is not a number"}
-  validates :servings, :numericality => {:only_integer => true, :message => "servings is not a number"}
-  validates :weight, :numericality => {:only_integer => true, :message => "ingredient weight is not a number"}
-  validates :calories, :numericality => {:only_integer => true, :message => "calories is not a number"}
+  validates :cooking_time, :numericality => {:only_integer => true, :message => "is not a number"}
+  validates :servings, :numericality => {:only_integer => true, :message => "is not a number"}
+  validates :weight, :numericality => {:only_integer => true, :message => "is not a number"}
+  validates :calories, :numericality => {:only_integer => true, :message => "is not a number"}
   validates :introduction, :preperation, :title, :equipment, :presence => true
   
   def to_param

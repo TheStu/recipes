@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   
   has_many :recipes, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
+  has_many :meal_plans, :dependent => :destroy
   
   validates :username, :presence => true, :uniqueness => true
   

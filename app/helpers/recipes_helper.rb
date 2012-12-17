@@ -15,4 +15,13 @@ module RecipesHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
+  
+  def link_to_remove(name)
+    hidden_field_tag(:_destroy) + link_to_function(name, "remove_fields(this)")
+  end
+  
+  def link_to_add(name, association)
+    fields = render(association.to_s.singularize + "_fields")
+    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+  end
 end

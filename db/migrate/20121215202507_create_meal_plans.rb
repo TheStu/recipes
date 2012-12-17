@@ -1,0 +1,15 @@
+class CreateMealPlans < ActiveRecord::Migration
+  def change
+    create_table :meal_plans do |t|
+      t.string :name
+      t.integer :user_id
+      t.integer :total_days
+      t.integer :total_calories
+      t.integer :total_people
+
+      t.timestamps
+    end
+    
+    add_index :meal_plans, :user_id
+  end
+end

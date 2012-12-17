@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @meal_plan.name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @meal_plan.user_id %>
+</p>
+
+<p>
+  <b>Total days:</b>
+  <%= @meal_plan.total_days %>
+</p>
+
+<p>
+  <b>Total calories:</b>
+  <%= @meal_plan.total_calories %>
+</p>
+
+<p>
+  <b>Total people:</b>
+  <%= @meal_plan.total_people %>
+</p>
+
+
+<%= link_to 'Edit', edit_meal_plan_path(@meal_plan) %> |
+<%= link_to 'Back', meal_plans_path %>

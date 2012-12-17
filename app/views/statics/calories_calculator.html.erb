@@ -1,0 +1,99 @@
+<% provide(:title, "Calories Calculator") %>
+<% provide(:desc, "Calculate the calories you'll need for days in the outdoors") %>
+
+<div class="span8">
+  <h1 class="h-margin">Calories Calculator</h1>
+  <br />
+  <div class="btn-group">
+    <button class="btn quick-calc-btn">Quick Calculator</button>
+    <button class="btn advanced-calc-btn">Advanced Calculator</button>
+  </div>
+  <div class="row quick-calc">
+    <div class="span8">
+      <br />
+      <%= form_tag new_meal_plan_path do %>
+      
+        <%= hidden_field_tag :form_type, 'quick' %>
+      
+        <%= text_field_tag :rest_days, params[:rest_days], class: 'calc-day-field' %>
+        <%= label_tag :rest_days, "Total Number of Rest Days <i class=\"form-explain\">(doing nothing)</i>".html_safe, class: 'calc-day-label' %>
+        
+        <%= text_field_tag :light_days, params[:light_days], class: 'calc-day-field' %>
+        <%= label_tag :light_days, "Total Number of Light Activity Days <i class=\"form-explain\">(playing cards, fishing, a bit of walking)</i>".html_safe, class: 'calc-day-label' %>
+        
+        <%= text_field_tag :moderate_days, params[:moderate_days], class: 'calc-day-field' %>
+        <%= label_tag :moderate_days, "Total Number of Moderate Activity Days <i class=\"form-explain\">(light hiking with a light backpack)</i>".html_safe, class: 'calc-day-label' %>
+        
+        <%= text_field_tag :heavy_days, params[:heavy_days], class: 'calc-day-field' %>
+        <%= label_tag :heavy_days, "Total Number of Heavy Activity Days <i class=\"form-explain\">(backpacking with a full backpack for the day)</i>".html_safe, class: 'calc-day-label' %>
+        
+        <br />
+        <%= text_field_tag :men, params[:men], class: 'calc-day-field' %>
+        <%= label_tag :men, "Number of Men", class: 'calc-day-label' %>
+        
+        <%= text_field_tag :women, params[:women], class: 'calc-day-field' %>
+        <%= label_tag :women, "Number of Women", class: 'calc-day-label' %>
+        <br />
+        <%= submit_tag "Calculate", :name => nil, class: 'btn btn-warning bolded' %>
+      <% end %>
+    </div>
+  </div>
+  
+  
+  <div class="row advanced-calc"" style="display: none">
+    <div class="span8">
+      <br />
+      <%= form_tag new_meal_plan_path, :method => 'get' do %>
+        
+        <%= hidden_field_tag :form_type, 'advanced' %>
+        
+        <h3 class="h-margin">People Going Camping</h3>
+        <%= render 'person_fields' %>
+        <p class="add-btn-calc"><%= link_to_add "Add Person", :persons %></p>
+        
+        <br />
+        
+        <h3 class="h-margin">Days Spent Camping</h3>
+        <ul class="days-explain">
+          <li><b>Rest Day</b> - Doing as little as possible</li>
+          <li><b>Light Day</b> - Playing cards, fishing, a bit of walking</li>
+          <li><b>Moderate Day</b> - Light hiking with a light backpack</li>
+          <li><b>Heavy Day</b> - Backpacking for the day with a fully loaded backpack</li>
+        </ul>
+        <%= render 'day_fields' %>
+        <p class="add-btn-calc"><%= link_to_add "Add Day", :days %></p>
+        
+        <br />
+        <% if user_signed_in? %>
+          <%= radio_button_tag :meal_plan, "yes" %>
+          <%= label_tag :meal_plan_yes, "Use this info to create a meal plan".html_safe, class: 'meal-plan-btn' %>
+        <% else %>
+          <%= radio_button_tag :meal_plan, "yes", false, :disabled => true %>
+          <%= label_tag :meal_plan_yes, "Use this info to create a meal plan <i class=\"form-explain\">(You will need to #{link_to "create an account", new_user_registration_path} first)</i>".html_safe, class: 'meal-plan-btn' %>
+        <% end %>
+        
+        <%= radio_button_tag :meal_plan, "no", true %>
+        <%= label_tag :meal_plan_no, "Just show me the calories needed", class: 'meal-plan-btn' %>
+        <br />
+
+        <%= submit_tag "Calculate", :name => nil, class: 'btn btn-warning bolded' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="span4">
+  <%= render 'shared/sidebar' %>
+</div>
+
+<script>
+$(".quick-calc-btn").click(function () {
+  $(".quick-calc").show();
+  $(".advanced-calc").hide();
+});
+
+$(".advanced-calc-btn").click(function () {
+  $(".advanced-calc").show();
+  $(".quick-calc").hide();
+});
+</script>

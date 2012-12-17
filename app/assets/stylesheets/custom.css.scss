@@ -499,6 +499,60 @@ input[type="checkbox"] {
   padding-bottom: 5px;
 }
 
+//************** CALORIES-CALC **************//
+
+.calc-day-field {
+  @extend .float-left, .clear-left;
+  width: 40px;
+  margin-right: 5px;
+}
+
+.gender-select {
+  @extend .calc-day-field;
+  width: 90px;
+}
+
+.day-select {
+  @extend .calc-day-field;
+  width: 130px;
+}
+
+.calc-day-label {
+  @extend .fonted;
+  line-height: 35px;
+}
+
+.remove-calc {
+  padding-left: 15px;
+  line-height: 40px;
+  a {
+    @extend .fonted, .bolded, .btn, .btn-warning, .btn-mini;
+    margin-bottom: 10px;
+  }
+}
+
+.add-btn-calc a {
+  @extend .fonted, .bolded, .btn, .btn-warning, .btn-mini;
+}
+
+#meal_plan_yes, #meal_plan_no {
+  @extend .float-left;
+  margin-right: 5px;
+}
+
+.meal-plan-btn {
+  @extend .fonted, .calc-day-label;
+  line-height: 25px;
+}
+
+.days-explain {
+  li {
+    @extend .fonted;
+  }
+}
+
+//************** MEAL-PLAN#NEW + EDIT **************//
+
 //************** USER#SHOW / USER#EDIT **************//
 
 .user-edit-btn {
