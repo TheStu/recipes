@@ -9,5 +9,7 @@ class CreateMealPlans < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :meal_plans, :user_id
   end
 end

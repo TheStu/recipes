@@ -1,0 +1,3 @@
+class People < ActiveRecord::Base
+  attr_accessible :age, :meal_plan_id, :name, :sex, :weight
+end

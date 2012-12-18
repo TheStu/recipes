@@ -10,9 +10,11 @@ Recipes::Application.routes.draw do
   match '/contact', to: 'statics#contact'
   match '/privacy', to: 'statics#privacy'
   match '/camping-cooking-gear', to: 'statics#gear', as: 'cooking_gear'
-  match '/calories-calculator', to: 'statics#calories_calculator', as: 'calculator'
+  match '/calorie-calculator', to: 'statics#calories_calculator', as: 'calculator'
   
   match '/category/:category', to: 'categories#index', as: 'category_index'
+  
+  get "/calorie-calculator-results" => "statics#results", as: 'results'
 
   resources :recipes
   resources :categories

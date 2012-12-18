@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215203640) do
+ActiveRecord::Schema.define(:version => 20121217213035) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20121215203640) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "days", :force => true do |t|
+    t.integer  "meal_plan_id"
+    t.integer  "day_number"
+    t.string   "day_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "days", ["meal_plan_id"], :name => "index_days_on_meal_plan_id"
 
   create_table "ingredients", :force => true do |t|
     t.integer  "recipe_id"
@@ -47,30 +57,40 @@ ActiveRecord::Schema.define(:version => 20121215203640) do
     t.boolean  "sidebar",                 :default => false
   end
 
-  create_table "meal_plan_joins", :force => true do |t|
-    t.integer  "meal_plan_id"
-    t.integer  "recipe_id"
-    t.integer  "day"
-    t.string   "meal"
-    t.integer  "calories"
-    t.boolean  "custom_input", :default => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-  end
-
-  add_index "meal_plan_joins", ["meal_plan_id"], :name => "index_meal_plan_joins_on_meal_plan_id"
-
   create_table "meal_plans", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "total_days"
-    t.integer  "total_calories"
-    t.integer  "total_people"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "meal_plans", ["user_id"], :name => "index_meal_plans_on_user_id"
+
+  create_table "meals", :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "recipe_id"
+    t.string   "recipe_title"
+    t.string   "specific_meal"
+    t.integer  "base_calories"
+    t.integer  "servings_made"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "meals", ["day_id"], :name => "index_meals_on_day_id"
+  add_index "meals", ["recipe_id"], :name => "index_meals_on_recipe_id"
+
+  create_table "people", :force => true do |t|
+    t.integer  "meal_plan_id"
+    t.string   "name"
+    t.integer  "age"
+    t.string   "gender"
+    t.integer  "weight"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "people", ["meal_plan_id"], :name => "index_people_on_meal_plan_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

@@ -16,15 +16,15 @@
     <%= f.text_field :name %>
   </div>
   
-  <%= f.fields_for :people do |p| %> 
-    <%= render 'person_fields', :f => p %>
-  <% end %>
-  <p class="clear-left"><%= link_to_add_fields "Add Person", f, :people %></p>
-  
-  <%= f.fields_for :days do |d| %>
-    <%= render 'day_fields', :f => d %>
-  <% end %>
-  <p class="clear-left"><%= link_to_add_fields "Add Day", f, :days %></p>
+    <%= f.fields_for :people do |p| %> 
+      <%= render 'person_fields', :f => p %>
+    <% end %>
+    <p class="clear-left"><%= link_to_add_fields "Add Person", f, :people %></p>
+    
+    <%= f.fields_for :days do |d| %>
+      <%= render 'day_fields', :f => d %>
+    <% end %>
+    <p class="clear-left"><%= link_to_add_fields "Add Day", f, :days %></p>
     
   <div class="actions">
     <%= f.submit %>

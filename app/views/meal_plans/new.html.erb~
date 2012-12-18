@@ -1,5 +1,5 @@
 <% provide(:title, "New Meal Plan") %>
-<% provide(:desc, "Create a meal plan for your next outdoor adventure") %>
+<% provide(:desc, "") %>
 
 <div class="span8">
   <h1>New Meal Plan</h1>

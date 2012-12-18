@@ -26,4 +26,27 @@ class StaticsController < ApplicationController
   
   def calories_calculator
   end
+  
+  def results
+    if params[:meal_plan].present? && params[:meal_plan] == 'yes'
+      redirect_to new_meal_plan_path(params)
+    end
+    @days = params[:day_type]
+    @people = build_people(params)
+  end
+  
+  private
+  
+  def build_people(params)
+    people = []
+    params['gender'].count.times do |i|
+      person = {}
+      person['name'] = params['name'][i]
+      person['gender'] = params['gender'][i]
+      person['age'] =  params['age'][i]
+      person['weight'] =  params['weight'][i]
+      people << person
+    end
+    return people
+  end
 end

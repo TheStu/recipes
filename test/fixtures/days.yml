@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  meal_plan_id: 1
+  day_number: 1
+  day_type: MyString
+
+two:
+  meal_plan_id: 1
+  day_number: 1
+  day_type: MyString

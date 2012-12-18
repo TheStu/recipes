@@ -5,8 +5,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   has_many :categories, :through => :category_joins
   has_many :category_joins, :dependent => :destroy
-  has_many :meal_plans, :through => :meal_plan_joins
-  has_many :meal_plan_joins
   
   has_many :ingredients, :dependent => :destroy
   has_many :reviews, :dependent => :destroy

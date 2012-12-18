@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  day_id: 1
+  recipe_id: 1
+  recipe_title: MyString
+  specific_meal: MyString
+  base_calories: 1
+  servings_made: 1
+
+two:
+  day_id: 1
+  recipe_id: 1
+  recipe_title: MyString
+  specific_meal: MyString
+  base_calories: 1
+  servings_made: 1

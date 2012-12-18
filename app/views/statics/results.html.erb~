@@ -1,0 +1,43 @@
+<div class="span8">
+  <h1 class="h-margin">Calorie Calculator Results</h1>
+  <% @days.each_with_index do |day, i| %>
+    <% daily_total = 0 %>
+    <h3 class="h-margin">Day <%= i + 1 %> <i class="header-explain">(<%= day %>)</i></h3>
+    <table class="calorie-day">
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Weight</th>
+        <th class="calories-column">Calories Needed</th>
+      </tr>
+      <% @people.each do |person| %>
+        <tr>
+          <td><%= person['name'] %></td>
+          <td><%= person['gender'] %></td>
+          <td><%= person['age'] %></td>
+          <td><%= person['weight'] %> pounds</td>
+          <td class="calories-column"><%= calories = calculate_calories(person, day) %></td>
+        </tr>
+        <% daily_total += calories %>
+      <% end %>
+      <tr>
+        <td class="bolded">Total Calories</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="calories-column bolded"><%= daily_total %></td>
+      </tr>
+    </table>
+    <br />
+  <% end %>
+  <br />
+  <div class="well">
+    <p class="fonted results-explain">The number of calories presented above are approximate calculations. Variables like weather conditions and terrain can add to or subtract needed calories, so use these results as guideline.</p>
+  </div>
+</div>
+
+
+<div class="span4">
+  <%= render 'shared/sidebar' %>
+</div>

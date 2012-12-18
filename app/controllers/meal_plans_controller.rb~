@@ -25,7 +25,15 @@ class MealPlansController < ApplicationController
   # GET /meal_plans/new.json
   def new
     @meal_plan = MealPlan.new
-
+    if params[:meal_plan].present? && params[:meal_plan] == 'yes'
+      @meal_plan.people.build(build_people(params))
+      @meal_plan.days.build(build_days(params))
+    else
+      @meal_plan.people.build
+      @meal_plan.days.build
+    end
+    @people = build_people(params)
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @meal_plan }
@@ -87,6 +95,7 @@ class MealPlansController < ApplicationController
     people = []
     params['gender'].count.times do |i|
       person = {}
+      person['name'] = params['name'][i]
       person['gender'] = params['gender'][i]
       person['age'] =  params['age'][i]
       person['weight'] =  params['weight'][i]
@@ -97,14 +106,10 @@ class MealPlansController < ApplicationController
   
   def build_days(params)
     days = []
-    params['rest'].count.times do |i|
+    params['day_type'].count.times do |i|
       day = {}
-      day['rest'] = params['rest'][i]
-      day['very_light'] =  params['very_light'][i]
-      day['light'] =  params['light'][i]
-      day['moderate'] =  params['moderate'][i]
-      day['heavy'] =  params['heavy'][i]
-      people << person
+      day['day_type'] = params['day_type'][i]
+      days << day
     end
     return people
   end

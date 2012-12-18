@@ -2,7 +2,7 @@
 <% provide(:desc, "") %>
 
 <div class="span8">
-  <h1>Edit <%= @meal_plan.name %> Meal Plan</h1>
+  <h1>Edit <%= @meal_plan.name %>Meal Plan</h1>
 
   <%= render 'form' %>
 </div>

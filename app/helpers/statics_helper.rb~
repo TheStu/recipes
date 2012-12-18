@@ -5,13 +5,13 @@ module StaticsHelper
     weight = person['weight'].to_i / 2.2
     case day
       when 'Rest Day'
-        multiplier = 1.33
+        multiplier = 1
       when 'Light Day'
-        multiplier = 1.7
+        multiplier = 3
       when 'Moderate Day'
-        multiplier = 2.3
+        multiplier = 5
       when 'Heavy Day'
-        multiplier = 3.2
+        multiplier = 7
     end
     
     if person['gender'] == 'Man'
