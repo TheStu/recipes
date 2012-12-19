@@ -1,10 +1,10 @@
 <div class="field-block">
 
   <h4 class="float-left">Day</h4>
-  
+  <%= f.hidden_field :day_number %>
   <%= f.hidden_field :_destroy %>
-  <span class="remove-calc"><%= link_to_remove "remove" %></span>
+  <span class="remove-calc"><%= link_to_remove_fields "remove", f %></span>
   
-  <%= f.select(:day_type, options_for_select(['Rest Day', 'Light Day', 'Moderate Day', 'Heavy Day']), :include_blank => true, class: "day-select") %>
+  <%= f.select :day_type, options_for_select(['Rest Day', 'Light Day', 'Moderate Day', 'Heavy Day'], :selected => f.object.day_type), { :include_blank => true }, { class: 'day-select' } %>
   <%= f.label :day_type, "Type of Day", class: 'calc-day-label' %>
 </div>

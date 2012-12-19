@@ -1,12 +1,16 @@
 class MealPlan < ActiveRecord::Base
-  attr_accessible :name, :total_calories, :total_days, :total_people, :user_id
+  attr_accessible :name, :total_calories, :total_days, :total_people, :user_id, :people_attributes,
+  :days_attributes
   
   belongs_to :user
 
   has_many :people, :dependent => :destroy
   has_many :days, :dependent => :destroy
-  has_many :meals, :dependent => :destroy
   
-  accepts_nested_attributes_for :days
-  accepts_nested_attributes_for :people
+  accepts_nested_attributes_for :days, :reject_if => lambda { |a| a[:day_type].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :people, :reject_if => lambda { |a| a[:name].blank? && a[:age].blank? && a[:gender].blank? && a[:weight].blank?  }, :allow_destroy => true
+  
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 end

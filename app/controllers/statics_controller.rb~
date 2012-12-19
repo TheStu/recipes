@@ -41,6 +41,7 @@ class StaticsController < ApplicationController
     people = []
     params['gender'].count.times do |i|
       person = {}
+      person['name'] = params['name'][i]
       person['gender'] = params['gender'][i]
       person['age'] =  params['age'][i]
       person['weight'] =  params['weight'][i]

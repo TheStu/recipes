@@ -2,6 +2,6 @@
 <% provide(:desc, "") %>
 
 <div class="span8">
-  <h1><%= @meal_plan.name %> Meal Plan</h1>
+  <h1><%= @meal_plan.name %></h1>
 </div>
 

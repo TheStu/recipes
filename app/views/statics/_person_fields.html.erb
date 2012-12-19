@@ -1,13 +1,15 @@
 <div class="field-block">
   <h4 class="float-left">Person</h4>
   
-  <%= hidden_field_tag :_destroy %>
-  <span class="remove-calc"><%= link_to_remove "remove" %></span>
+  <span class="remove-calc">
+    <%= hidden_field_tag :_destroy, false %>
+    <%= link_to_function "remove", "remove_fields(this)" %>
+  </span>
   
-  <%= text_field_tag 'name[]', nil, class: "calc-day-field" %>
+  <%= text_field_tag 'name[]', nil, class: "calc-day-field name-field" %>
   <%= content_tag :p, "Person's Name", class: 'calc-day-label' %>
   
-  <%= select_tag('gender[]', options_for_select([['Man', "Man"], ['Woman', "Woman"]]), :include_blank => true, class: "gender-select") %>
+  <%= select_tag('gender[]', options_for_select([['Man', "Man"], ['Woman', "Woman"]]), { :include_blank => true, class: 'gender-select' }) %>
   <%= content_tag :p, "Gender", class: 'calc-day-label' %>
   
   <%= text_field_tag 'age[]', nil, class: "calc-day-field" %>

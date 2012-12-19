@@ -25,14 +25,13 @@ class MealPlansController < ApplicationController
   # GET /meal_plans/new.json
   def new
     @meal_plan = MealPlan.new
-    if params[:meal_plan].present? && params[:meal_plan] == 'yes'
+    if params[:age].present? || params[:day_type].present?
       @meal_plan.people.build(build_people(params))
       @meal_plan.days.build(build_days(params))
     else
       @meal_plan.people.build
       @meal_plan.days.build
     end
-    @people = build_people(params)
     
     respond_to do |format|
       format.html # new.html.erb
@@ -48,8 +47,14 @@ class MealPlansController < ApplicationController
   # POST /meal_plans
   # POST /meal_plans.json
   def create
+    num = 1
+    params[:meal_plan][:days_attributes].each_value do |value|
+      value['day_number'] = num
+      num += 1
+    end
     @meal_plan = MealPlan.new(params[:meal_plan])
-
+    @meal_plan.user_id = current_user.id    
+    
     respond_to do |format|
       if @meal_plan.save
         format.html { redirect_to @meal_plan, notice: 'Meal plan was successfully created.' }
@@ -64,6 +69,14 @@ class MealPlansController < ApplicationController
   # PUT /meal_plans/1
   # PUT /meal_plans/1.json
   def update
+    highest = 0
+    params[:meal_plan][:days_attributes].each_value { |v| highest = v['day_number'].to_i if v['day_number'].to_i > highest }
+    params[:meal_plan][:days_attributes].each_value do |value|
+      if value['day_number'].blank?
+        value['day_number'] = highest + 1
+        highest += 1
+      end
+    end
     @meal_plan = MealPlan.find(params[:id])
 
     respond_to do |format|
@@ -90,6 +103,18 @@ class MealPlansController < ApplicationController
   end
   
   private
+  
+  def modify_day_number(hash, high)
+    hash.each do |k, v|
+      if v.is_a? Hash
+        modify_day_number(v, high)
+      end
+      if k == :day_number && v.blank?
+        hash[k] = high + 1
+        high += 1
+      end
+    end
+  end
   
   def build_people(params)
     people = []

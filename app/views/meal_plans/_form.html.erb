@@ -10,21 +10,37 @@
       </ul>
     </div>
   <% end %>
+  
+  <% if params[:age].present? || params[:day_type].present? %>
+    <div class="well">
+      <p class="well-explain">Give your meal plan a name, review your data and change or add to it if you like, and then hit the 'Create Meal Plan' button below.</p>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= f.label :name, "Name for this meal plan" %><br />
+    <%= f.label :name, "Name for this meal plan" %>
     <%= f.text_field :name %>
   </div>
   
+  <h3 class="h-margin">People Going Camping</h3>
   <%= f.fields_for :people do |p| %> 
     <%= render 'person_fields', :f => p %>
   <% end %>
-  <p class="clear-left"><%= link_to_add_fields "Add Person", f, :people %></p>
+  <p class="add-btn-calc"><%= link_to_add_fields "Add Person", f, :people %></p>
+  <br />
   
+  <h3 class="h-margin">Days Spent Camping</h3>
+  <ul class="days-explain">
+    <li><b>Rest Day</b> - Doing as little as possible</li>
+    <li><b>Light Day</b> - Playing cards, fishing, a bit of walking</li>
+    <li><b>Moderate Day</b> - Light hiking with a light backpack</li>
+    <li><b>Heavy Day</b> - Backpacking for the day with a fully loaded backpack</li>
+  </ul>
   <%= f.fields_for :days do |d| %>
     <%= render 'day_fields', :f => d %>
   <% end %>
-  <p class="clear-left"><%= link_to_add_fields "Add Day", f, :days %></p>
+  <p class="add-btn-calc"><%= link_to_add_fields "Add Day", f, :days %></p>
+  <br />
     
   <div class="actions">
     <%= f.submit %>

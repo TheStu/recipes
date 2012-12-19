@@ -4,9 +4,12 @@
 <div class="span8">
   <h1 class="h-margin">Calorie Calculator</h1>
   
+  <div class="well">
+    <p class="well-explain">Find out how many calories you'll need to bring along for your next outdoor adventure.</p>
+  </div>
+  
   <div class="row">
     <div class="span8">
-      <br />
       <%= form_tag results_path, :method => 'get' do %>
         
         <h3 class="h-margin">People Going Camping</h3>
@@ -25,18 +28,6 @@
         <%= render 'day_fields' %>
         <p class="add-btn-calc"><%= link_to_add "Add Day", :days %></p>
         
-        <br />
-        
-        <% if user_signed_in? %>
-          <%= radio_button_tag :meal_plan, "yes" %>
-          <%= label_tag :meal_plan_yes, "Use this info to create a meal plan".html_safe, class: 'meal-plan-btn' %>
-        <% else %>
-          <%= radio_button_tag :meal_plan, "yes", false, :disabled => true %>
-          <%= label_tag :meal_plan_yes, "Use this info to create a meal plan <i class=\"form-explain\">(You will need to #{link_to "create an account", new_user_registration_path} first)</i>".html_safe, class: 'meal-plan-btn' %>
-        <% end %>
-        
-        <%= radio_button_tag :meal_plan, "no", true %>
-        <%= label_tag :meal_plan_no, "Just show me the calories needed", class: 'meal-plan-btn' %>
         <br />
 
         <%= submit_tag "Calculate", :name => nil, class: 'btn btn-warning bolded' %>

@@ -1,5 +1,26 @@
 <div class="span8">
-  <h1 class="h-margin">Calorie Calculator Results</h1>
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="span4">
+        <h1 class="h-margin">Calorie Calculator Results</h1>
+      </div>
+      <div class="span4">
+        <%= link_to "Create a Meal Plan with these Results", new_meal_plan_path(params), class: 'btn btn-warning btn-top bolded' %>
+      </div>
+    </div>
+  <% else %>
+    <h1 class="h-margin">Calorie Calculator Results</h1>
+    <div class="row">
+      <div class="span3">
+        <%= link_to "Create a Meal Plan with these Results", new_meal_plan_path(params), :disabled => true, class: 'btn btn-warning bolded create-plan-btn' %>
+      </div>
+      <div class="span5">
+        <div class="well narrow-well">
+          <p class="fonted well-explain"> To create a meal plan <%= link_to "create an account", new_user_registration_path, target: '_blank' %> in a new window, then come back and refresh this page.</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <% @days.each_with_index do |day, i| %>
     <% daily_total = 0 %>
     <h3 class="h-margin">Day <%= i + 1 %> <i class="header-explain">(<%= day %>)</i></h3>
@@ -32,8 +53,9 @@
     <br />
   <% end %>
   <br />
+  <br />
   <div class="well">
-    <p class="fonted results-explain">The number of calories presented above are approximate calculations. Variables like weather conditions and terrain can add to or subtract needed calories, so use these results as guideline.</p>
+    <p class="fonted well-explain">The number of calories presented above are approximate calculations. Variables like weather conditions and terrain can add to or subtract needed calories, so use these results as a guideline.</p>
   </div>
 </div>
 

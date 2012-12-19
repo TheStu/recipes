@@ -28,9 +28,6 @@ class StaticsController < ApplicationController
   end
   
   def results
-    if params[:meal_plan].present? && params[:meal_plan] == 'yes'
-      redirect_to new_meal_plan_path(params)
-    end
     @days = params[:day_type]
     @people = build_people(params)
   end

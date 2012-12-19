@@ -3,6 +3,10 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>User</th>
+    <th>Total days</th>
+    <th>Total calories</th>
+    <th>Total people</th>
     <th></th>
     <th></th>
     <th></th>

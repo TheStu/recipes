@@ -210,6 +210,14 @@ select {
   text-align: center;
 }
 
+.narrow-well {
+  padding: 10px;
+}
+
+.btn-top {
+  margin-top: 10px;
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -522,6 +530,10 @@ input[type="checkbox"] {
   width: 130px;
 }
 
+.name-field {
+  width: 150px;
+}
+
 .calc-day-label {
   @extend .fonted;
   line-height: 35px;
@@ -536,24 +548,14 @@ input[type="checkbox"] {
   }
 }
 
-.add-btn-calc a {
-  @extend .fonted, .bolded, .btn, .btn-warning, .btn-mini;
-}
-
-#meal_plan_yes, #meal_plan_no {
-  @extend .float-left;
-  margin-right: 5px;
-}
-
-.meal-plan-btn {
-  @extend .fonted, .calc-day-label;
-  line-height: 25px;
-}
-
 .days-explain {
   li {
     @extend .fonted;
   }
+}
+
+.add-btn-calc a {
+  @extend .fonted, .bolded, .btn, .btn-warning, .btn-mini;
 }
 
 .calorie-day {
@@ -576,12 +578,22 @@ input[type="checkbox"] {
   }
 }
 
-.results-explain {
+.well-explain {
+  @extend .fonted;
   font-size: 13px;
   color: #777;
+  margin-bottom: 0;
+}
+
+.create-plan-btn {
+  padding: 9px 12px;
 }
 
 //************** MEAL-PLAN#NEW + EDIT **************//
+
+#meal_plan_name {
+  width: 400px;
+}
 
 //************** USER#SHOW / USER#EDIT **************//
 

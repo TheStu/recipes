@@ -21,7 +21,7 @@ module RecipesHelper
   end
   
   def link_to_add(name, association)
-    render(association.to_s.singularize + "_fields")
+    fields = render(association.to_s.singularize + "_fields")
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
 end

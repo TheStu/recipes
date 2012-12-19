@@ -2,9 +2,12 @@
 
   <h4 class="float-left">Day</h4>
   
-  <%= hidden_field_tag :_destroy %>
-  <span class="remove-calc"><%= link_to_remove "remove" %></span>
+  <%= hidden_field_tag :day_number %>
+  <span class="remove-calc">
+    <%= hidden_field_tag :_destroy %>
+    <%= link_to_function "remove", "remove_fields(this)", class: 'remove-calc' %>
+  </span>
   
-  <%= select_tag('day_type[]', options_for_select(['Rest Day', 'Light Day', 'Moderate Day', 'Heavy Day']), :include_blank => true, class: "day-select") %>
+  <%= select_tag('day_type[]', options_for_select(['Rest Day', 'Light Day', 'Moderate Day', 'Heavy Day']), { :include_blank => true, class: 'day-select' }) %>
   <%= content_tag :p, "Type of Day", class: 'calc-day-label' %>
 </div>

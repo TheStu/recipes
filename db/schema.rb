@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20121217213035) do
 
   create_table "meals", :force => true do |t|
     t.integer  "day_id"
-    t.integer  "recipe_id"
     t.string   "recipe_title"
     t.string   "specific_meal"
     t.integer  "base_calories"
@@ -78,7 +77,6 @@ ActiveRecord::Schema.define(:version => 20121217213035) do
   end
 
   add_index "meals", ["day_id"], :name => "index_meals_on_day_id"
-  add_index "meals", ["recipe_id"], :name => "index_meals_on_recipe_id"
 
   create_table "people", :force => true do |t|
     t.integer  "meal_plan_id"

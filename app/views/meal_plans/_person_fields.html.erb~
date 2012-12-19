@@ -2,17 +2,17 @@
   <h4 class="float-left">Person</h4>
   
   <%= f.hidden_field :_destroy %>
-  <span class="remove-calc"><%= link_to_remove "remove" %></span>
+  <span class="remove-calc"><%= link_to_remove_fields "remove", f %></span>
   
-  <%= f.text_field :name, class: "calc-day-field" %>
-  <%= content_tag :p, "Person's Name", class: 'calc-day-label' %>
+  <%= f.text_field :name, class: "calc-day-field name-field" %>
+  <%= f.label :name, "Person's Name", class: 'calc-day-label' %>
   
-  <%= f.select :gender, options_for_select(['Man', 'Woman']), :include_blank => true, class: "gender-select" %>
-  <%= content_tag :p, "Gender", class: 'calc-day-label' %>
+  <%= f.select :gender, options_for_select(['Man', 'Woman'], :selected => f.object.gender), { :include_blank => true }, { class: 'gender-select' } %>
+  <%= f.label :gender, "Gender", class: 'calc-day-label' %>
   
   <%= f.text_field :age, class: "calc-day-field" %>
-  <%= content_tag :p, "Age", class: 'calc-day-label' %>
+  <%= f.label :age, "Age", class: 'calc-day-label' %>
   
   <%= f.text_field :weight, class: "calc-day-field" %>
-  <%= content_tag :p, "Body Weight <i class=\"form-explain\">(in pounds)</i>".html_safe, class: 'calc-day-label' %>
+  <%= f.label :weight, "Body Weight <i class=\"form-explain\">(in pounds)</i>".html_safe, class: 'calc-day-label' %>
 </div>
