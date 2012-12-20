@@ -13,4 +13,13 @@ class MealPlan < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
+  
+  def self.for_day_select(user_id)
+    MealPlan.where("user_id = ?", user_id).map do |plan|
+      [plan.name, plan.days.each_with_index.map do |d, i| 
+        ["Day #{i + 1} (#{d.day_type})", d.id]
+      end
+      ]
+    end
+  end
 end

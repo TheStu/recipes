@@ -6,12 +6,21 @@ class MealPlan < ActiveRecord::Base
 
   has_many :people, :dependent => :destroy
   has_many :days, :dependent => :destroy
-  has_many :meals, :dependent => :destroy
   
   accepts_nested_attributes_for :days, :reject_if => lambda { |a| a[:day_type].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :people, :reject_if => lambda { |a| a[:name].blank? && a[:age].blank? && a[:gender].blank? && a[:weight].blank?  }, :allow_destroy => true
   
   def to_param
     "#{id}-#{name.parameterize}"
+  end
+  
+  def self.for_day_select(user_id)
+    MealPlan.where("user_id = ?", user_id).map do |plan|
+      num = 0
+      [plan.name, plan.days.each_with_index.map do |d, i| 
+        ["Day #{i} #{d.day_type}", d.id]
+      end
+      ]
+    end
   end
 end

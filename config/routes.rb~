@@ -14,9 +14,11 @@ Recipes::Application.routes.draw do
   
   match '/category/:category', to: 'categories#index', as: 'category_index'
   
-  post "/calorie-calculator-results" => "statics#results", as: 'results'
+  get "/calorie-calculator-results" => "statics#results", as: 'results'
 
-  resources :recipes
+  resources :recipes do
+    post :add_to_meal_plan
+  end
   resources :categories
   resources :reviews
   resources :meal_plans, :path => 'meal-plan'

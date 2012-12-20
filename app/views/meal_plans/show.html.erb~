@@ -2,6 +2,56 @@
 <% provide(:desc, "") %>
 
 <div class="span8">
-  <h1><%= @meal_plan.name %></h1>
+  <div class="row">
+    <div class="span5">
+      <h1><%= @meal_plan.name %> Meal Plan</h1>
+    </div>
+    <div class="span3">
+      <span class="float-right pretty-pic-top"><%= link_to image_tag("#{avatar_url(@meal_plan.user)}?s=35"), user_path(@meal_plan.user) %></span>
+      <span class="float-right">
+        <% if can? :update, @meal_plan %>
+          <%= link_to "<i class=\"icon-star username-star-top\"></i>#{@@meal_plan.user.username}".html_safe, user_path(@meal_plan.user_id), class: "pretty-username username-top float-right" %>
+        <% else %>
+          <%= link_to @meal_plan.user.username, user_path(@meal_plan.user_id), class: "pretty-username username-top float-right" %>
+        <% end %>
+        <%= content_tag :p, pretty_date(@meal_plan.created_at), class: "pretty-date float-right clear-right" %>
+      </span>
+    </div>
+  </div>
+  <% @meal_plan.days.each_with_index do |day, i| %>
+    <% daily_total = 0 %>
+    <h3 class="h-margin">Day <%= i + 1 %> <i class="header-explain">(<%= day.day_type %>)</i></h3>
+    <table class="calorie-day">
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Weight</th>
+        <th class="calories-column">Calories Needed</th>
+      </tr>
+      <% @meal_plan.people.each do |person| %>
+        <tr>
+          <td><%= person.name %></td>
+          <td><%= person.gender %></td>
+          <td><%= person.age %></td>
+          <td><%= person.weight %> pounds</td>
+          <td class="calories-column">+<%= calories = calculate_calories_model(person, day) %></td>
+        </tr>
+        <% daily_total += calories %>
+      <% end %>
+      <tr>
+        <td class="bolded">Total Calories Needed</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="calories-column bolded">+<%= daily_total %></td>
+      </tr>
+    </table>
+    <br />
+  <% end %>
+</div>
+
+<div class="span4">
+  <%= render 'shared/sidebar' %>
 </div>
 

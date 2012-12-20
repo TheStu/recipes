@@ -17,4 +17,4 @@ jQuery ->
     else
       $('#day_id').empty()
       $('.day-select-area').hide()
-      $('.name-input-area').hide()
+      $('.name-input-area').show()

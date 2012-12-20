@@ -30,6 +30,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @review = Review.new
+    @meal = Meal.new
     @existing_review = false
     @all_reviews = Review.where("recipe_id = ?", @recipe.id)
     if user_signed_in?
@@ -118,6 +119,22 @@ class RecipesController < ApplicationController
         flash[:success] = 'Recipe successfully deleted.'
       end
       format.json { head :no_content }
+    end
+  end
+  
+  def add_to_meal_plan
+    @recipe = Recipe.find(params[:recipe_id])
+    @meal = Meal.new(:day_id => params[:day_id],
+            :recipe_title => @recipe.title,
+            :specific_meal => params[:name],
+            :base_calories => @recipe.calories,
+            :servings_made => params[:servings])
+    if @meal.save
+      redirect_to @recipe
+      flash[:success] = 'Successfully added this recipe to your meal plan.'
+    else
+      redirect_to @recipe
+      flash[:error] = 'Oops, something went wrong.'
     end
   end
   

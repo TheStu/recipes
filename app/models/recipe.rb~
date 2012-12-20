@@ -1,11 +1,11 @@
 class Recipe < ActiveRecord::Base
   attr_accessible :calories, :cooking_time, :equipment, :introduction, :picture, :preperation, :servings, 
-  :title, :user, :weight, :pots, :category_ids, :ingredients_attributes, :remove_picture, :average_stars
+  :title, :user, :weight, :pots, :category_ids, :ingredients_attributes, :remove_picture, :average_stars,
+  :day_id, :recipe_title, :specific_meal, :base_calories, :servings_made
   
   belongs_to :user
   has_many :categories, :through => :category_joins
   has_many :category_joins, :dependent => :destroy
-  has_many :meals
   
   has_many :ingredients, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
