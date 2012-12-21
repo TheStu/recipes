@@ -12,7 +12,7 @@
 
 <div class="row">
   <div class="span4">
-    <%= link_to "Add a Recipe", new_recipe_path, class: 'btn btn-warning btn-block bolded sidebar-btn' %>
+    <%= link_to "Create a New Recipe", new_recipe_path, class: 'btn btn-warning btn-block bolded sidebar-btn' %>
     <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
   </div>
 </div>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="row">
-  <% Link.where("link_type = ?", 'sidebar').each do |link| %>
+  <% Link.where("link_type != ? AND sidebar = ?", 'sidebar', true).each do |link| %>
     <div class="span4 sidebar-bump">
       <div class="row">
         <div class="span4">

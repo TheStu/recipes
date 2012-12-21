@@ -37,4 +37,19 @@ module ApplicationHelper
     gravatar_id = Digest::MD5::hexdigest(user.email).downcase
     "http://gravatar.com/avatar/#{gravatar_id}.png"
   end
+  
+  def convert_to_ounces(grams)
+    ounces = grams / 28.3495
+    ounces.round(2)
+  end
+  
+  def convert_to_kilograms(grams)
+    kilos = grams / 1000.0
+    kilos.round(2)
+  end
+  
+  def convert_to_pounds(grams)
+    pounds = grams / 453.592
+    pounds.round(2)
+  end
 end

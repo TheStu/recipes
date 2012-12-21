@@ -41,6 +41,14 @@
           <td class="user-show-label about-me-label">About Me:</td>
           <td><%= @user.bio %></td>
         </tr>
+        <% if @user.meal_plans.present? %>
+          <% @user.meal_plans.each_with_index do |plan, i| %>
+            <tr>
+              <td class="user-show-label"><%= i == 0 ? 'Meal Plans:' : '' %></td>
+              <td><%= link_to plan.name, meal_plan_path(plan) %></td>
+            </tr>
+          <% end %>
+        <% end %>
       </table>
     </div>
   </div>

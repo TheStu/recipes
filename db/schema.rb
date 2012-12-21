@@ -68,15 +68,18 @@ ActiveRecord::Schema.define(:version => 20121217213035) do
 
   create_table "meals", :force => true do |t|
     t.integer  "day_id"
+    t.integer  "recipe_id"
     t.string   "recipe_title"
     t.string   "specific_meal"
-    t.integer  "base_calories"
-    t.integer  "servings_made"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "weight",        :default => 0, :null => false
+    t.integer  "base_calories", :default => 0, :null => false
+    t.integer  "servings_made", :default => 0, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "meals", ["day_id"], :name => "index_meals_on_day_id"
+  add_index "meals", ["recipe_id"], :name => "index_meals_on_recipe_id"
 
   create_table "people", :force => true do |t|
     t.integer  "meal_plan_id"

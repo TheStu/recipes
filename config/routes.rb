@@ -16,14 +16,11 @@ Recipes::Application.routes.draw do
   
   get "/calorie-calculator-results" => "statics#results", as: 'results'
 
-  resources :recipes do
-    member do
-      post :add_to_meal_plan
-    end
-  end
+  resources :recipes
   resources :categories
   resources :reviews
-  resources :meal_plans, :path => 'meal-plan'
+  resources :meal_plans, :path => 'meal-plan', :except => 'index'
+  resources :meals
 
   
 end

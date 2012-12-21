@@ -4,5 +4,7 @@ class Day < ActiveRecord::Base
   belongs_to :meal_plan
   has_many :meals, :dependent => :destroy
   
+  validates_presence_of :day_type
+  
   default_scope order('day_number ASC')
 end

@@ -28,8 +28,23 @@
     <h3 class="h-margin">Latest Recipes</h3>
       <% @recipes.each do |recipe| %>
         <div class="row">
-          <div class="span9">
-            <%= link_to content_tag(:h3, recipe.title, class: 'h-margin'), recipe_path(recipe), class: 'home-recipe-title' %>
+          <div class="span9 home-border-bump">
+          </div>
+        </div>
+        <div class="row">
+          <div class="span6">
+            <%= link_to content_tag(:h3, recipe.title, class: 'h-margin-top'), recipe_path(recipe), class: 'home-recipe-title' %>
+          </div>
+          <div class="span3">
+            <span class="float-right pretty-pic-top"><%= link_to image_tag("#{avatar_url(recipe.user)}?s=35"), user_path(recipe.user) %></span>
+            <span class="float-right">
+              <% if can? :update, recipe %>
+                <%= link_to "<i class=\"icon-star username-star-top\"></i>#{recipe.user.username}".html_safe, user_path(recipe.user_id), class: "pretty-username username-top float-right" %>
+              <% else %>
+                <%= link_to recipe.user.username, user_path(recipe.user_id), class: "pretty-username username-top float-right" %>
+              <% end %>
+              <%= content_tag :p, pretty_date(recipe.created_at), class: "pretty-date float-right clear-right" %>
+            </span>
           </div>
         </div>
         <div class="row">

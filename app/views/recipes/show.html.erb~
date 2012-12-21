@@ -54,9 +54,7 @@
           <% if can? :update, @recipe %>
             <%= link_to 'Edit Recipe', edit_recipe_path(@recipe), class: "edit-recipe-btn float-right btn btn-mini btn-warning bolded" %>
           <% end %>
-          <% if can? :destroy, @recipe %>
-            <%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "float-right clear-right btn btn-mini btn-danger bolded" %>
-          <% end %>
+          
           <table class="recipe-meta">
           <% if @recipe.weight.present? %>
             <tr>
@@ -96,19 +94,25 @@
                   <% if can? :create, MealPlan %>
                     <% if current_user.meal_plans.present? %>
                     
-                      <%= form_tag add_to_meal_plan_recipe_path do %>
-                        <%= label_tag :meal_plan_id, "Select a Meal Plan" %>
-                        <%= select_tag :meal_plan_id, options_from_collection_for_select(MealPlan.where("user_id = ?", current_user.id), :id, :name), :include_blank => true %>
+                      <%= form_for @meal do |f| %>
+                        <%= f.select :meal_plan_id, options_from_collection_for_select(MealPlan.where("user_id = ?", current_user.id), :id, :name), {:include_blank => true}, {class: 'meal-form-input'} %>
+                        <%= f.label :meal_plan_id, "Select a Meal Plan", class: 'meal-form-label' %>
                         <div class="day-select-area">
-                          <%= label_tag :day_id, "Select the Day" %>
-                          <%= select_tag :day_id, grouped_options_for_select(MealPlan.for_day_select(current_user.id)), :include_blank => true %>
+                          <%= f.select :day_id, grouped_options_for_select(MealPlan.for_day_select(current_user.id)), {:include_blank => true}, {class: 'meal-form-input'} %>
+                          <%= f.label :day_id, "Select the Day", class: 'meal-form-label' %>
                         </div>
                         <div class="name-input-area">
-                          <%= label_tag :name, "Meal Name <i class=\"form-explain\">(i.e. Breakfast, Dinner, Snack)</i>".html_safe %>
-                          <%= text_field_tag :name %>
-                          <%= label_tag :servings, "Servings You're Making" %>
-                          <%= text_field_tag :servings %>
-                          <%= hidden_field_tag :recipe_id, @recipe.id %>
+                          <%= f.text_field :specific_meal, class: 'meal-form-input' %>
+                          <%= f.label :specific_meal, "Meal Name <i class=\"form-explain\">(i.e. Breakfast, Supper, Snack)</i>".html_safe, class: 'meal-form-label' %>
+                          <%= f.text_field :servings_made, class: 'meal-form-input' %>
+                          <%= f.label :servings_made, "Servings You're Making", class: 'meal-form-label' %>
+                          <%= f.text_field :recipe_title, :value => @recipe.title, class: 'meal-form-input' %>
+                          <%= f.label :recipe_title, "Recipe Name", class: 'meal-form-label' %>
+                          <%= f.text_field :base_calories, :value => @recipe.calories, class: 'meal-form-input' %>
+                          <%= f.label :base_calories, "Calories Per Serving", class: 'meal-form-label' %>
+                          <%= f.text_field :weight, :value => @recipe.weight class: 'meal-form-input' %>
+                          <%= f.label :weight, "Weight of Ingredients", class: 'meal-form-label' %>
+                          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -189,6 +193,13 @@
     <div class="span8">
       <h3 class="h-margin">Recipe Preperation</h3>
       <span itemprop="recipeInstructions"><%= simple_format @recipe.preperation %></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span8">
+      <% if can? :destroy, @recipe %>
+        <%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "float-right clear-right btn btn-mini btn-danger bolded" %>
+      <% end %>
     </div>
   </div>
   <div class="row">

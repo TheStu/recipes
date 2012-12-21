@@ -34,6 +34,10 @@ $or: #CD400F;
   margin-bottom: 0;
 }
 
+.h-margin-top {
+  margin: 0;
+}
+
 .pretty-date {
   margin-bottom: 0;
   color: #888;
@@ -218,6 +222,21 @@ select {
   margin-top: 10px;
 }
 
+.well-explain {
+  @extend .fonted;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 0;
+}
+
+.field_with_errors {
+  float: left;
+  clear: left;
+  label {
+    color: red;
+  }
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -299,13 +318,14 @@ select {
 }
 
 .home-recipe-title {
-  h3 {
-    border-top: 1px dotted #aaa;
-    padding-top: 10px;
-  }
   &:hover {
     text-decoration: none;
   }
+}
+
+.home-border-bump {
+  border-top: 1px dotted #aaa;
+  margin-bottom: 5px;
 }
 
 //************** RECIPES#SHOW **************//
@@ -409,6 +429,10 @@ select {
 .pretty-pic-reviews {
   @extend .pretty-pic;
   margin: 0 3px 4px 0;
+}
+
+input#meal_base_calories {
+  margin-bottom: 0;
 }
 
 //************** RECIPES#NEW **************//
@@ -558,19 +582,65 @@ input[type="checkbox"] {
   @extend .fonted, .bolded, .btn, .btn-warning, .btn-mini;
 }
 
-.calorie-day {
+.calories-needed, .calories-provided {
   @extend .fonted;
   width: 100%;
   th {
     text-align: left;
   }
-  .calories-column {
-    text-align: right;
-  }
   tr {
     border-top: 1px solid #ccc;
     td {
       padding: 3px 0;
+    }
+    .column-right {
+      text-align: right;
+    }
+  }
+  tr:first-child {
+    border-top: 0;
+  }
+  .recipe-link {
+    max-width: 230px;
+    padding-left: 5px;
+  }
+}
+
+.column-right {
+  text-align: right;
+}
+
+.break-td {
+  height: 27px;
+}
+
+//************** MEAL-PLAN#NEW + EDIT **************//
+
+#meal_plan_name {
+  width: 400px;
+}
+
+.edit-meal-plan-btn {
+  margin-bottom: 10px;
+}
+
+//************** MEAL-PLAN#SHOW **************//
+
+.calorie-math {
+  @extend .fonted, .float-right;
+  margin-bottom: 40px;
+  tr {
+    border-top: 1px solid #ccc;
+    td {
+      text-align: right;
+      padding: 3px 0;
+    }
+    td:first-child {
+      padding: 0 15px 0 5px;
+      border-right: 1px solid #ccc;
+    }
+    td:last-child {
+      padding-left: 15px;
     }
   }
   tr:first-child {
@@ -578,21 +648,23 @@ input[type="checkbox"] {
   }
 }
 
-.well-explain {
-  @extend .fonted;
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 0;
-}
-
 .create-plan-btn {
   padding: 9px 12px;
 }
 
-//************** MEAL-PLAN#NEW + EDIT **************//
+.meal-icon-links {
+  width: 20px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
 
-#meal_plan_name {
-  width: 400px;
+.meal-form-input {
+  @extend .float-left, .clear-left;
+  margin-right: 5px;
+}
+
+.meal-form-label {
+  line-height: 35px;
 }
 
 //************** USER#SHOW / USER#EDIT **************//

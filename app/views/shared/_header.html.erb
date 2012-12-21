@@ -23,6 +23,12 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Calorie Calculator", calculator_path, class: 'fonted' %></li>
             <li><%= link_to "New Meal Plan", new_meal_plan_path, class: 'fonted' %></li>
+            <li class="divider"></li>
+            <% if user_signed_in? && current_user.meal_plans.present? %>
+              <% current_user.meal_plans.each do |plan| %>
+                <li><%= link_to plan.name, meal_plan_path(plan), class: 'fonted' %></li>
+              <% end %>
+            <% end %>
           </ul>
         </li>
       </ul>

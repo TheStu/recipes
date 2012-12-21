@@ -41,8 +41,7 @@ class MealsController < ApplicationController
         redirect_to :back
         flash[:success] = 'Meal was successfully deleted.'
       end
-      format.js
-      #format.json { head :no_content }
+      format.json { head :no_content }
     end
   end
 end

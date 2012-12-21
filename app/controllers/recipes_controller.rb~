@@ -66,6 +66,8 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
+    params[:recipe][:calories] = 0 if params[:recipe][:calories].blank?
+    params[:recipe][:weight] = 0 if params[:recipe][:weight].blank?
     @recipe = Recipe.new(params[:recipe])
     @recipe.user_id = current_user.id
     respond_to do |format|

@@ -66,6 +66,8 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
+    params[:recipe][:calories] = 0 if params[:recipe][:calories].blank?
+    params[:recipe][:weight] = 0 if params[:recipe][:weight].blank?
     @recipe = Recipe.new(params[:recipe])
     @recipe.user_id = current_user.id
     respond_to do |format|
@@ -88,6 +90,8 @@ class RecipesController < ApplicationController
   # PUT /recipes/1
   # PUT /recipes/1.json
   def update
+    params[:recipe][:calories] = 0 if params[:recipe][:calories].blank?
+    params[:recipe][:weight] = 0 if params[:recipe][:weight].blank?
     @recipe = Recipe.find(params[:id])
 
     respond_to do |format|
@@ -119,22 +123,6 @@ class RecipesController < ApplicationController
         flash[:success] = 'Recipe successfully deleted.'
       end
       format.json { head :no_content }
-    end
-  end
-  
-  def add_to_meal_plan
-    @recipe = Recipe.find(params[:recipe_id])
-    @meal = Meal.new(:day_id => params[:day_id],
-            :recipe_title => @recipe.title,
-            :specific_meal => params[:name],
-            :base_calories => @recipe.calories,
-            :servings_made => params[:servings])
-    if @meal.save
-      redirect_to @recipe
-      flash[:success] = 'Successfully added this recipe to your meal plan.'
-    else
-      redirect_to @recipe
-      flash[:error] = 'Oops, something went wrong.'
     end
   end
   

@@ -1,19 +1,22 @@
 class MealPlansController < ApplicationController
+  authorize_resource
+
   # GET /meal_plans
   # GET /meal_plans.json
-  def index
-    @meal_plans = MealPlan.all
+  #def index
+  #  @meal_plans = MealPlan.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @meal_plans }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.json { render json: @meal_plans }
+  #  end
+  #end
 
   # GET /meal_plans/1
   # GET /meal_plans/1.json
   def show
     @meal_plan = MealPlan.find(params[:id])
+    @meal = Meal.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,7 +60,10 @@ class MealPlansController < ApplicationController
     
     respond_to do |format|
       if @meal_plan.save
-        format.html { redirect_to @meal_plan, notice: 'Meal plan was successfully created.' }
+        format.html do 
+          redirect_to @meal_plan
+          flash[:success] = 'Meal plan was successfully created.'
+        end
         format.json { render json: @meal_plan, status: :created, location: @meal_plan }
       else
         format.html { render action: "new" }
@@ -81,7 +87,10 @@ class MealPlansController < ApplicationController
 
     respond_to do |format|
       if @meal_plan.update_attributes(params[:meal_plan])
-        format.html { redirect_to @meal_plan, notice: 'Meal plan was successfully updated.' }
+        format.html do
+          redirect_to @meal_plan
+          flash[:success] = 'Meal plan was successfully updated.'
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -97,7 +106,10 @@ class MealPlansController < ApplicationController
     @meal_plan.destroy
 
     respond_to do |format|
-      format.html { redirect_to meal_plans_url }
+      format.html do
+        redirect_to root
+        flash[:success] = 'Meal plan was successfully deleted.'
+      end
       format.json { head :no_content }
     end
   end

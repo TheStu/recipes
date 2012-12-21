@@ -53,19 +53,22 @@
         <%= f.text_field :servings %><i class="form-explain">Person/s</i>
       </div>
       <div class="field float-left clear-left">
-        <%= f.label :weight, "Approximate weight of all ingredients" %>
-        <%= f.text_field :weight %><i class="form-explain">grams (Optional)</i>
+        <%= f.label :weight, "Approximate weight of all ingredients <i class=\"form-explain\">(optional)</i>".html_safe %>
+        <%= f.text_field :weight %><i class="form-explain">grams</i>
       </div>
       <div class="field float-left clear-left">
-        <%= f.label :calories, "Total approximate calories per person" %>
-        <%= f.text_field :calories %><i class="form-explain">Optional</i>
+        <%= f.label :calories, "Total approximate calories per person <i class=\"form-explain\">(optional)</i>".html_safe %>
+        <%= f.text_field :calories %>
+      </div>
+      <div class="actions clear-left">
+        <%= f.submit %>
       </div>
     </div>
     <div class="span3">
       <h3>Categories</h3>
       <div class="add-cats">
         <%= hidden_field_tag "recipe[category_ids][]", nil %>
-        <% Category.find(:all, :order => 'name').each do |category| %>
+        <% Category.find(:all, :order => 'name desc').each do |category| %>
           <%= check_box_tag "recipe[category_ids][]", category.id, @recipe.category_ids.include?(category.id), id: dom_id(category) %>
           <%= label_tag dom_id(category), category.name %>
         <% end %>
@@ -86,8 +89,5 @@
         
       </div>
     </div>
-  </div>
-  <div class="actions clear-left">
-    <%= f.submit %>
   </div>
 <% end %>
