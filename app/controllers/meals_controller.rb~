@@ -26,7 +26,12 @@ class MealsController < ApplicationController
         end
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html do
+          redirect_to :back
+          flash[:error] = []
+          @meal.errors.full_messages.each do |error|
+            flash[:error] << error
+          end
         format.json { render json: @meal.errors, status: :unprocessable_entity }
       end
     end

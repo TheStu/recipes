@@ -32,6 +32,7 @@ class MealsController < ApplicationController
           @meal.errors.full_messages.each do |error|
             flash[:error] << error
           end
+        end
         format.json { render json: @meal.errors, status: :unprocessable_entity }
       end
     end
