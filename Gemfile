@@ -30,7 +30,7 @@ end
   gem "thin", "~> 1.5.0"
   gem "pg", "~> 0.14.1"
   gem "heroku", "~> 2.33.2"
-  gem "exception_notification", "~> 3.0.0"
+  gem "exception_notification", git: 'git://github.com/alanjds/exception_notification.git'
   gem "google-analytics-rails", "~> 0.0.3"
   gem "nokogiri", "~> 1.5.5"
   gem "devise", "~> 2.1.2"
