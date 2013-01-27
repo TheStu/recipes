@@ -42,7 +42,7 @@
       </div>
       <div class="field float-left clear-left">
         <%= f.label :pots, "Number of pots and/or pans required" %>
-        <%= f.select(:pots, options_for_select([['0', "0"], ['1', "1"], ['2', "2"], ['2+', "2+"]])) %>
+        <%= f.select(:pots, options_for_select([['0', "0"], ['1', "1"], ['2', "2"], ['2+', "2+"]], @recipe.pots)) %>
       </div>
       <div class="field float-left clear-left">
         <%= f.label :equipment, "Required Equipment" %>
@@ -87,7 +87,7 @@
           <%= f.label :picture, "Picture <i class=\"form-explain\">(Optional)</i>".html_safe %>
           <%= f.file_field :picture %>
         <% end %>
-        
+
       </div>
     </div>
   </div>

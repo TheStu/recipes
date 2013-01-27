@@ -23,7 +23,7 @@
     <div class="span3">
       <span class="drop-shadow lifted">
         <% if @recipe.picture.present? %>
-          <%= image_tag(@recipe.picture_url(:thumb), itemprop: "image" ) %> 
+          <%= image_tag(@recipe.picture_url(:thumb), itemprop: "image" ) %>
         <% else %>
           <%= image_tag 'default.jpg', itemprop: "image" %>
         <% end %>
@@ -54,7 +54,7 @@
           <% if can? :update, @recipe %>
             <%= link_to 'Edit Recipe', edit_recipe_path(@recipe), class: "edit-recipe-btn float-right btn btn-mini btn-warning bolded" %>
           <% end %>
-          
+
           <table class="recipe-meta">
           <% if @recipe.weight.present? %>
             <tr>
@@ -83,7 +83,7 @@
               </div>
             </div>
             <div class="span2">
-              
+
               <a href="#mealPlanModal" role="button" class="float-right btn btn-small btn-warning bolded" data-toggle="modal">Add to Meal Plan</a>
               <div id="mealPlanModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
@@ -93,7 +93,7 @@
                 <div class="modal-body">
                   <% if can? :create, MealPlan %>
                     <% if current_user.meal_plans.present? %>
-                    
+
                       <%= form_for @meal do |f| %>
                         <%= f.select :meal_plan_id, options_from_collection_for_select(MealPlan.where("user_id = ?", current_user.id), :id, :name), {:include_blank => true}, {class: 'meal-form-input'} %>
                         <%= f.label :meal_plan_id, "Select a Meal Plan", class: 'meal-form-label' %>
@@ -121,7 +121,7 @@
                           <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                         </div>
                       </div>
-                    <% end %>  
+                    <% end %>
                   <% else %>
                     <div class="well">
                       <p class="well-explain">Before you can add this recipe to a meal plan you need to <%= link_to "create a meal plan", new_meal_plan_path %>.</p>
@@ -132,7 +132,7 @@
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                       </div>
                     </div>
-                    
+
                   <% end %>
                 <% else %>
                   <div class="well">
@@ -146,7 +146,7 @@
                   </div>
                 <% end %>
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -161,9 +161,9 @@
           <h3 class="h-margin">Recipe Introduction</h3>
         </div>
         <div class="span4">
-        
-          
-          
+
+
+
         </div>
       </div>
       <span itemprop="description"><%= simple_format @recipe.introduction %></span>
@@ -185,7 +185,7 @@
         <% @recipe.categories.order('name desc').each do |cat| %>
           <li><span itemprop="recipeCategory"><%= link_to cat.name, category_index_path(cat.name.parameterize), class: 'fonted' %></span></li>
         <% end %>
-      </ul>    
+      </ul>
     </div>
   </div>
 
@@ -287,7 +287,9 @@
   <% else %>
     <div class="row">
       <div class="span8">
-        <p class="no-reviews">Unfortunately no one has written a review for the <%= @recipe.title %> recipe just yet, but you could be the first...</p>
+        <div class="well">
+          <p class="well-explain">Unfortunately no one has written a review for the <%= @recipe.title %> recipe just yet, but you could be the first...</p>
+        </div>
       </div>
     </div>
   <% end %>

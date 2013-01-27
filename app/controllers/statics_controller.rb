@@ -1,6 +1,6 @@
 class StaticsController < ApplicationController
   def home
-    @recipes = Recipe.order('created_at desc').first(5)
+    @recipes = Recipe.order('created_at desc').first(10)
   end
 
   def contact
@@ -11,8 +11,8 @@ class StaticsController < ApplicationController
 
   def privacy
   end
-  
-  def gear    
+
+  def gear
     @stoves = Link.where("link_type = ?", "stove")
     @pots = Link.where("link_type = ?", "pot|pan")
     @accessories = Link.where("link_type = ?", "stove+accessory")
@@ -23,17 +23,17 @@ class StaticsController < ApplicationController
     @mugs = Link.where("link_type = ?", "cup|mug")
     @soaps = Link.where("link_type = ?", "soap|cooking")
   end
-  
+
   def calories_calculator
   end
-  
+
   def results
     @days = params[:day_type]
     @people = build_people(params)
   end
-  
+
   private
-  
+
   def build_people(params)
     people = []
     params['gender'].count.times do |i|

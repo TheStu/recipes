@@ -70,7 +70,7 @@ html, body {
   /* Negative indent footer by it's height */
   margin: 0 auto -60px;
 }
-      
+
 .alert {
   margin-bottom: 2px;
 }
@@ -416,11 +416,6 @@ select {
   padding: 5px 0 40px 0;
 }
 
-.no-reviews {
-  @extend .fonted;
-  margin: 10px 0 20px 0;
-}
-
 .pretty-pic-top {
   @extend .pretty-pic;
   margin: 3px 0 0 3px;
@@ -516,18 +511,8 @@ input[type="checkbox"] {
   margin: 10px 0 5px 5px;
 }
 
-.index-recipe-meta {
-  font-size: 12px;
-  td {
-    @extend .fonted;
-  }
-  tr {
-    padding-bottom: 3px;
-  }
-  .index-label {
-    font-weight: bold;
-    width: 130px;
-  }
+.frontpage-desc {
+  margin: 5px 0 10px;
 }
 
 //************** REVIEWS#EDIT+NEW **************//

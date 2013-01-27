@@ -48,36 +48,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="span3">
-            <table class="index-recipe-meta">
-              <tr>
-                <td class="index-label">Prep And Cook Time:</td>
-                <td><%= recipe.cooking_time %> minutes</td>
-              </tr>
-              <tr>
-                <td class="index-label">Pots/Pans Required:</td>
-                <td><%= recipe.pots %></td>
-              </tr>
-              <% if recipe.calories.present? %>
-                <tr>
-                  <td class="index-label">Calories Per Person:</td>
-                  <td><%= recipe.calories %></td>
-                </tr>
-              <% end %>
-              <% if recipe.weight.present? %>
-                <tr>
-                  <td class="index-label">Ingredient's Weight:</td>
-                  <td><%= recipe.weight %> grams</td>
-                </tr>
-              <% end %>
-              <tr>
-                <td class="index-label">Average Rating:</td>
-                <td class="average-stars"><%= content_tag(:span, "", class: "rated", data_rating: recipe.average_stars ) %></td>
-              </tr>
-            </table>
-          </div>
-          <div class="span6">
-            <%= truncate(recipe.introduction, :length => 300, :omission => '...') %>
+          <div class="span9">
+            <p class="frontpage-desc">
+              <%= truncate(recipe.introduction, :length => 300, :omission => '...') %>
+            </p>
           </div>
         </div>
       <% end %>
