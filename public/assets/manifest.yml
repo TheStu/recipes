@@ -19,8 +19,8 @@ logo.png: logo-f8fc4b18c946ae555f805b4ed88a30fc.png
 logo/index.png: logo-f8fc4b18c946ae555f805b4ed88a30fc.png
 application.js: application-b7bb1f87e3a629c6a1e3a852d1a6de27.js
 application/index.js: application-b7bb1f87e3a629c6a1e3a852d1a6de27.js
-application.css: application-1c0e7fa002ce0d5ee692a3ab37752a61.css
-application/index.css: application-1c0e7fa002ce0d5ee692a3ab37752a61.css
+application.css: application-b48bb02ad4256dc1fce1a168b2ef27d6.css
+application/index.css: application-b48bb02ad4256dc1fce1a168b2ef27d6.css
 jquery.raty/cancel-off.png: jquery.raty/cancel-off-fc7f4f931153d25868a6fea5e80d119d.png
 jquery.raty/cancel-off/index.png: jquery.raty/cancel-off-fc7f4f931153d25868a6fea5e80d119d.png
 jquery.raty/cancel-on.png: jquery.raty/cancel-on-a77f3c3c125b0817085648f284c98938.png
