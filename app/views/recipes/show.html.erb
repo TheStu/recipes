@@ -52,7 +52,7 @@
           <% end %>
           </table>
           <% if can? :update, @recipe %>
-            <%= link_to 'Edit Recipe', edit_recipe_path(@recipe), class: "edit-recipe-btn float-right btn btn-mini btn-warning bolded" %>
+            <%= link_to 'Edit Recipe', edit_recipe_path(@recipe), class: "edit-recipe-btn float-right btn btn-mini btn-warning" %>
           <% end %>
 
           <table class="recipe-meta">
@@ -84,7 +84,7 @@
             </div>
             <div class="span2">
 
-              <a href="#mealPlanModal" role="button" class="float-right btn btn-small btn-warning bolded" data-toggle="modal">Add to Meal Plan</a>
+              <a href="#mealPlanModal" role="button" class="float-right btn btn-small btn-warning" data-toggle="modal">Add to Meal Plan</a>
               <div id="mealPlanModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -198,7 +198,7 @@
   <div class="row">
     <div class="span8">
       <% if can? :destroy, @recipe %>
-        <%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "float-right clear-right btn btn-mini btn-danger bolded" %>
+        <%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "float-right clear-right btn btn-mini btn-danger" %>
       <% end %>
     </div>
   </div>
@@ -208,7 +208,7 @@
     </div>
     <div class="span4">
       <% if @existing_review == false %>
-        <a href="#reviewModal" role="button" class="float-right add-review-btn btn btn-warning bolded" data-toggle="modal">Add Review</a>
+        <a href="#reviewModal" role="button" class="float-right add-review-btn btn btn-warning" data-toggle="modal">Add Review</a>
         <div id="reviewModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -262,10 +262,10 @@
               </div>
               <div class="span4">
                 <% if can? :destroy, review %>
-                  <%= link_to 'Delete Review', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "edit-review-btn float-right btn btn-mini btn-danger bolded" %>
+                  <%= link_to 'Delete Review', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "edit-review-btn float-right btn btn-mini btn-danger" %>
                 <% end %>
                 <% if can? :update, review %>
-                  <%= link_to 'Edit Review', edit_review_path(review), class: "edit-review-btn float-right btn btn-mini btn-warning bolded" %>
+                  <%= link_to 'Edit Review', edit_review_path(review), class: "edit-review-btn float-right btn btn-mini btn-warning" %>
                 <% end %>
                 <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
                   <meta itemprop="ratingValue" content="<%= review.stars %>">
