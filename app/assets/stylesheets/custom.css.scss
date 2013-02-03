@@ -333,6 +333,18 @@ select {
   margin-bottom: 5px;
 }
 
+.liked-site {
+  font-family: "Merriweather",serif;
+  font-size: 16px;
+  line-height: 26px;
+  border-top: 1px dotted #CCC;
+  display: block;
+  padding: 5px 0;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 //************** RECIPES#SHOW **************//
 
 .recipe-meta {
@@ -568,6 +580,26 @@ input[type="checkbox"] {
 
 .add-btn-calc a {
   @extend .fonted, .btn, .btn-warning, .btn-mini;
+}
+
+.calorie-day {
+  @extend .fonted;
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  tr {
+    border-top: 1px solid #ccc;
+    td {
+      padding: 3px 0;
+    }
+    .calories-column {
+      text-align: right;
+    }
+  }
+  tr:first-child {
+    border-top: 0;
+  }
 }
 
 .calories-needed, .calories-provided {

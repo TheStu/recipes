@@ -10,6 +10,10 @@
     <%= link_to "Create A New Recipe", new_recipe_path, class: 'btn btn-warning btn-block sidebar-btn' %>
     <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
 
+    <h3 class="h-margin">Sites We like</h3>
+    <%= link_to "#{image_tag 'price.png'} Camping Price Search".html_safe, 'http://www.campingpricesearch.com', target:'_blank', class: 'liked-site' %>
+    <%= link_to "#{image_tag 'checklist.png'} Camping Checklist".html_safe, 'http://www.campingchecklist.me', target:'_blank', class: 'liked-site' %>
+
     <h3 class="h-margin">Cooking Gear</h3>
 
     <% Link.where("link_type != ? AND sidebar = ?", 'sidebar', true).each do |link| %>

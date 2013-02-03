@@ -1,18 +1,22 @@
 ---
 Apple.png: Apple-e8c786d251b948d3961fec22cf729338.png
 Apple/index.png: Apple-e8c786d251b948d3961fec22cf729338.png
+checklist.png: checklist-84aac02875b38fcdcf873f320c2d1753.png
+checklist/index.png: checklist-84aac02875b38fcdcf873f320c2d1753.png
 default.jpg: default-a80915e7f5b175b1b09be59bc9e38b8e.jpg
 default/index.jpg: default-a80915e7f5b175b1b09be59bc9e38b8e.jpg
 home.jpg: home-0eb9e9e502a3f5fc7c4db45a0ea75e79.jpg
 home/index.jpg: home-0eb9e9e502a3f5fc7c4db45a0ea75e79.jpg
 logo.png: logo-f8fc4b18c946ae555f805b4ed88a30fc.png
 logo/index.png: logo-f8fc4b18c946ae555f805b4ed88a30fc.png
+price.png: price-03e169a06b34ad7e3c943af8b81f7c84.png
+price/index.png: price-03e169a06b34ad7e3c943af8b81f7c84.png
 strips.png: strips-8eabbe1054b4787c825ec5c1ad49ae4d.png
 strips/index.png: strips-8eabbe1054b4787c825ec5c1ad49ae4d.png
 application.js: application-b7bb1f87e3a629c6a1e3a852d1a6de27.js
 application/index.js: application-b7bb1f87e3a629c6a1e3a852d1a6de27.js
-application.css: application-29acda9d0c35113d2b1e9ffa67e900e9.css
-application/index.css: application-29acda9d0c35113d2b1e9ffa67e900e9.css
+application.css: application-245ad4450666f7b6a0063d3c02fc8a1f.css
+application/index.css: application-245ad4450666f7b6a0063d3c02fc8a1f.css
 jquery.raty/cancel-off.png: jquery.raty/cancel-off-fc7f4f931153d25868a6fea5e80d119d.png
 jquery.raty/cancel-off/index.png: jquery.raty/cancel-off-fc7f4f931153d25868a6fea5e80d119d.png
 jquery.raty/cancel-on.png: jquery.raty/cancel-on-a77f3c3c125b0817085648f284c98938.png

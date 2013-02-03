@@ -3,21 +3,21 @@
 
 <div class="span8">
   <h1 class="h-margin">Calorie Calculator</h1>
-  
+
   <div class="well">
     <p class="well-explain">Find out how many calories you'll need to bring along for your next outdoor adventure.</p>
   </div>
-  
+
   <div class="row">
     <div class="span8">
       <%= form_tag results_path, :method => 'get' do %>
-        
+
         <h3 class="h-margin">People Going Camping</h3>
         <%= render 'person_fields' %>
         <p class="add-btn-calc"><%= link_to_add "Add Person", :persons %></p>
-        
+
         <br />
-        
+
         <h3 class="h-margin">Days Spent Camping</h3>
         <ul class="days-explain">
           <li><b>Rest Day</b> - Doing as little as possible</li>
@@ -27,10 +27,10 @@
         </ul>
         <%= render 'day_fields' %>
         <p class="add-btn-calc"><%= link_to_add "Add Day", :days %></p>
-        
+
         <br />
 
-        <%= submit_tag "Calculate", :name => nil, class: 'btn btn-warning bolded' %>
+        <%= submit_tag "Calculate", :name => nil, class: 'btn btn-warning' %>
       <% end %>
     </div>
   </div>

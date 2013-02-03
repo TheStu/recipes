@@ -2,10 +2,10 @@
   <% if user_signed_in? %>
     <div class="row">
       <div class="span4">
-        <h1 class="h-margin">Calorie Calculator Results</h1>
+        <h1 class="h-margin">Calculator Results</h1>
       </div>
       <div class="span4">
-        <%= link_to "Create a Meal Plan with these Results", new_meal_plan_path(params), class: 'btn btn-warning btn-top bolded' %>
+        <%= link_to "Create a Meal Plan with these Results", new_meal_plan_path(params), class: 'btn btn-warning btn-top' %>
       </div>
     </div>
   <% else %>

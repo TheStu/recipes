@@ -66,6 +66,9 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       <div class="social-bump"></div>
       <su:badge layout="1"></su:badge>
+      <h3 class="h-margin">Sites We like</h3>
+      <%= link_to "#{image_tag 'price.png'} Camping Price Search".html_safe, 'http://www.campingpricesearch.com', target:'_blank', class: 'liked-site' %>
+      <%= link_to "#{image_tag 'checklist.png'} Camping Checklist".html_safe, 'http://www.campingchecklist.me', target:'_blank', class: 'liked-site' %>
       <h3 class="h-margin">Cooking Gear</h3>
       <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
     </div>

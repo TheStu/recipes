@@ -15,7 +15,7 @@
     <div class="span4">
       <%= form_tag recipes_path, :method => 'get', id: 'filter-recipes' do %>
         <%= text_field_tag :query, params[:query], class: 'float-left index-search-form' %>
-        <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded index-search-btn' %>
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-warning index-search-btn' %>
     </div>
     <div class="span4">
       <!-- beginning of filter form, which continues below -->
@@ -46,7 +46,7 @@
             </li>
           <% end %>
           <br />
-          <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning btn-block bolded' %>
+          <%= submit_tag "Filter", :name => nil, class: 'btn btn-warning btn-block' %>
         <% end %>
       </ul>
     </div>
@@ -93,7 +93,7 @@
               </div>
             </div>
           </div>
-        </div>     
+        </div>
       <% end %>
       <div class="row">
         <div class="span6">
