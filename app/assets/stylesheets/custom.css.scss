@@ -350,12 +350,14 @@ select {
 .recipe-meta {
   margin-left: -20px;
   float: left;
+  font-size: 13px;
   tr {
     padding-bottom: 3px;
   }
   .show-label {
     font-weight: bold;
-    width: 170px;
+    padding-right: 5px;
+    min-width: 145px;
   }
 }
 
@@ -530,6 +532,14 @@ input[type="checkbox"] {
   margin: 5px 0 10px;
 }
 
+.index-recipe-meta {
+  font-size: 12px;
+  .index-label {
+    font-weight: bold;
+    padding-right: 5px;
+  }
+}
+
 //************** REVIEWS#EDIT+NEW **************//
 
 .review-rating {
@@ -585,6 +595,7 @@ input[type="checkbox"] {
 .calorie-day {
   @extend .fonted;
   width: 100%;
+  font-size: 12px;
   th {
     text-align: left;
   }
@@ -605,6 +616,7 @@ input[type="checkbox"] {
 .calories-needed, .calories-provided {
   @extend .fonted;
   width: 100%;
+  font-size: 12px;
   th {
     text-align: left;
   }
@@ -649,6 +661,7 @@ input[type="checkbox"] {
 .calorie-math {
   @extend .fonted, .float-right;
   margin-bottom: 40px;
+  font-size: 12px;
   tr {
     border-top: 1px solid #ccc;
     td {

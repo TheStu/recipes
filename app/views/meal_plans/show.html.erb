@@ -19,7 +19,7 @@
     </div>
   </div>
   <% if can? :update, @meal_plan %>
-    <%= link_to "Edit Meal Plan", edit_meal_plan_path(@meal_plan.id), class: 'btn btn-warning btn-small bolded float-right edit-meal-plan-btn' %>
+    <%= link_to "Edit Meal Plan", edit_meal_plan_path(@meal_plan.id), class: 'btn btn-warning btn-small float-right edit-meal-plan-btn' %>
     <div class="well clear-right">
       <p class="well-explain">Add recipes to this meal plan by navigating to a recipe you plan to make and clicking on the 'Add to Meal Plan' button. You can also add custom meals on this page.</p>
     </div>
@@ -68,7 +68,6 @@
         <% end %>
         <th class="recipe-link">Recipe Name</th>
         <th>Meal</th>
-        <th>Calories</th>
         <th>Servings</th>
         <th class="column-right">Weight</th>
         <th class="column-right">Calories</th>
@@ -79,7 +78,7 @@
             <td class="meal-icon-links"><%= link_to "<i class=\"icon-remove\"></i>".html_safe, meal, method: :delete, data: { confirm: "Are you sure?"}, class: "mytooltip", title: "Delete" %></td>
             <td class="meal-icon-links"><a href="#editMealModal-<%= meal.id %>" role="button" data-toggle="modal" class="mytooltip" title="Edit"><i class="icon-edit"></i></a></td>
           <% end %>
-          
+
           <% if can? :update, @meal_plan %>
             <div id="editMealModal-<%= meal.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-header">
@@ -97,7 +96,7 @@
                   <%= f.text_field :base_calories, class: 'meal-form-input' %>
                   <%= f.label :base_calories, "Calories Per Serving", class: 'meal-form-label' %>
                   <%= f.text_field :weight, class: 'meal-form-input' %>
-                  <%= f.label :weight, "Weight of Ingredients", class: 'meal-form-label' %>         
+                  <%= f.label :weight, "Weight of Ingredients", class: 'meal-form-label' %>
                 </div>
                 <div class="modal-footer">
                   <div class="actions">
@@ -105,32 +104,30 @@
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                   </div>
                 </div>
-              <% end %>  
+              <% end %>
             </div>
           <% end %>
-          
+
           <td class="recipe-link">
             <% if meal.recipe_id.present? %>
-              <%= link_to truncate(meal.recipe_title, :length => 30, :omission => '..'), recipe_path(Recipe.find(meal.recipe_id))  %>
+              <%= link_to truncate(meal.recipe_title, :length => 35, :omission => '..'), recipe_path(Recipe.find(meal.recipe_id))  %>
             <% else %>
-              <%= truncate(meal.recipe_title, :length => 30, :omission => '..')  %>
+              <%= truncate(meal.recipe_title, :length => 35, :omission => '..')  %>
             <% end %>
           </td>
           <td><%= meal.specific_meal %></td>
-          <td><%= meal.base_calories %></td>
           <td><%= meal.servings_made %></td>
-          <td class="column-right"><%= "#{meal.weight} g" %> <a href="#" class="mytooltip" title="<%= convert_to_ounces(meal.weight) %> Ounces"><i class="icon-arrow-right"></i></a></td>
+          <td class="column-right"><%= "#{meal_weight = meal.weight * meal.servings_made} g" %> <a href="#" class="mytooltip" title="<%= convert_to_ounces(meal_weight) %> Ounces"><i class="icon-arrow-right"></i></a></td>
           <td class="column-right">-<%= calories = meal.base_calories * meal.servings_made %></td>
         </tr>
         <% provided_total += calories %>
-        <% weight_total += meal.weight %>
+        <% weight_total += meal_weight %>
       <% end %>
       <tr>
         <% if can? :update, @meal_plan %>
           <td></td>
           <td></td>
         <% end %>
-        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -143,9 +140,9 @@
     <br />
     <div class="row">
       <div class="span4">
-        
+
         <% if can? :update, @meal_plan %>
-          <a href="#mealPlanModal-<%= day.id %>" role="button" class="btn btn-small btn-warning bolded" data-toggle="modal">Add a Custom Meal</a>
+          <a href="#mealPlanModal-<%= day.id %>" role="button" class="btn btn-small btn-warning" data-toggle="modal">Add a Custom Meal</a>
           <div id="mealPlanModal-<%= day.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -163,8 +160,8 @@
                 <%= f.text_field :base_calories, class: 'meal-form-input' %>
                 <%= f.label :base_calories, "Calories Per Serving", class: 'meal-form-label' %>
                 <%= f.text_field :weight, class: 'meal-form-input' %>
-                <%= f.label :weight, "Weight of Ingredients", class: 'meal-form-label' %>
-                <%= f.hidden_field :recipe_id, :value => '' %>              
+                <%= f.label :weight, "Weight of Ingredients Per Serving <i class=\"form-explain\">(grams)</i>".html_safe, class: 'meal-form-label' %>
+                <%= f.hidden_field :recipe_id, :value => '' %>
               </div>
               <div class="modal-footer">
                 <div class="actions">
@@ -172,10 +169,10 @@
                   <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                 </div>
               </div>
-            <% end %>  
+            <% end %>
           </div>
         <% end %>
-        
+
       </div>
       <div class="span4">
         <table class="calorie-math">
@@ -221,11 +218,11 @@
           <td class="bolded"><%= convert_to_kilograms(trip_total_weight) %> kg <a href="#" class="mytooltip" title="<%= convert_to_pounds(trip_total_weight) %> Pounds"><i class="icon-arrow-right"></i></a></td>
         </tr>
       </table>
-      
+
     </div>
   </div>
   <% if can? :destroy, @meal_plan %>
-    <%= link_to 'Delete Meal Plan', @meal_plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-small bolded float-left' %>
+    <%= link_to 'Delete Meal Plan', @meal_plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-small float-left' %>
   <% end %>
 </div>
 

@@ -111,7 +111,7 @@
                           <%= f.text_field :base_calories, :value => @recipe.calories, class: 'meal-form-input' %>
                           <%= f.label :base_calories, "Calories Per Serving", class: 'meal-form-label' %>
                           <%= f.text_field :weight, :value => @recipe.weight, class: 'meal-form-input' %>
-                          <%= f.label :weight, "Weight of Ingredients", class: 'meal-form-label' %>
+                          <%= f.label :weight, "Weight of Ingredients Per Serving <i class=\"form-explain\">(grams)</i>".html_safe, class: 'meal-form-label' %>
                           <%= f.hidden_field :recipe_id, :value => @recipe.id %>
                         </div>
                       </div>
