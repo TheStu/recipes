@@ -25,35 +25,37 @@
     </div>
   <% end %>
   <% @days.each_with_index do |day, i| %>
-    <% daily_total = 0 %>
-    <h3 class="h-margin">Day <%= i + 1 %> <i class="header-explain">(<%= day %>)</i></h3>
-    <table class="calorie-day">
-      <tr>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Age</th>
-        <th>Weight</th>
-        <th class="calories-column">Calories Needed</th>
-      </tr>
-      <% @people.each do |person| %>
+    <% if day['_destroy'] != 1 %>
+      <% daily_total = 0 %>
+      <h3 class="h-margin">Day <%= i + 1 %> <i class="header-explain">(<%= day %>)</i></h3>
+      <table class="calorie-day">
         <tr>
-          <td><%= person['name'] %></td>
-          <td><%= person['gender'] %></td>
-          <td><%= person['age'] %></td>
-          <td><%= person['weight'] %> pounds</td>
-          <td class="calories-column"><%= calories = calculate_calories(person, day) %></td>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Weight</th>
+          <th class="calories-column">Calories Needed</th>
         </tr>
-        <% daily_total += calories %>
-      <% end %>
-      <tr>
-        <td class="bolded">Total Calories Needed</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="calories-column bolded"><%= daily_total %></td>
-      </tr>
-    </table>
-    <br />
+        <% @people.each do |person| %>
+          <tr>
+            <td><%= person['name'] %></td>
+            <td><%= person['gender'] %></td>
+            <td><%= person['age'] %></td>
+            <td><%= person['weight'] %> pounds</td>
+            <td class="calories-column"><%= calories = calculate_calories(person, day) %></td>
+          </tr>
+          <% daily_total += calories %>
+        <% end %>
+        <tr>
+          <td class="bolded">Total Calories Needed</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="calories-column bolded"><%= daily_total %></td>
+        </tr>
+      </table>
+      <br />
+    <% end %>
   <% end %>
   <br />
   <br />
