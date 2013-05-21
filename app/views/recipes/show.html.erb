@@ -3,19 +3,34 @@
 <% provide(:desc, "") %>
 <div class="span8">
   <div itemscope itemtype="http://schema.org/Recipe" class="row">
-    <div class="span5">
+    <div class="span8 recipe-top-meta">
+      <div class="pretty-header-pic">
+        <%= link_to image_tag("#{avatar_url(@recipe.user)}?s=50"), user_path(@recipe.user) %>
+      </div>
       <h1 itemprop="name" class="recipe-show-h1"><%= @recipe.title %></h1>
-    </div>
-    <div class="span3">
-      <span class="float-right pretty-pic-top"><%= link_to image_tag("#{avatar_url(@recipe.user)}?s=35"), user_path(@recipe.user) %></span>
-      <span class="float-right">
-        <% if can? :update, @recipe %>
-          <%= link_to "<i class=\"icon-star username-star-top\"></i>#{@recipe.user.username}".html_safe, user_path(@recipe.user_id), class: "pretty-username username-top float-right", itemprop: "author" %>
-        <% else %>
-          <%= link_to @recipe.user.username, user_path(@recipe.user_id), class: "pretty-username username-top float-right", itemprop: "author" %>
-        <% end %>
-        <time itemprop="datePublished" datetime="<%= @recipe.created_at %>"><%= content_tag :p, pretty_date(@recipe.created_at), class: "pretty-date float-right clear-right" %></time>
-      </span>
+      <% if can? :update, @recipe %>
+        <%= link_to "<i class=\"icon-star username-star-top\"></i>#{@recipe.user.username}".html_safe, user_path(@recipe.user_id), class: "pretty-username inline", itemprop: "author" %>
+      <% else %>
+        <%= link_to @recipe.user.username, user_path(@recipe.user_id), class: "pretty-username inline", itemprop: "author" %>
+      <% end %>
+
+       <span class="date-seperator"> :: </span>
+
+      <time itemprop="datePublished" datetime="<%= @recipe.created_at %>"><%= content_tag :p, pretty_date(@recipe.created_at), class: "pretty-date inline" %></time>
+
+      <% if can? :update, @recipe %>
+        <div class="btn-group">
+          <a class="btn btn-mini btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
+            Admin
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Edit Recipe', edit_recipe_path(@recipe) %></li>
+            <li><%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </div>
+      <% end %>
+
     </div>
   </div>
 
@@ -50,12 +65,6 @@
               <td><%= content_tag :span, @recipe.calories, itemprop: "calories" %></td>
             </tr>
           <% end %>
-          </table>
-          <% if can? :update, @recipe %>
-            <%= link_to 'Edit Recipe', edit_recipe_path(@recipe), class: "edit-recipe-btn float-right btn btn-mini btn-warning" %>
-          <% end %>
-
-          <table class="recipe-meta">
           <% if @recipe.weight.present? %>
             <tr>
               <td class="show-label">Ingredient's Weight:</td>
@@ -196,13 +205,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="span8">
-      <% if can? :destroy, @recipe %>
-        <%= link_to 'Delete Recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "float-right clear-right btn btn-mini btn-danger" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="row">
     <div class="span4">
       <h3 class="h-margin">Reviews</h3>
     </div>
@@ -247,38 +249,40 @@
     <% @all_reviews.each do |review| %>
       <div class="row">
         <div itemprop="review" itemscope itemtype="http://schema.org/Review" class="span8">
-          <div class="review-meta">
-            <div class="row">
-              <div class="span4">
-                <span class="float-left pretty-pic-reviews"><%= link_to image_tag("#{avatar_url(review.user)}?s=35"), user_path(review.user) %></span>
-                <span class="float-left">
-                  <% if can? :update, review %>
-                    <%= link_to "<i class=\"icon-star username-star\"></i>#{review.user.username}".html_safe, user_path(review.user_id), class: "pretty-username", itemprop: "author" %>
-                  <% else %>
-                    <%= link_to review.user.username, user_path(review.user_id), class: "pretty-username", itemprop: "author" %>
-                  <% end %>
-                  <time itemprop="datePublished" datetime="<%= review.created_at %>"><%= content_tag :p, pretty_date(review.created_at), class: "pretty-date" %></time>
-                </span>
-              </div>
-              <div class="span4">
-                <% if can? :destroy, review %>
-                  <%= link_to 'Delete Review', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "edit-review-btn float-right btn btn-mini btn-danger" %>
-                <% end %>
-                <% if can? :update, review %>
-                  <%= link_to 'Edit Review', edit_review_path(review), class: "edit-review-btn float-right btn btn-mini btn-warning" %>
-                <% end %>
-                <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                  <meta itemprop="ratingValue" content="<%= review.stars %>">
-                </span>
-                <%= content_tag(:span, "", class: "rated show-review-stars", data_rating: review.stars ) %>
-              </div>
+          <div class="review-pic-container">
+            <div class="review-pic">
+              <%= link_to image_tag("#{avatar_url(review.user)}?s=50"), user_path(review.user) %>
             </div>
           </div>
-          <div class="row">
-            <div class="span8">
-              <div class="review-content">
-                <span itemprop="reviewBody"><%= review.content %></span>
-              </div>
+          <div class="single-review">
+            <div class="review-meta">
+              <% if can? :update, review %>
+                <%= link_to "<i class=\"icon-star username-star\"></i>#{review.user.username}".html_safe, user_path(review.user_id), class: "pretty-username inline", itemprop: "author" %>
+              <% else %>
+                <%= link_to review.user.username, user_path(review.user_id), class: "pretty-username inline", itemprop: "author" %>
+              <% end %>
+
+               <span class="date-seperator"> :: </span>
+
+              <time itemprop="datePublished" datetime="<%= review.created_at %>">
+                <%= content_tag :p, pretty_date(review.created_at), class: "pretty-date inline" %>
+              </time>
+
+              <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                <meta itemprop="ratingValue" content="<%= review.stars %>">
+              </span>
+
+              <%= content_tag(:span, "", class: "rated show-review-stars", data_rating: review.stars ) %>
+
+            </div>
+            <div class="review-content" itemprop="reviewBody">
+              <%= simple_format review.content %>
+              <% if can? :destroy, review %>
+              <%= link_to content_tag(:i, '', class: 'icon-remove icon-white'), review, method: :delete, data: { confirm: 'Are you sure?' }, class: "edit-review-btn float-right btn btn-mini btn-danger tooltip-me", :'data-toggle' => "tooltip", title: "Delete Review" %>
+            <% end %>
+            <% if can? :update, review %>
+              <%= link_to content_tag(:i, '', class: 'icon-edit icon-white'), edit_review_path(review), class: "edit-review-btn float-right btn btn-mini btn-warning tooltip-me", :'data-toggle' => "tooltip", title: "Edit Review" %>
+            <% end %>
             </div>
           </div>
         </div>
@@ -304,6 +308,8 @@
   $('#rating').raty({
     scoreName : 'review[stars]',
     scoreId : 'review_stars'
-});
+  });
+
+  $('.tooltip-me').tooltip();
 </script>
 

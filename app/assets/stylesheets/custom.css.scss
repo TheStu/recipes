@@ -3,7 +3,7 @@
 $or: #CD400F;
 
 .fonted {
-  font-family: 'Merriweather', sans-serif;
+  font-family: 'Happy Monkey', cursive;
 }
 
 .float-right {
@@ -48,6 +48,7 @@ $or: #CD400F;
 .pretty-username {
   font-size: 16px;
   @extend .fonted;
+
 }
 
 .username-star {
@@ -58,6 +59,10 @@ $or: #CD400F;
   width: 100%;
   height: 1px;
   clear: both;
+}
+
+.inline {
+  display: inline-block;
 }
 
 //************** APPLICATION WIDE **************//
@@ -78,15 +83,11 @@ html, body {
 }
 
 .alert {
-  margin-bottom: 2px;
-}
-
-.alert-last {
-  margin-bottom: 21px;
+  margin: 2px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Englebert', sans-serif;
+  @extend .fonted;
 }
 
 h1 {
@@ -128,6 +129,10 @@ select {
 
 .btn {
   @extend .fonted;
+}
+
+.btn-mini {
+  line-height: 15px;
 }
 
 .actions input[type="submit"] {
@@ -245,21 +250,21 @@ select {
 //************** HEADER **************//
 
 .navbar {
-  font-family: 'Englebert', sans-serif;
+  @extend .fonted;
   .nav > li > a {
-    padding: 22px 10px;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 15px;
     i, [class^="icon-"], [class*=" icon-"] {
-      vertical-align: top;
+      vertical-align: middle;
       margin-top: 0;
     }
   }
   .brand {
-    font-size: 30px;
-    padding: 0 10px 0 20px;
+    font-size: 25px;
+    padding: 4px 10px 4px 20px;
     .brand-tld {
-      font-family: 'Merriweather', sans-serif;
-      font-size: 25px;
+      @extend .fonted;
+      font-size: 20px;
       color: $or;
     }
   }
@@ -276,38 +281,6 @@ select {
   height: 430px;
   background-image: url('home.jpg');
   position: relative;
-  .join-now-btn {
-    margin: 40px 0 0 40px;
-  }
-  .home-query {
-    margin: 40px 0 0  0;
-    height: 34px;
-    width: 200px;
-    @include border-radius(10px);
-    font-size: 20px;
-    line-height: 28px;
-  }
-  .home-search-btn {
-    margin: 40px 40px 0 5px;
-    @extend .btn-large;
-  }
-  #home-search-form {
-    margin: 0;
-  }
-  .about-pic {
-    @extend .fonted;
-    font-size: 11px;
-    color: #777;
-    background: rgba(50, 50, 50, 0.5);
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 20px 20px;
-    padding: 5px;
-    a:hover {
-      text-decoration: none;
-    }
-  }
 }
 
 .about-cr {
@@ -328,13 +301,8 @@ select {
   }
 }
 
-.home-border-bump {
-  border-top: 1px dotted #aaa;
-  margin-bottom: 5px;
-}
-
 .liked-site {
-  font-family: "Merriweather",serif;
+  font-family: 'Happy Monkey', cursive;
   font-size: 16px;
   line-height: 26px;
   border-top: 1px dotted #CCC;
@@ -345,14 +313,90 @@ select {
   }
 }
 
+.home-img {
+  width: 100%;
+  top: 41px;
+  left: 0;
+  height: 300px;
+  background-image: url('home-img.jpg');
+  border-bottom: 1px solid #d4d4d4;
+  .home-center {
+    width: 940px;
+    margin-right: auto;
+    margin-left: auto;
+    .join-now-btn {
+      margin: 40px 0 0 ;
+    }
+    .home-query {
+      margin: 40px 0 0  0;
+      height: 34px;
+      width: 200px;
+      @include border-radius(10px);
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .home-search-btn {
+      margin: 40px 0 0 5px;
+      @extend .btn-large;
+    }
+    #home-search-form {
+      margin: 0;
+    }
+  }
+  .about-pic {
+    @extend .fonted, .float-right;
+    font-size: 11px;
+    color: #777;
+    background: rgba(50, 50, 50, 0.5);
+    margin: 168px 20px 0 0;
+    padding: 5px;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.home-read-more {
+  @extend .fonted;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.home-recipe-meta {
+  margin: 10px 0 30px;
+  .home-border {
+    border-right: 1px dotted #aaa;
+    margin-right: 10px;
+    padding-right: 10px;
+  }
+}
+
+
 //************** RECIPES#SHOW **************//
+
+.recipe-top-meta {
+  margin-bottom: 10px;
+}
 
 .recipe-meta {
   margin-left: -20px;
   float: left;
   font-size: 13px;
   tr {
-    padding-bottom: 3px;
+    border-bottom: 1px solid #ddd;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+  td:first-child {
+    padding-left: 5px;
+  }
+  td:last-child {
+    padding-right: 5px;
   }
   .show-label {
     font-weight: bold;
@@ -362,7 +406,7 @@ select {
 }
 
 .recipe-show-h1 {
-  margin-bottom: 0px;
+  margin: 5px 0 0;
   font-size: 25px;
   line-height: 30px;
 }
@@ -374,17 +418,25 @@ select {
   max-height: 200px;
 }
 
-.review-meta {
-  @extend .fonted;
-  border-bottom: 1px dotted #aaa;
-  .show-review-stars {
-    @extend .float-right;
-    padding-top: 15px;
+.review-pic-container {
+  @extend .float-left;
+  width: 56px;
+  margin-right: 5px;
+  .review-pic {
+    @extend .pretty-pic;
   }
 }
 
-.username-top {
-  padding-top: 5px;
+.single-review {
+  @extend .float-right;
+  width: 559px;
+  .review-meta {
+    @extend .fonted;
+    border-bottom: 1px dotted #aaa;
+    .show-review-stars {
+      @extend .float-right;
+    }
+  }
 }
 
 .username-star-top {
@@ -401,6 +453,9 @@ select {
   padding: 20px;
   list-style: none;
   width: 100px;
+  li a {
+    display: block;
+  }
 }
 
 .position-relative {
@@ -419,7 +474,11 @@ select {
 }
 
 .edit-review-btn {
-  margin: 15px 0 0 5px;
+  margin-left: 5px;
+  i {
+    vertical-align: top;
+    margin: 2px 0;
+  }
 }
 
 .edit-recipe-btn {
@@ -436,16 +495,20 @@ select {
 
 .pretty-pic-top {
   @extend .pretty-pic;
-  margin: 3px 0 0 3px;
+  margin: 3px 3px 0 0;
 }
 
-.pretty-pic-reviews {
-  @extend .pretty-pic;
-  margin: 0 3px 4px 0;
+.pretty-header-pic {
+  @extend .pretty-pic, .float-left;
+  margin: 3px 3px 0 0;
 }
 
 input#meal_base_calories {
   margin-bottom: 0;
+}
+
+.date-seperator {
+  @extend .fonted;
 }
 
 //************** RECIPES#NEW **************//
@@ -729,17 +792,26 @@ input[type="checkbox"] {
   vertical-align: top;
 }
 
-.user-recipe-title {
-  h4 {
-    padding-top: 3px;
-  }
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .user-show-border {
   border-top: 1px dotted #aaa;
+}
+
+.user-recipe {
+  background-color: #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  p {
+    margin-bottom: 0;
+  }
+  .user-recipe-title {
+    h4 {
+      margin-top: 0;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 
@@ -752,16 +824,17 @@ input[type="checkbox"] {
 }
 
 .gear-page-p {
-  @extend .fonted;
   font-size: 15px;
   line-height: 22px;
 }
 
 .gear-page-li {
-  @extend .fonted;
   font-size: 14px;
   line-height: 20px;
   padding-bottom: 10px;
+  b {
+    @extend .fonted;
+  }
 }
 
 //************** COOKING GEAR **************//
@@ -856,7 +929,7 @@ input[type="checkbox"] {
 }
 
 #sidebar-query {
-  width: 186px;
+  width: 180px;
   margin-bottom: 10px;
   margin-top: 0;
 }
@@ -891,13 +964,13 @@ input[type="checkbox"] {
   }
   li {
     padding: 5px 0;
-    margin: 13px 0;
+    margin: 16px 0;
     a {
       color: #777;
       text-decoration: none;
       text-shadow: 0 1px 0 white;
-      font-family: 'Englebert', sans-serif;
-      font-size: 20px;
+      @extend .fonted;
+      font-size: 15px;
       &:hover {
         color: #333;
       }

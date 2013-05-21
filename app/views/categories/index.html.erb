@@ -1,9 +1,9 @@
-<% provide(:title, "#{@category} Camping Recipes") %>
+<% provide(:title, cat_name(@category)) %>
 <% provide(:desc, "Backpacking and camping recipes in the #{@category} category") %>
 <div class="span8">
   <div class="row">
     <div class="span8">
-      <h1><%= "#{@category} Camping Recipes" %></h1>
+      <h1><%= cat_name(@category) %></h1>
     </div>
   </div>
   <div class="row">
@@ -50,7 +50,7 @@
               </div>
             </div>
           </div>
-        </div>     
+        </div>
       <% end %>
       <div class="row">
         <div class="span8">
@@ -66,7 +66,7 @@
 <div class="span4">
   <%= render 'shared/sidebar' %>
 </div>
-  
+
 <script type="text/javascript">
   $('#rating').raty({
     scoreName : 'review[stars]',

@@ -3,74 +3,55 @@
 
 <div class="span12">
   <div class="row">
-    <div class="span12">
-      <div class="join-now">
-        <% if user_signed_in? %>
-          <%= link_to "Add a Recipe", new_recipe_path, class: 'btn btn-warning btn-large join-now-btn bolded float-left' %>
-        <% else %>
-          <%= link_to "Join Now", new_user_registration_path, class: 'btn btn-warning btn-large join-now-btn bolded float-left' %>
-        <% end %>
-        <%= form_tag recipes_path, :method => 'get', id: 'home-search-form' do %>
-          <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right home-search-btn' %>
-          <%= text_field_tag :query, params[:query], class: 'float-right home-query' %>
-        <% end %>
-        <p class="about-pic">Picture by <%= link_to "Jason Jones", 'http://www.flickr.com/photos/jjay69/7560280198', target: '_blank', rel: 'nofollow' %></p>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12">
-      <p class="about-cr">The perfect recipes for a campfire or backpacking stove</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span9">
+    <div class="span8">
     <h3 class="h-margin">Latest Recipes</h3>
       <% @recipes.each do |recipe| %>
         <div class="row">
-          <div class="span9 home-border-bump">
-          </div>
-        </div>
-        <div class="row">
-          <div class="span6">
-            <%= link_to content_tag(:h3, recipe.title, class: 'h-margin-top'), recipe_path(recipe), class: 'home-recipe-title' %>
-          </div>
-          <div class="span3">
-            <span class="float-right pretty-pic-top"><%= link_to image_tag("#{avatar_url(recipe.user)}?s=35"), user_path(recipe.user) %></span>
-            <span class="float-right">
-              <% if can? :update, recipe %>
-                <%= link_to "<i class=\"icon-star username-star-top\"></i>#{recipe.user.username}".html_safe, user_path(recipe.user_id), class: "pretty-username username-top float-right" %>
-              <% else %>
-                <%= link_to recipe.user.username, user_path(recipe.user_id), class: "pretty-username username-top float-right" %>
-              <% end %>
-              <%= content_tag :p, pretty_date(recipe.created_at), class: "pretty-date float-right clear-right" %>
-            </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span9">
+          <div class="span8">
+
+            <h3 class="h-margin-top">
+              <%= link_to recipe.title, recipe_path(recipe), class: 'home-recipe-title' %>
+            </h3>
+
             <p class="frontpage-desc">
-              <%= truncate(recipe.introduction, :length => 300, :omission => '...') %>
+              <%= truncate(recipe.introduction, :length => 180, :omission => '...') %>
             </p>
+
+            <%= link_to "Read More...", recipe_path(recipe), class: 'home-read-more' %>
+
+            <div class="home-recipe-meta">
+              <div class="inline">
+                <div class="pretty-pic">
+                  <%= link_to image_tag("#{avatar_url(recipe.user)}?s=35"), user_path(recipe.user) %>
+                </div>
+              </div>
+
+              <div class="inline home-border">
+                <% if can? :update, recipe %>
+                  <%= link_to "<i class=\"icon-star username-star\"></i>#{recipe.user.username}".html_safe, user_path(recipe.user_id), class: "pretty-username" %>
+                <% else %>
+                  <%= link_to recipe.user.username, user_path(recipe.user_id), class: "pretty-username" %>
+                <% end %>
+              </div>
+
+              <div class="inline home-border">
+                <i class="icon-calendar"></i>
+                <%= content_tag :p, pretty_date(recipe.created_at), class: "pretty-date inline" %>
+              </div>
+
+              <div class="inline">
+                <i class="icon-tags"></i>
+                <%= recipe.categories.map { |c|
+                  "<a href=\"#{category_index_path(c.name.parameterize)}\">#{c.name}</a>"
+                 }.join(', ').html_safe %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
-    <div class="span3">
-      <h3 class="h-margin">Spread the Word</h3>
-      <div class="fb-like" data-href="http://www.campingrecipes.co" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
-      <div class="social-bump"></div>
-      <div class="g-plusone" data-size="medium" data-href="http://www.campingrecipes.co"></div>
-      <div class="social-bump"></div>
-      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-      <div class="social-bump"></div>
-      <su:badge layout="1"></su:badge>
-      <h3 class="h-margin">Sites We like</h3>
-      <%= link_to "#{image_tag 'price.png'} Camping Price Search".html_safe, 'http://www.campingpricesearch.com', target:'_blank', class: 'liked-site' %>
-      <%= link_to "#{image_tag 'checklist.png'} Camping Checklist".html_safe, 'http://www.campingchecklist.me', target:'_blank', class: 'liked-site' %>
-      <h3 class="h-margin">Cooking Gear</h3>
-      <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
+    <div class="span4">
+      <%= render 'shared/sidebar' %>
     </div>
   </div>
 </div>

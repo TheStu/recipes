@@ -1,5 +1,15 @@
 <div class="sidebar">
   <% if params[:controller] == 'recipes' && params[:action] == 'index' %>
+  <% elsif params[:controller] == 'statics' && params[:action] == 'home' %>
+    <h3 class="h-margin">Sharing is Caring</h3>
+    <div class="fb-like" data-href="http://www.campingrecipes.co" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
+    <div class="social-bump"></div>
+    <div class="g-plusone" data-size="medium" data-href="http://www.campingrecipes.co"></div>
+    <div class="social-bump"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <div class="social-bump"></div>
+    <su:badge layout="1"></su:badge>
   <% else %>
     <%= form_tag recipes_path, :method => 'get', id: 'sidebar-search-form' do %>
       <%= submit_tag "Search", :name => nil, class: 'btn btn-warning float-right sidebar-search-btn' %>
@@ -7,52 +17,54 @@
     <% end %>
     <div class="bump"></div>
   <% end %>
+  <% unless params[:controller] == 'statics' && params[:action] == 'home' %>
     <%= link_to "Create A New Recipe", new_recipe_path, class: 'btn btn-warning btn-block sidebar-btn' %>
-    <p class="fonted">The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
+  <% end %>
+  <p>The best camping recipe isn't of much use without the proper <%= link_to "camping cooking gear", cooking_gear_path %>.</p>
 
-    <h3 class="h-margin">Sites We like</h3>
-    <%= link_to "#{image_tag 'price.png'} Camping Price Search".html_safe, 'http://www.campingpricesearch.com', target:'_blank', class: 'liked-site' %>
-    <%= link_to "#{image_tag 'checklist.png'} Camping Checklist".html_safe, 'http://www.campingchecklist.me', target:'_blank', class: 'liked-site' %>
+  <h3 class="h-margin">Sites We like</h3>
+  <%= link_to "#{image_tag 'price.png'} Camping Price Search".html_safe, 'http://www.campingpricesearch.com', target:'_blank', class: 'liked-site' %>
+  <%= link_to "#{image_tag 'checklist.png'} Camping Checklist".html_safe, 'http://www.campingchecklist.me', target:'_blank', class: 'liked-site' %>
 
-    <h3 class="h-margin">Cooking Gear</h3>
+  <h3 class="h-margin">Cooking Gear</h3>
 
-    <% Link.where("link_type != ? AND sidebar = ?", 'sidebar', true).each do |link| %>
-      <div class="sidebar-bump">
-        <%= link_to content_tag(:h4, truncate(link.product_name, :length => 30, :omission => '..'), class: 'sidebar-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'sidebar-a' %>
-        <table>
-          <tr>
-            <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
-            <td class="price-td">
-              <%= content_tag :p, truncate(link.abbreviated_description, :length => 90, :omission => '...'), class: 'gear-desc' %>
-              <% if link.retail_price != link.sale_price %>
-                <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
-              <% end %>
-              <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
-            </td>
-          </tr>
-        </table>
-      </div>
-    <% end %>
+  <% Link.where("link_type != ? AND sidebar = ?", 'sidebar', true).each do |link| %>
+    <div class="sidebar-bump">
+      <%= link_to content_tag(:h4, truncate(link.product_name, :length => 30, :omission => '..'), class: 'sidebar-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'sidebar-a' %>
+      <table>
+        <tr>
+          <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+          <td class="price-td">
+            <%= content_tag :p, truncate(link.abbreviated_description, :length => 90, :omission => '...'), class: 'gear-desc' %>
+            <% if link.retail_price != link.sale_price %>
+              <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+            <% end %>
+            <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
 
-      <h3 class="h-margin">And If You're Feeling Lazy...</h3>
+    <h3 class="h-margin">Feeling Lazy?</h3>
 
-    <% Link.where("link_type = ?", 'sidebar').each do |link| %>
-      <div class="sidebar-bump">
+  <% Link.where("link_type = ?", 'sidebar').each do |link| %>
+    <div class="sidebar-bump">
 
-        <%= link_to content_tag(:h4, truncate(link.product_name, :length => 30, :omission => '..'), class: 'sidebar-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'sidebar-a' %>
+      <%= link_to content_tag(:h4, truncate(link.product_name, :length => 30, :omission => '..'), class: 'sidebar-h4'), link.buy_url, target: '_blank', rel: 'nofollow', class: 'sidebar-a' %>
 
-        <table>
-          <tr>
-            <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
-            <td class="price-td">
-              <%= content_tag :p, truncate(link.abbreviated_description, :length => 90, :omission => '...'), class: 'gear-desc' %>
-              <% if link.retail_price != link.sale_price %>
-                <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
-              <% end %>
-              <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
-            </td>
-          </tr>
-        </table>
-      </div>
-    <% end %>
+      <table>
+        <tr>
+          <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+          <td class="price-td">
+            <%= content_tag :p, truncate(link.abbreviated_description, :length => 90, :omission => '...'), class: 'gear-desc' %>
+            <% if link.retail_price != link.sale_price %>
+              <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
+            <% end %>
+            <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
 </div>

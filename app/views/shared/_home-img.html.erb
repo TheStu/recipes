@@ -1,0 +1,15 @@
+<div class="home-img">
+  <div class="home-center">
+    <% if user_signed_in? %>
+      <%= link_to "Add a Recipe", new_recipe_path, class: 'btn btn-warning btn-large join-now-btn bolded float-left' %>
+    <% else %>
+      <%= link_to "Join Now", new_user_registration_path, class: 'btn btn-warning btn-large join-now-btn bolded float-left' %>
+    <% end %>
+    <%= form_tag recipes_path, :method => 'get', id: 'home-search-form' do %>
+      <%= submit_tag "Search", :name => nil, class: 'btn btn-warning bolded float-right home-search-btn' %>
+      <%= text_field_tag :query, params[:query], class: 'float-right home-query' %>
+    <% end %>
+    <div class="bump"></div>
+  </div>
+  <p class="about-pic">Picture by <%= link_to "Jason Jones", 'http://www.flickr.com/photos/jjay69/7560280198', target: '_blank', rel: 'nofollow' %></p>
+</div>

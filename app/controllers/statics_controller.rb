@@ -1,4 +1,6 @@
 class StaticsController < ApplicationController
+  layout "home", :only => [:home]
+
   def home
     @recipes = Recipe.order('created_at desc').first(10)
   end
