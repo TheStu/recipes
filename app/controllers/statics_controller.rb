@@ -30,8 +30,13 @@ class StaticsController < ApplicationController
   end
 
   def results
-    @days = params[:day_type]
-    @people = build_people(params)
+    unless params[:gender].present? && params[:day_type].present?
+      redirect_to :back
+      flash[:error] = 'You need to fill in the fields for at least one person and one day for the calculator to work!'
+    else
+      @days = params[:day_type]
+      @people = build_people(params)
+    end
   end
 
   private

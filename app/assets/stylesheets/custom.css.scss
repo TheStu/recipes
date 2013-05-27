@@ -247,6 +247,14 @@ select {
   }
 }
 
+.sign-up-prompt {
+  @extend .well;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #e6e6e6;
+  border-color: #ddd;
+}
+
 //************** HEADER **************//
 
 .navbar {
@@ -270,8 +278,11 @@ select {
   }
 }
 
-.header-user-ul > li:last-child a {
-  padding-right: 0;
+.header-user-ul > li:last-child > #user-pic-drop {
+  padding: 5px 10px;
+  b {
+    margin-top: 13px;
+  }
 }
 
 //************** HOME **************//

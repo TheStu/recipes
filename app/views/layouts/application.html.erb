@@ -43,6 +43,9 @@
 <div id="wrap">
   <%= render "shared/header" %>
   <div class="container">
+    <% unless user_signed_in? %>
+      <%= render "shared/sign_up" %>
+    <% end %>
     <%= render 'shared/flash_messages' %>
     <div class="row">
       <%= yield %>

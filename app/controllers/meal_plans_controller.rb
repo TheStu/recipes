@@ -35,7 +35,7 @@ class MealPlansController < ApplicationController
       @meal_plan.people.build
       @meal_plan.days.build
     end
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @meal_plan }
@@ -56,11 +56,11 @@ class MealPlansController < ApplicationController
       num += 1
     end
     @meal_plan = MealPlan.new(params[:meal_plan])
-    @meal_plan.user_id = current_user.id    
-    
+    @meal_plan.user_id = current_user.id
+
     respond_to do |format|
       if @meal_plan.save
-        format.html do 
+        format.html do
           redirect_to @meal_plan
           flash[:success] = 'Meal plan was successfully created.'
         end
@@ -107,15 +107,15 @@ class MealPlansController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to root
+        redirect_to root_path
         flash[:success] = 'Meal plan was successfully deleted.'
       end
       format.json { head :no_content }
     end
   end
-  
+
   private
-  
+
   def modify_day_number(hash, high)
     hash.each do |k, v|
       if v.is_a? Hash
@@ -127,7 +127,7 @@ class MealPlansController < ApplicationController
       end
     end
   end
-  
+
   def build_people(params)
     people = []
     params['gender'].count.times do |i|
@@ -140,7 +140,7 @@ class MealPlansController < ApplicationController
     end
     return people
   end
-  
+
   def build_days(params)
     days = []
     params['day_type'].count.times do |i|

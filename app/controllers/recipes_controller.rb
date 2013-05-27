@@ -1,13 +1,13 @@
 class RecipesController < ApplicationController
   authorize_resource
-  
+
   # GET /recipes
   # GET /recipes.json
   def index
     @selected_categories = (params[:categories].present? ? params[:categories] : [])
     @query = (params[:query].present? ? params[:query] : '')
     @sort_order = (params[:sort_by].present? ? sort_index(params[:sort_by]) : '')
-    
+
     @recipes = Recipe.text_search(@query)
     if @sort_order == ('calories asc' || 'calories desc')
       @recipes = @recipes.where('calories > ?', 0)
@@ -39,7 +39,7 @@ class RecipesController < ApplicationController
         @review = Review.find_by_user_id_and_recipe_id(current_user.id, @recipe.id)
       end
     end
-    
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -119,15 +119,15 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to root
+        redirect_to root_path
         flash[:success] = 'Recipe successfully deleted.'
       end
       format.json { head :no_content }
     end
   end
-  
+
   private
-  
+
   def sort_index(number)
     case number
       when "1" then return 'calories asc'
