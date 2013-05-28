@@ -39,12 +39,10 @@
                 <%= content_tag :p, pretty_date(recipe.created_at), class: "pretty-date inline" %>
               </div>
 
-              <div class="inline">
-                <i class="icon-tags"></i>
-                <%= recipe.categories.map { |c|
-                  "<a href=\"#{category_index_path(c.name.parameterize)}\">#{c.name}</a>"
-                 }.join(', ').html_safe %>
-              </div>
+              <i class="icon-tags inline"></i>
+              <%= recipe.categories.first(5).map { |c|
+                "<a href=\"#{category_index_path(c.name.parameterize)}\" class=\"inline\">#{c.name}</a>"
+               }.join(', ').html_safe %>
             </div>
           </div>
         </div>
