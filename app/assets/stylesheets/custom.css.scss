@@ -211,7 +211,7 @@ select {
 
 .pin-button {
   @extend .float-left;
-  padding-right: 10px;
+  padding-right: 35px;
 }
 
 .pretty-pic {
@@ -421,7 +421,7 @@ select {
 
 .recipe-show-h1 {
   margin: 5px 0 0;
-  font-size: 25px;
+  font-size: 22px;
   line-height: 30px;
 }
 
@@ -484,7 +484,7 @@ select {
 }
 
 .show-social-buttons {
-  margin-left: -20px;
+  margin-top: 15px;
 }
 
 .edit-review-btn {
@@ -524,6 +524,34 @@ input#meal_base_calories {
 .date-seperator {
   @extend .fonted;
 }
+
+.related-recipes {
+  list-style: none;
+  margin: 0;
+  li {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    .related-h3 {
+      font-size: 18px;
+      line-height: 18px;
+      margin: 5px 0 1px;
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  li:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.h3-recipe-intro {
+  margin-top: 0;
+}
+
 
 //************** RECIPES#NEW **************//
 

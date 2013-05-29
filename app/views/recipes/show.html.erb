@@ -80,85 +80,83 @@
             <td class="average-stars"><span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><meta itemprop="ratingValue" content="<%= @recipe.average_stars %>"><%= content_tag(:span, "", class: "rated", data_rating: @recipe.average_stars ) %> <span class="gray-me">(<span itemprop="reviewCount"><%= @recipe.reviews.count %></span> <%= @recipe.reviews.count == 1 ? "Review" : "Reviews" %>)</span></td>
           </tr>
         </table>
-        <div class="position-fixed">
-          <div class="row">
-            <div class="span3">
-              <div class="show-social-buttons">
-                <div class="pin-button">
-                  <a href="http://pinterest.com/pin/create/button/?url=<%= recipe_url(@recipe) %>&media=<%= @recipe.picture_url(:thumb) %>&description=<%= @recipe.title %> Recipe" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row show-social-buttons">
+    <div class="span6">
+      <div>
+        <div class="pin-button">
+          <a href="http://pinterest.com/pin/create/button/?url=<%= recipe_url(@recipe) %>&media=<%= @recipe.picture_url(:thumb) %>&description=<%= @recipe.title %> Recipe" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+        </div>
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true"></div>
+        <div class="g-plusone" data-size="medium" data-width="120" data-href="<%= recipe_url(@recipe) %>"></div>
+      </div>
+    </div>
+    <div class="span2">
+
+      <a href="#mealPlanModal" role="button" class="float-right btn btn-small btn-warning" data-toggle="modal">Add to Meal Plan</a>
+      <div id="mealPlanModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Add Recipe to Meal Plan</h3>
+        </div>
+        <div class="modal-body">
+          <% if can? :create, MealPlan %>
+            <% if current_user.meal_plans.present? %>
+
+              <%= form_for @meal do |f| %>
+                <%= f.select :meal_plan_id, options_from_collection_for_select(MealPlan.where("user_id = ?", current_user.id), :id, :name), {:include_blank => true}, {class: 'meal-form-input'} %>
+                <%= f.label :meal_plan_id, "Select a Meal Plan", class: 'meal-form-label' %>
+                <div class="day-select-area">
+                  <%= f.select :day_id, grouped_options_for_select(MealPlan.for_day_select(current_user.id)), {:include_blank => true}, {class: 'meal-form-input'} %>
+                  <%= f.label :day_id, "Select the Day", class: 'meal-form-label' %>
                 </div>
-                <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true"></div>
-                <div class="g-plusone" data-size="medium" data-width="120" data-href="<%= recipe_url(@recipe) %>"></div>
+                <div class="name-input-area">
+                  <%= f.text_field :specific_meal, class: 'meal-form-input' %>
+                  <%= f.label :specific_meal, "Meal Name <i class=\"form-explain\">(i.e. Breakfast, Supper, Snack)</i>".html_safe, class: 'meal-form-label' %>
+                  <%= f.text_field :servings_made, class: 'meal-form-input' %>
+                  <%= f.label :servings_made, "Servings You're Making", class: 'meal-form-label' %>
+                  <%= f.text_field :recipe_title, :value => @recipe.title, class: 'meal-form-input' %>
+                  <%= f.label :recipe_title, "Recipe Name", class: 'meal-form-label' %>
+                  <%= f.text_field :base_calories, :value => @recipe.calories, class: 'meal-form-input' %>
+                  <%= f.label :base_calories, "Calories Per Serving", class: 'meal-form-label' %>
+                  <%= f.text_field :weight, :value => @recipe.weight, class: 'meal-form-input' %>
+                  <%= f.label :weight, "Weight of Ingredients Per Serving <i class=\"form-explain\">(grams)</i>".html_safe, class: 'meal-form-label' %>
+                  <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="actions">
+                  <%= submit_tag "Save to Meal Plan" %>
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="well">
+              <p class="well-explain">Before you can add this recipe to a meal plan you need to <%= link_to "create a meal plan", new_meal_plan_path %>.</p>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <div class="actions">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
               </div>
             </div>
-            <div class="span2">
 
-              <a href="#mealPlanModal" role="button" class="float-right btn btn-small btn-warning" data-toggle="modal">Add to Meal Plan</a>
-              <div id="mealPlanModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="myModalLabel">Add Recipe to Meal Plan</h3>
-                </div>
-                <div class="modal-body">
-                  <% if can? :create, MealPlan %>
-                    <% if current_user.meal_plans.present? %>
-
-                      <%= form_for @meal do |f| %>
-                        <%= f.select :meal_plan_id, options_from_collection_for_select(MealPlan.where("user_id = ?", current_user.id), :id, :name), {:include_blank => true}, {class: 'meal-form-input'} %>
-                        <%= f.label :meal_plan_id, "Select a Meal Plan", class: 'meal-form-label' %>
-                        <div class="day-select-area">
-                          <%= f.select :day_id, grouped_options_for_select(MealPlan.for_day_select(current_user.id)), {:include_blank => true}, {class: 'meal-form-input'} %>
-                          <%= f.label :day_id, "Select the Day", class: 'meal-form-label' %>
-                        </div>
-                        <div class="name-input-area">
-                          <%= f.text_field :specific_meal, class: 'meal-form-input' %>
-                          <%= f.label :specific_meal, "Meal Name <i class=\"form-explain\">(i.e. Breakfast, Supper, Snack)</i>".html_safe, class: 'meal-form-label' %>
-                          <%= f.text_field :servings_made, class: 'meal-form-input' %>
-                          <%= f.label :servings_made, "Servings You're Making", class: 'meal-form-label' %>
-                          <%= f.text_field :recipe_title, :value => @recipe.title, class: 'meal-form-input' %>
-                          <%= f.label :recipe_title, "Recipe Name", class: 'meal-form-label' %>
-                          <%= f.text_field :base_calories, :value => @recipe.calories, class: 'meal-form-input' %>
-                          <%= f.label :base_calories, "Calories Per Serving", class: 'meal-form-label' %>
-                          <%= f.text_field :weight, :value => @recipe.weight, class: 'meal-form-input' %>
-                          <%= f.label :weight, "Weight of Ingredients Per Serving <i class=\"form-explain\">(grams)</i>".html_safe, class: 'meal-form-label' %>
-                          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <div class="actions">
-                          <%= submit_tag "Save to Meal Plan" %>
-                          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                        </div>
-                      </div>
-                    <% end %>
-                  <% else %>
-                    <div class="well">
-                      <p class="well-explain">Before you can add this recipe to a meal plan you need to <%= link_to "create a meal plan", new_meal_plan_path %>.</p>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                      <div class="actions">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                      </div>
-                    </div>
-
-                  <% end %>
-                <% else %>
-                  <div class="well">
-                    <p class="well-explain">Oops, you cant create or add to meal plans until you have an account here at Camping Recipes. <%= link_to "Sign in", new_user_session_path %> if you already have an account, or else <%= link_to "sign up", new_user_registration_path %> for one.</p>
-                  </div>
-                  </div>
-                  <div class="modal-footer">
-                    <div class="actions">
-                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-
+          <% end %>
+        <% else %>
+          <div class="well">
+            <p class="well-explain">Oops, you cant create or add to meal plans until you have an account here at Camping Recipes. <%= link_to "Sign in", new_user_session_path %> if you already have an account, or else <%= link_to "sign up", new_user_registration_path %> for one.</p>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <div class="actions">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -167,7 +165,7 @@
     <div class="span8">
       <div class="row">
         <div class="span4">
-          <h3 class="h-margin">Recipe Introduction</h3>
+          <h3 class="h-margin h3-recipe-intro">Recipe Introduction</h3>
         </div>
         <div class="span4">
 
@@ -204,6 +202,30 @@
       <span itemprop="recipeInstructions"><%= simple_format @recipe.preperation %></span>
     </div>
   </div>
+
+  <div class="row">
+    <div class="span8">
+      <h3 class="h-margin">Related Recipes</h3>
+      <ul class="related-recipes">
+        <% @recipe.related.first(3).each do |recipe| %>
+          <li>
+
+            <h3 class="related-h3">
+              <%= link_to recipe.title, recipe_path(recipe) %>
+            </h3>
+
+            <i class="icon-tags"></i>
+
+            <%= recipe.categories.first(4).map { |c|
+              "<a href=\"#{category_index_path(c.name.parameterize)}\" class=\"inline related_tag\">#{c.name}</a>"
+             }.join(', ').html_safe %>
+
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
   <div class="row">
     <div class="span4">
       <h3 class="h-margin">Reviews</h3>
