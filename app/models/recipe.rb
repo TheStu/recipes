@@ -1,8 +1,7 @@
 class Recipe < ActiveRecord::Base
   attr_accessible :calories, :cooking_time, :equipment, :introduction, :picture,
   :preperation, :servings, :title, :user, :weight, :pots, :category_ids,
-  :ingredients_attributes, :remove_picture, :average_stars, :created_at,
-  :updated_at
+  :ingredients_attributes, :remove_picture, :average_stars
 
   belongs_to :user
   has_many :categories, :through => :category_joins

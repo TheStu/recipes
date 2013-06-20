@@ -34,11 +34,6 @@
                 <% end %>
               </div>
 
-              <div class="inline home-border">
-                <i class="icon-calendar"></i>
-                <%= content_tag :p, pretty_date(recipe.created_at), class: "pretty-date inline" %>
-              </div>
-
               <i class="icon-tags inline"></i>
               <%= recipe.categories.first(4).map { |c|
                 "<a href=\"#{category_index_path(c.name.parameterize)}\" class=\"inline front-tag\">#{c.name}</a>"
