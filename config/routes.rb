@@ -11,10 +11,15 @@ Recipes::Application.routes.draw do
   match '/privacy', to: 'statics#privacy'
   match '/camping-cooking-gear', to: 'statics#gear', as: 'cooking_gear'
   match '/calorie-calculator', to: 'statics#calories_calculator', as: 'calculator'
-  
+
   match '/category/:category', to: 'categories#index', as: 'category_index'
-  
+
   get "/calorie-calculator-results" => "statics#results", as: 'results'
+
+  resources :feeds
+  match '/feed' => 'feeds#feed',
+        :as => :feed,
+        :defaults => { :format => 'atom' }
 
   resources :recipes
   resources :categories
@@ -22,5 +27,5 @@ Recipes::Application.routes.draw do
   resources :meal_plans, :path => 'meal-plan', :except => 'index'
   resources :meals
 
-  
+
 end
