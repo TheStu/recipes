@@ -61,7 +61,13 @@
 
       <table>
         <tr>
-          <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+          <td><span class="gear-page-img">
+            <% if link.thumbnail_image.present? %>
+              <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+            <% else %>
+              <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+            <% end %>
+          </span></td>
           <td class="price-td">
             <%= content_tag :p, truncate(link.abbreviated_description, :length => 90, :omission => '...'), class: 'gear-desc' %>
             <% if link.retail_price != link.sale_price %>
