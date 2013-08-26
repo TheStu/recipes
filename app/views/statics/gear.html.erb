@@ -4,14 +4,14 @@
   <h1>Camping Cooking Gear</h1>
   <div class="row">
     <div class="span8">
-      
+
       <h2 class="h-margin">Intro</h2>
-      
+
       <p class="gear-page-p">There are a whole lot of wonderful recipes here at Camping Recipes, but even the best recipe wont get you very far if you don't have the proper camping cooking gear.</p>
       <p class="gear-page-p">What follows isn't exhaustive, but it covers all the basics, and should be enough to get you through almost all the recipes you find here on Camping Recipes. And if you have to improvise a bit, that's just part of camping.</p>
-      
+
       <h2 class="h-margin">Stove and Fuel</h2>
-      
+
       <p class="gear-page-p">Stoves come in all shapes and sizes. In fact you don't even need a stove, strictly speaking, just something that will give off heat. A campfire will do the same job that a fancy stove will, and for considerably less money.</p>
       <p class="gear-page-p">Here are a few of the more common heat source options...</p>
       <ul>
@@ -32,13 +32,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -47,11 +53,11 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Pots, Pans and Combos</h2>
-      
+
       <p class="gear-page-p">Deciding on what combination of pots and pans you want in what sizes is relatively easy. It helps to have a few of them handy, and to be able to pick and choose what to take, based on what you're cooking and how many people you're cooking for. The hard part is deciding what material you want them to be made of.</p>
-      <p class="gear-page-p">There are three main pot and pan material choices, and all of them have their pros and cons...</p> 
+      <p class="gear-page-p">There are three main pot and pan material choices, and all of them have their pros and cons...</p>
       <ul>
         <li class="gear-page-li"><b>Steel</b> - The main advantage of steel is that it's strong. You never have to worry about treating a steel pot too delicately. Steel camping pots and pans are also relatively cheap, which is never a bad thing. The downside is that steel is also heavy, heavier than the other two materials below.</li>
         <li class="gear-page-li"><b>Aluminum</b> - Aluminum is cheap, like steel, but is light where steel is heavy. But where steel is strong, aluminum is quite a bit weaker. It's not going to crumple the first time you drop it, but it might not be the best choice if you like to abuse your gear. You can also find aluminum pots and pans that come with a teflon coating, which is fantastic when it comes to cleaning up, and definitely something to consider.</li>
@@ -69,13 +75,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -84,9 +96,9 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Wind Screens and Heat Shields</h2>
-      
+
       <p class="gear-page-p">A wind screen or heat shield is not necessary for cooking in the outdoors, but they certainly don't hurt, especially when it's particularly cold out, or when the wind is gusting.</p>
       <p class="gear-page-p">The other time when you might want to consider using a wind screen or heat shield is when you need to squeeze out every little bit of heat. Alcohol stoves, for example, don't produce as much heat as canister stoves or liquid stoves, and a wind screen or heat shield will help provide a little more heat.</p>
       <div class="row">
@@ -101,13 +113,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -116,9 +134,9 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Spoons, Spatulas and Similar</h2>
-      
+
       <p class="gear-page-p">Though not strictly necessary, especially if you're willing to get a little inventive (a fresh cedar twig makes an excellent stirring stick, and might even add a little flavor), spoons and especially spatulas can come in handy for certain recipes.</p>
       <p class="gear-page-p">Stirring spoons are easily replaced by utensils such as sporks or even chopsticks. But a spatula is versatile, especially for recipes involving pans -- think eggs or any sort of messy stirfry.</p>
       <p class="gear-page-p">This is one item that really defines the difference between car camping and backpacking. If you're trying to eliminate superfulous !!!sp? items to lighten the weight of your backpack, then a spatula is going to be one of the first items to go, but for car campers is an ideal luxury item to bring along if it makes a recipe easier.</p>
@@ -134,13 +152,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -149,9 +173,9 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Plates, Bowls and Combos</h2>
-      
+
       <p class="gear-page-p">Plates and bowls are good, but a combination of the two, a plate with high sides, is best. But like cookware, with plateware the hard decision is not what shape or size to get, but rather what material to choose.</p>
       <p class="gear-page-p">There are a few different material choices for your plateware, each with some pros and cons to consider...</p>
       <ul>
@@ -173,13 +197,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -188,9 +218,9 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Utensils</h2>
-      
+
       <p class="gear-page-p">There are plenty of utensil choices for campers and backpackers. Spoons, forks, sporks and even chopsticks will all help you get varying kinds of food from plate to mouth, but the spork is surely the best choice, for versatility if nothing else.</p>
       <p class="gear-page-p">As with plateware, you have a few different choices for the material your utensils are made of, but rather than rehash the pros and cons, which you can read about above in the plateware section, we'll just say that you can find both plastic and various kinds of metal, titanium being a great choice because the price difference is negligable for such a small item.</p>
       <div class="row">
@@ -205,13 +235,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -220,9 +256,9 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Something Sharp</h2>
-      
+
       <p class="gear-page-p">Most backpackers and campers will be carrying something sharp, but just in case you don't here's a reminder. Just like when you cook at home a good, sharp knife is important for getting things done. Short of doing all your chopping and slicing before you leave home, which isn't such a terrible idea, you'll likely require a knife of some sort.</p>
       <p class="gear-page-p">You might be tempted to bring something big and dangerous looking, but something small, light and folding is ideal, especially for backpackers looking to shave ounces. Just remember to give your knife a sharpen, or at least an inspection, before you leave the house.</p>
       <div class="row">
@@ -237,13 +273,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -252,9 +294,9 @@
           </div>
         <% end %>
       </div>
-      
+
       <h2 class="h-margin ad-bump">Cups and Mugs</h2>
-      
+
       <p class="gear-page-p">Camping and backpacking cups and mugs, just like plates, bowls and utensils come in a few different materials that each have pros and cons. If you want a run down on the benefits of each of these materials check out the plateware section, above.</p>
       <p class="gear-page-p">For cups and mugs there are a few unique things to talk about, however. One is a handle. Handles can make handling hot beverages simpler, but can also making packing quite a bit harder. A good compromise is a cup or mug with a folding handle.</p>
       <p class="gear-page-p">And if you do like a hot beverage to get you going in the morning you might consider a double walled mug. The double wall does increase the weight, but it helps to both insulate the hot liquid and keep it hot longer, as well as keep the heat away from your hands.</p>
@@ -272,13 +314,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
@@ -289,7 +337,7 @@
       </div>
 
       <h2 class="h-margin ad-bump">Cleaning Up</h2>
-      
+
       <p class="gear-page-p">And finally when the cooking is done and your belly is full, there's the cleaning to do. Outdoor conditions always make cleaning up a little more difficult, but this comes down to technique, like boiling water in your dirty pots, rather than any special equipment.</p>
       <div class="row">
         <% @soaps.each do |link| %>
@@ -303,13 +351,19 @@
               <div class="span4">
                 <table>
                   <tr>
-                    <td><span class="gear-page-img"><%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %></span></td>
+                    <td><span class="gear-page-img">
+                      <% if link.thumbnail_image.present? %>
+                        <%= link_to image_tag(link.thumbnail_image, :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% else %>
+                        <%= link_to image_tag('blank_sidebar.png', :alt => link.product_name), link.buy_url, target: '_blank', rel: 'nofollow' %>
+                      <% end %>
+                    </span></td>
                     <td class="price-td">
                       <%= content_tag :p, truncate(link.abbreviated_description, :length => 80, :omission => '...'), class: 'gear-desc' %>
                       <% if link.retail_price != link.sale_price %>
                         <%= content_tag :p, link.retail_price, class: 'gear-retail-price' %>
                       <% end %>
-                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>                 
+                      <%= link_to link.sale_price, link.buy_url, target: '_blank', rel: 'nofollow', class: 'gear-sale-price' %>
                     </td>
                   </tr>
                 </table>
