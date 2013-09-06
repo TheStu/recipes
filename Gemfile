@@ -34,7 +34,7 @@ end
   gem "exception_notification", git: 'git://github.com/alanjds/exception_notification.git'
   gem "google-analytics-rails", "~> 0.0.3"
   gem "nokogiri", "~> 1.5.5"
-  gem "devise", "~> 2.1.2"
+  gem "devise", "~> 3.1.0"
   gem "cancan", "~> 1.6.8"
   gem "carrierwave", "~> 0.7.1"
   gem "rmagick", "~> 2.13.1"
